@@ -1,1 +1,1 @@
-//상태관리 임시파일
+import React from 'react';

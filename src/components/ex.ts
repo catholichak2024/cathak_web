@@ -1,1 +1,1 @@
-//컴포넌트 구현 임시파일
+import React from 'react';
