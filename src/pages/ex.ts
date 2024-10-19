@@ -1,1 +1,1 @@
-//페이지 구현 임시파일
+import React from 'react';
