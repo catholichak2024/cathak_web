@@ -1,4 +1,4 @@
-export { ReactComponent as Logo } from './test/logo.svg';
+export { ReactComponent as Logo } from './logo.svg';
 
 
 
