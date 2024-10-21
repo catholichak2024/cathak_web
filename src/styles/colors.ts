@@ -2,7 +2,11 @@ const colors = {
     white: '#ffffff',
     black: '#000000',
     backbasic: '#eff8fe',
-    homeback: 'D6E8F1',
+    homeback: '#d6e8f1',
+    navy: '#1a264f',
+    alarm: '#ec9696',
+    bottomBar: '#cecece',
+    gray: '#626262',
 }as const;
 
 export const theme = {
