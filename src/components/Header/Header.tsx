@@ -20,11 +20,11 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo}: Pr
                 {backarrow && (
                   <BackArrow width={'100%'} onClick={() => navigate('/home')} />
                 )}
-                {catholiclogo1 && (<CatholicLogo width={'100%'} />)}
+                {catholiclogo1 && (<CatholicLogo width={'100%'} aria-label="Catholic Logo1"/>)}
             </S.IconLayout>
             <S.IconLayout>
             {catholiclogo2 && (<CatholicLogo width={'100%'} />)}
-            {catholicnamelogo && (<CatholicNameLogo width={'100%'} />)}
+            {catholicnamelogo && (<CatholicNameLogo width={'100%'} aria-label="Catholic Name Logo"/>)}
             </S.IconLayout>
         </S.Layout>
     )
