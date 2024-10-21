@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 import { theme } from './styles/colors';
 import { ThemeProvider } from 'styled-components';
 import MainScreen from './components/MainScreen';
+import HomePage from './pages/Home/Home';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-
+              <Route path="home" element={<HomePage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
