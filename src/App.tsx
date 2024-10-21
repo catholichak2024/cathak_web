@@ -8,7 +8,7 @@ import MainScreen from './components/MainScreen';
 import HomePage from './pages/Home/Home';
 import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassPage from './pages/DetailClass/detailClass';
-
+import SplashPage from './pages/Splash/Splash';
 function App() {
   return (
     <RecoilRoot>
@@ -16,6 +16,7 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
+              <Route path="/" element={<SplashPage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="searchclass" element={<SearchPage />} />
               <Route path="detailclass" element={<DetailClassPage />} />
