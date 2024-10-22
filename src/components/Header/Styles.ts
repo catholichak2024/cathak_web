@@ -5,7 +5,7 @@ export const Layout = styled.div`
   display: flex;
   justify-content: space-between;
   position: absolute;
-  top: 2rem;
+  top: 4rem;
   left: 49%;
   transform: translateX(-50%);
 `;
