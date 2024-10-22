@@ -18,7 +18,7 @@ export const underlinedText = styled.span`
 `;
 
 export const line = styled.div`
-  width: 72px;
+  width: 76px;
   height: 3px; 
   background-color: ${({ theme }) => theme.colors.bottomBar}; // 선 색상
   margin-top: 4px; // 텍스트와 선 사이의 간격

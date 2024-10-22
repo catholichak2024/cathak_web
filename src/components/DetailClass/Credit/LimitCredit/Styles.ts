@@ -16,7 +16,7 @@ export const CreditContainer = styled.div`
 `;
 
 export const IconBox = styled.div`
-  margin-right: 0.5rem; /* 아이콘과 텍스트 간의 간격 */
+  margin-right: 0.5rem;
 `;
 
 export const WhatCreditText = styled.span`
@@ -40,5 +40,5 @@ export const CreditText = styled.span`
   font-size: 0.8rem;
   margin-left: 0.4rem;
   color: ${({ theme }) => theme.colors.navy};
-  height: 0px;
+  margin-top: 2.5rem;
 `;
