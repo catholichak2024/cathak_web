@@ -20,7 +20,9 @@ const ClassList: React.FC = () => {
                    description="I-DESIGN, Career-DESIGN 인문/사회, 자연/과학, 휴먼/테크, 글로벌/영어 각 분야별 3학점"
                 />
                 <DividingLine />
-               <ClassContainer data={attendedClasses} />
+                <S.ClassBox>
+                    <ClassContainer data={attendedClasses} />
+                </S.ClassBox>
             </S.ClassContainer>
         </S.Layout>
     )
