@@ -6,8 +6,9 @@ export const Layout = styled.div`
   flex-direction: column;
   border-radius: 1rem; 
   padding: 16px;
-  margin: 21px;
+  margin: -25px 16px 0;
   display: flex;
+  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 6px -1px ${({ theme }) => theme.colors.alarm};
 `;
 
@@ -27,7 +28,7 @@ export const RequiredText = styled.span`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.alarm};
   margin-left: 8px;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 `;
 
 // 설명 텍스트 스타일
@@ -37,5 +38,5 @@ export const DescriptionText = styled.p`
   font-weight: bold;
   margin-left: 16px;
   color: ${({ theme }) => theme.colors.alarm};
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 `;

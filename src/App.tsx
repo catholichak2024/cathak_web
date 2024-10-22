@@ -20,6 +20,10 @@ function App() {
               <Route path="home" element={<HomePage />} />
               <Route path="searchclass" element={<SearchPage />} />
               <Route path="detailclass/general" element={<DetailClassMainPage />} />
+              <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />
+              <Route path="detailclass/major1" element={<DetailClassMainPage />} />
+              <Route path="detailclass/major12" element={<DetailClassMainPage />} />
+              <Route path="detailclass/majorsecond" element={<DetailClassMainPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>

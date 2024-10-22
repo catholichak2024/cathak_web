@@ -6,24 +6,27 @@ import { attendedClassListState } from '../../../recoil/selectors/attendedClass'
 import DividingLine from '../../DividingLine/DividingLine';
 import EssentailBox from '../EssentailBox/EssentailBox';
 import Credit from '../Credit/Credit';
-import ClassTypeList from '../ClassTypeList/ClassTypeList';
+import ClassTypeMajorSecondList from '../ClassTypeList/ClassTypeMajorSecondList';
 
-const ClassList: React.FC = () => {
+const ClassListMajorBasic: React.FC = () => {
     const attendedClasses = useRecoilValue(attendedClassListState);
 
     return(
         <S.Layout>
             <S.ClassContainer>
-                <ClassTypeList />
+                <ClassTypeMajorSecondList />
                 <Credit />
                 <EssentailBox 
-                   description="I-DESIGN, Career-DESIGN 인문/사회, 자연/과학, 휴먼/테크, 글로벌/영어 각 분야별 3학점"
+                   description=" 외국어 강의 교과목을 중핵교양 필수, 글로벌영어영역 교과목, 전공 교과목
+18학점을 수강해야함"
                 />
                 <DividingLine />
-               <ClassContainer data={attendedClasses} />
+                <S.ClassBox>
+                    <ClassContainer data={attendedClasses} />
+                </S.ClassBox>
             </S.ClassContainer>
         </S.Layout>
     )
 }
 
-export default ClassList;
+export default ClassListMajorBasic;

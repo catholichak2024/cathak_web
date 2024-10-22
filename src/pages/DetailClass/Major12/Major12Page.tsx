@@ -1,11 +1,11 @@
 import React from 'react';
 import * as S from './Styles';
-import ClassListGeneral from '../../../components/DetailClass/ClassList/ClassListGeneral';
+import ClassListMajor12 from '../../../components/DetailClass/ClassList/ClassListMajor12';
 
 const GeneralDetailPage = () => {
     return (
       <S.Layout>
-        <ClassListGeneral />
+        <ClassListMajor12 />
       </S.Layout>
     );
   };
