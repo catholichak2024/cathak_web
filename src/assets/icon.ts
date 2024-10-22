@@ -16,3 +16,6 @@ export { ReactComponent as RedStar } from './icon/redstar.svg';
 
 //최소이수학점
 export { ReactComponent as LimitCreditIcon } from './icon/limitcredit.svg';
+
+//검색페이지
+export { ReactComponent as Search } from './icon/search.svg';

@@ -4,7 +4,9 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 97%;
+  width: 90%;
+  overflow-y: scroll;
+
 `;
 
 export const Container = styled.div`
@@ -35,6 +37,5 @@ export const Credit = styled.p`
 
 export const IconWrapper = styled.div`
   margin: 0;
-  flex: 0 0 auto;
-  cursor:pointer;
+  flex: 0 0 auto; 
 `;
