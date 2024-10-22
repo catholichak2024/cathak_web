@@ -55,7 +55,7 @@ const SearchClass: React.FC = () => {
                     searchResult.length > 0 ? (
                         <ClassContainer data={searchResult} />
                     ) : (
-                        <div>검색 결과가 없습니다</div>
+                        <S.ErrorText>검색 결과가 없습니다.</S.ErrorText>
                     )
                 ) : (
                     <ClassContainer data={filteredClasses} />
