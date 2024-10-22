@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import MainScreen from './components/MainScreen';
 import HomePage from './pages/Home/Home';
 import SearchPage from './pages/SearchClass/SearchClass';
-import DetailClassPage from './pages/DetailClass/detailClass';
+import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
               <Route path="/" element={<SplashPage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="searchclass" element={<SearchPage />} />
-              <Route path="detailclass" element={<DetailClassPage />} />
+              <Route path="detailclass/general" element={<DetailClassMainPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
