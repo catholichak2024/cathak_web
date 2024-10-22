@@ -2,8 +2,8 @@ import React from 'react';
 import ClassType from './ClassType/ClassType';
 import * as S from './Styles';
 
-const ClassTypeList: React.FC = () => {
-  const classTypes = ['1전공', '2전공', '타전공'];
+const ClassTypeMajorBasicList: React.FC = () => {
+  const classTypes = ['자전기','타전기'];
 
   return (
     <S.layout>
@@ -12,4 +12,5 @@ const ClassTypeList: React.FC = () => {
   );
 };
 
-export default ClassTypeList;
+export default ClassTypeMajorBasicList;
+
