@@ -72,8 +72,8 @@ const Home: React.FC = () => {
                 총 성적
             </S.TextWithIcon>
             <S.TotalGradeText>
-              <S.LargeNumber2>0</S.LargeNumber2>   {/* 큰 숫자 */}
-              <S.SmallNumber2>/ 4.5</S.SmallNumber2> {/* 작은 숫자 */}
+              <S.LargeNumber2>0</S.LargeNumber2>  
+              <S.SmallNumber2>/ 4.5</S.SmallNumber2> 
             </S.TotalGradeText>
             <S.HomeHapRectangle2 src={homeHapRectangle2} alt="home hap rectangle2" />
           </S.HomeHapRectangle2Block>
@@ -84,8 +84,8 @@ const Home: React.FC = () => {
                 전공 성적
             </S.TextWithIcon>
             <S.TotalGradeText>
-              <S.LargeNumber2>0</S.LargeNumber2>   {/* 큰 숫자 */}
-              <S.SmallNumber2>/ 4.5</S.SmallNumber2> {/* 작은 숫자 */}
+              <S.LargeNumber2>0</S.LargeNumber2>  
+              <S.SmallNumber2>/ 4.5</S.SmallNumber2> 
             </S.TotalGradeText>
             <S.HomeHapRectangle2 src={homeHapRectangle2} alt="home hap rectangle2" />
           </S.HomeHapRectangle2Block>
