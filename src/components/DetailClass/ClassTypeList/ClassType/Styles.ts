@@ -17,9 +17,25 @@ export const underlinedText = styled.span`
   font-size: 1rem;
 `;
 
-export const line = styled.div`
-  width: 72px;
+export const line = styled.div<{ isSelected: boolean }>`
+  width: 76px;
   height: 3px; 
-  background-color: ${({ theme }) => theme.colors.bottomBar}; // 선 색상
-  margin-top: 4px; // 텍스트와 선 사이의 간격
+  background-color: ${({ isSelected, theme }) => isSelected ? theme.colors.black : theme.colors.bottomBar};
+  margin-top: 4px; 
+`;
+
+export const textContainer = styled.div`
+  display: flex;
+  align-items: center; 
+  position: relative; 
+`;
+
+export const redDot = styled.div`
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 6px;
+  height: 6px;
+  background-color: ${({ theme }) => theme.colors.alarm}; 
+  border-radius: 50%; 
 `;

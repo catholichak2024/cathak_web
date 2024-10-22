@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './Styles'; // 스타일 컴포넌트 불러오기
+import * as S from './Styles'; 
 import { RedStar } from '../../../assets/icon';
 
 const EssentailBox: React.FC<{ description: string }> = ({ description }) => {
