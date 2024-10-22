@@ -6,7 +6,7 @@ export const Layout = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: ${({ theme }) => theme.colors.backbasic};
   color: #333;
 
   h1 {
@@ -15,4 +15,14 @@ export const Layout = styled.div`
     padding: 20px;
     text-align: center;
   }
+  
+`;
+export const Content = styled.div`
+  width: 100%;
+  position: absolute;
+  top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 `;
