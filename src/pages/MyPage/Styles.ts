@@ -140,7 +140,7 @@ export const MajorText1 = styled.div`
 
 export const MajorText2 = styled.div`
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 10px;
   text-align: center;
   font-color: #1A264F;
   font-weight: bold;

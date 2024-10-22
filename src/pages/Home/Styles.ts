@@ -4,8 +4,8 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: auto;
+  justify-content: flex-start;
+  height: 100vh;
   background-color: backbasic;
   color: #333;
 
