@@ -9,12 +9,10 @@ import Credit from '../Credit/Credit';
 import ClassType from '../ClassTypeList/ClassType/ClassType';
 import { userInfoState } from '../../../recoil/states/Userstate';
 import { MajorAreaListState } from '../../../recoil/states/majorstate';
-
 const ClassListMajorSecond: React.FC = () => {
     const attendedClasses = useRecoilValue(attendedClassListState);
     const user = useRecoilValue(userInfoState);
     const majorAreas = useRecoilValue(MajorAreaListState);
-    
     
     const classTypes = ['제 1전공','부전공','타전공'];
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);

@@ -4,9 +4,9 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: backbasic;
   color: #333;
 
   h1 {
@@ -15,4 +15,244 @@ export const Layout = styled.div`
     padding: 20px;
     text-align: center;
   }
+
+  // @media (max-width: 852px) {
+  //   h1 {
+  //     font-size: 2rem;
+  //   }
+  // }
+
+  // @media (max-width: 393px) 
+  //   h1 {
+  //     font-size: 1.8rem;
+  //   }
+  //   padding: 10px;
+  // }
 `;
+
+export const Top = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const HomeRectangleImage = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+`;
+
+export const HomeEllipseImage = styled.img`
+  position: absolute;
+  top: 10%; 
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  z-index:2
+`;
+
+export const HomeMascotImage = styled.img`
+  position: absolute;
+  top: 16.5%; 
+  left: 36.5%;
+  weight: 63%;
+  height: 63%;
+  z-index: 3; 
+`;
+
+export const Detail = styled.div`
+  position: absolute;
+  top: 68%;
+  left: 15%;
+  width: 70%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  magin: 10px;
+  z-index: 4;
+`;
+
+export const Image = styled.img`
+  width: 80%;
+  height: 30%
+  height: auto;
+  object-fit: cover;
+`;
+
+export const TextOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 10;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  magin: 20px;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  span {
+    font-size: 14px;
+    color: #1A264F;
+  }
+
+  span:last-child {
+    font-size: 17px;
+    font-weight: bold;
+  }
+`;
+
+export const Line = styled.div`
+  width: 2px;   
+  height: 45px; 
+  background-color: #D6E8F1; 
+`;
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  width: 100%;
+  margin-left: 80px; 
+`;
+
+export const HomeGradeManage = styled.img`
+  width:  80px;
+  height: 20px;        
+`;
+
+export const Middle = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const HomeHapRectangle1Container = styled.div`
+  position: relative;  
+  width: 80%;
+  max-width: 500px;
+`;
+
+export const HomeHapRectangle1 = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+`;
+
+export const HomeHapRectangle2Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: auto;
+  gap: 0;
+  margin: 0;
+`;
+
+export const HomeHapRectangle2Block = styled.div`
+  position: relative;
+  width: 48%;
+  max-width: 240px;
+`;
+
+export const HomeHapRectangle2 = styled.img`
+  width: 130px;
+  height: auto;
+  margin: 0;
+  margin-bottom: 36px;
+`;
+
+export const TextWithIcon = styled.div`
+  display: flex;
+  align-items: center;  
+  position: absolute;
+  top: 20px; 
+  left: 21px; 
+  font-size: 10px;
+  color: #1A264F;
+  font-weight: bold;
+
+  img {
+    margin-right: 5px; 
+    width: 12px; 
+    height: 12px;
+  }
+`;
+
+export const LargeTextWithIcon = styled(TextWithIcon)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 20px; 
+  left:25px; 
+  font-size: 13px;  
+  color: #1A264F;
+  font-weight: bold;
+
+  img {
+    margin-right: 5px; 
+    width: 13.5px; 
+    height: 13.5px;
+  }
+`;
+
+export const LargeNumber = styled.span`
+  font-size: 70px; 
+  font-weight: 400;
+  color: #1A264F;
+`;
+
+export const TotalGradeText = styled.div`
+  display: flex;
+  flex-direction: Row;
+  align-items: center;
+  position: absolute;
+  top:1px; 
+  left: 12px;
+  text-align: center;
+  
+
+  img {
+    margin-left: 9px; 
+    width:105px;
+    height: 105px
+  }
+`;
+
+export const SmallNumber = styled.span`
+  font-size: 18px;
+  font-weight: 380;
+  color: #1A264F;
+  margin-left: 5px;
+  margin-top: 57px; 
+`;
+
+export const LargeNumber2 = styled.span`
+  font-size: 50px; 
+  font-weight: 400;  
+  color: #626262; 
+  margin-top: 35px; 
+  margin-left: 20px;
+`;
+
+export const SmallNumber2 = styled.span`
+  font-size: 18px;
+  font-weight: 380;
+  color: #626262;
+  margin-left: 5px;
+  margin-top: 60px;  
+`;
+

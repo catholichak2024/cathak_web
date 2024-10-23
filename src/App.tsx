@@ -6,9 +6,12 @@ import { theme } from './styles/colors';
 import { ThemeProvider } from 'styled-components';
 import MainScreen from './components/MainScreen';
 import HomePage from './pages/Home/Home';
+import MyPage from './pages/MyPage/MyPage';
+import MajorChange from './pages/MyPage/MajorChange';
 import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
+
 function App() {
   return (
     <RecoilRoot>
@@ -18,6 +21,8 @@ function App() {
             <Routes>
               <Route path="/" element={<SplashPage />} />
               <Route path="home" element={<HomePage />} />
+              <Route path="mypage" element={<MyPage/>}/>
+              <Route path="mypage/majorchange" element={<MajorChange/>}/>
               <Route path="searchclass" element={<SearchPage />} />
               <Route path="detailclass/general" element={<DetailClassMainPage />} />
               <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />

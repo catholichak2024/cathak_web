@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 import { BackArrow, CatholicLogo, CatholicNameLogo } from '../../assets/icon';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 interface Prop {
@@ -13,22 +13,36 @@ interface Prop {
 
 const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo}: Prop) => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleBackClick = () => {
+          navigate(-1); 
+    };
+
+    const handleLogoClick = () => {
+        navigate('/Mypage'); 
+      };
 
     return(
         <S.Layout>
             <S.IconLayout>
+                {/* {backarrow && (
+                  <BackArrow width={'100%'} onClick={() => navigate('/home')}/>
+                )} */}
                 {backarrow && (
-                  <BackArrow width={'100%'} onClick={() => navigate('/home')} />
+                  <BackArrow width={'100%'} onClick={handleBackClick} />
                 )}
-                {catholiclogo1 && (<CatholicLogo width={'100%'} />)}
+                {catholiclogo1 && (<CatholicLogo width={'100%'} aria-label="Catholic Logo1"/>)}
             </S.IconLayout>
             <S.IconLayout>
-            {catholiclogo2 && (<CatholicLogo width={'100%'} />)}
-            {catholicnamelogo && (<CatholicNameLogo width={'100%'} />)}
+                {catholiclogo2 && (<CatholicLogo width={'100%'} />)}
+                {catholicnamelogo && (<CatholicNameLogo width={'100%'} aria-label="Catholic Name Logo" onClick={handleLogoClick}/>)}
             </S.IconLayout>
         </S.Layout>
     )
 }
+
+
 
 export default Header;
 
