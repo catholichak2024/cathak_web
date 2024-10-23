@@ -11,6 +11,7 @@ import MajorChange from './pages/MyPage/MajorChange';
 import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
+
 function App() {
   return (
     <RecoilRoot>
@@ -21,7 +22,7 @@ function App() {
               <Route path="/" element={<SplashPage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="mypage" element={<MyPage/>}/>
-              <Route path="majorchange" element={<MajorChange/>}/>
+              <Route path="mypage/majorchange" element={<MajorChange/>}/>
               <Route path="searchclass" element={<SearchPage />} />
               <Route path="detailclass/general" element={<DetailClassMainPage />} />
               <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />

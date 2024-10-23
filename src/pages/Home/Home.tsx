@@ -11,6 +11,7 @@ import homeHapRectangle2 from '../../assets/home_image/home_hap_rectangle2.svg';
 import homeStar from '../../assets/home_image/home_star.svg';
 import homeBadge from '../../assets/home_image/home_badge.svg';
 import homeMascot2 from '../../assets/home_image/home_mascot_2.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (

@@ -10,9 +10,15 @@ import myRectangle from '../../assets/my_image/my_rectangle.svg';
 import myMajorChange from '../../assets/my_image/my_major_change.svg';
 import majorOne from '../../assets/my_image/major_one.svg';
 import majorTwo from '../../assets/my_image/major_two.svg';
-
+import { useNavigate } from 'react-router-dom';
 
 const MyPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const goToMajorChange = () => {
+    navigate('/Mypage/MajorChange'); 
+  };
+
   return (
     <S.Layout>
 
@@ -31,7 +37,7 @@ const MyPage: React.FC = () => {
 
       <S.TextImageContainer>
         <S.MajorText>전공</S.MajorText>
-        <S.MyMajorChange src={myMajorChange} alt="right image" />
+        <S.MyMajorChange src={myMajorChange} alt="right image" onClick={goToMajorChange}/>
       </S.TextImageContainer>
 
       <S.MajorRectangleContainer>
