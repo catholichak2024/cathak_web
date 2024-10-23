@@ -9,11 +9,17 @@ import Credit from '../Credit/Credit';
 import { classListState } from '../../../recoil/states/Classstates';
 import ClassType from '../ClassTypeList/ClassType/ClassType';
 import { userInfoState } from '../../../recoil/states/Userstate';
+import { useNavigate } from 'react-router-dom';
 
 const ClassListMajorSecond: React.FC = () => {
     const classList = useRecoilValue(classListState);
     const attendedClasses = useRecoilValue(attendedClassListState);
     const user = useRecoilValue(userInfoState);
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate('/MyPage'); // 경로 문자열을 전달
+    };
     
     const classTypes = ['제 1전공','부전공','타전공'];
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
