@@ -7,6 +7,7 @@ const colors = {
     alarm: '#ec9696',
     bottomBar: '#cecece',
     gray: '#626262',
+    dividing: '#aed3ec',
 }as const;
 
 export const theme = {

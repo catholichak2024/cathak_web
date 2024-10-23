@@ -9,8 +9,8 @@ import HomePage from './pages/Home/Home';
 import MyPage from './pages/MyPage/MyPage';
 import MajorChange from './pages/MyPage/MajorChange';
 import SearchPage from './pages/SearchClass/SearchClass';
-import DetailClassPage from './pages/DetailClass/detailClass';
-
+import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
+import SplashPage from './pages/Splash/Splash';
 function App() {
   return (
     <RecoilRoot>
@@ -18,11 +18,16 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
+              <Route path="/" element={<SplashPage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="mypage" element={<MyPage/>}/>
               <Route path="majorchange" element={<MajorChange/>}/>
               <Route path="searchclass" element={<SearchPage />} />
-              <Route path="detailclass" element={<DetailClassPage />} />
+              <Route path="detailclass/general" element={<DetailClassMainPage />} />
+              <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />
+              <Route path="detailclass/major1" element={<DetailClassMainPage />} />
+              <Route path="detailclass/major12" element={<DetailClassMainPage />} />
+              <Route path="detailclass/majorsecond" element={<DetailClassMainPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
