@@ -16,7 +16,11 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo}: Pr
     const location = useLocation();
 
     const handleBackClick = () => {
-          navigate(-1); 
+        if (location.pathname === '/mypage/majorchange') {
+          navigate('/mypage'); 
+        } else {
+          navigate('/home'); 
+        }
     };
 
     const handleLogoClick = () => {
@@ -26,9 +30,6 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo}: Pr
     return(
         <S.Layout>
             <S.IconLayout>
-                {/* {backarrow && (
-                  <BackArrow width={'100%'} onClick={() => navigate('/home')}/>
-                )} */}
                 {backarrow && (
                   <BackArrow width={'100%'} onClick={handleBackClick} />
                 )}

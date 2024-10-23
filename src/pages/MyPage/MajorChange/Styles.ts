@@ -25,17 +25,17 @@ export const Container = styled.div`
   width: 100%;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
-  align-items: center; 
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  padding-top: 30px; /* Header 위의 여백 문제 해결 */
 `;
 
 export const TitleText = styled.span`
   font-size: 18px;
-  position: absolute;
-  top: 5%;
-  left: 44%;
   text-align: center;
+  font-weight: 600;
 `;
+
 
 export const MyBigRectangle = styled.div`
   width: 100%;
@@ -112,6 +112,8 @@ export const ImageButton = styled.button.withConfig({
     height: auto;
     transition: fill 0.3s ease;
     fill: ${({ isActive }) => (isActive ? '#5E93B6' : 'white')};
+    filter: blur(0.2px);
+    filter-shadow: ${({ isActive }) => (isActive ? '0px 4px 8px rgba(0, 0, 0, 0.2)' : 'none')};
   }
 
   span {
@@ -175,11 +177,10 @@ export const SaveText = styled.span`
 
 export const SaveButton = styled.button`
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #5E93B6;
-  color: white;
+  bottom: 20%;
+  right: 10%;
+  background-color: white;
+  color: black;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -187,6 +188,6 @@ export const SaveButton = styled.button`
   font-size: 16px;
 
   &:hover {
-    background-color: #49789e;
+    background-color: white;
   }
 `;

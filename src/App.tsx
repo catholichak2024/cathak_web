@@ -7,7 +7,8 @@ import { ThemeProvider } from 'styled-components';
 import MainScreen from './components/MainScreen';
 import HomePage from './pages/Home/Home';
 import MyPage from './pages/MyPage/MyPage';
-import MajorChange from './pages/MyPage/MajorChange';
+import MajorChange from './pages/MyPage/MajorChange/MajorChange';
+import Password from './pages/MyPage/PasswordChange/Password'
 import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
@@ -23,6 +24,7 @@ function App() {
               <Route path="home" element={<HomePage />} />
               <Route path="mypage" element={<MyPage/>}/>
               <Route path="mypage/majorchange" element={<MajorChange/>}/>
+              <Route path="mypage/password" element={<Password/>}/>
               <Route path="searchclass" element={<SearchPage />} />
               <Route path="detailclass/general" element={<DetailClassMainPage />} />
               <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />

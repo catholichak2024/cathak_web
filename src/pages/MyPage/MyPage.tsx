@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './StylesM';
+import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import myBigRectangle from '../../assets/my_image/my_big_rectangle.svg';
 import myHayangi from '../../assets/my_image/my_hayangi.svg';
@@ -17,6 +17,10 @@ const MyPage: React.FC = () => {
 
   const goToMajorChange = () => {
     navigate('/Mypage/MajorChange'); 
+  };
+
+  const handlePasswordClick = () => {
+    navigate('/mypage/password');
   };
 
   return (
@@ -68,7 +72,7 @@ const MyPage: React.FC = () => {
       </S.IdContainer>
 
       <S.Bottom>
-        <S.ImageWrapper>
+        <S.ImageWrapper onClick={handlePasswordClick}> {/* 클릭 이벤트 추가 */}
           <S.MyPassword src={myPassword} alt="First image" />
         </S.ImageWrapper>
 
