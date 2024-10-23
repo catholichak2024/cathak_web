@@ -15,6 +15,19 @@ export const Layout = styled.div`
     padding: 20px;
     text-align: center;
   }
+
+  // @media (max-width: 852px) {
+  //   h1 {
+  //     font-size: 2rem;
+  //   }
+  // }
+
+  // @media (max-width: 393px) 
+  //   h1 {
+  //     font-size: 1.8rem;
+  //   }
+  //   padding: 10px;
+  // }
 `;
 
 export const Top = styled.div`
@@ -57,7 +70,7 @@ export const Detail = styled.div`
   height: 90px;
   display: flex;
   justify-content: center;
-  magin: 15px;
+  magin: 10px;
   z-index: 4;
 `;
 
@@ -72,7 +85,7 @@ export const TextOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 10;
-  width: 110%;
+  width: 90%;
   height: 100%;
   display: flex;
   magin: 20px;

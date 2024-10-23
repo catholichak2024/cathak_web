@@ -7,6 +7,7 @@ export const Layout = styled.div`
   align-items: center;
   justify-content: flex-start;
   height: 100vh;
+  width:
   background-color: white;
   color: #333;
 `;

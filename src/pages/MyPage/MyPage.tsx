@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './Styles';
+import * as S from './StylesM';
 import Header from '../../components/Header/Header';
 import myBigRectangle from '../../assets/my_image/my_big_rectangle.svg';
 import myHayangi from '../../assets/my_image/my_hayangi.svg';
