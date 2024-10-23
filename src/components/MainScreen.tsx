@@ -11,17 +11,19 @@ const PhoneContainer = styled.div`
 `;
 
 const PhoneScreen = styled.div`
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: auto;
+  max-width: 393px;
+  max-height: 852px;
   background-color: white;
   overflow: hidden;
   position: relative;
-  aspect-ratio: 393/852;
-  //모바일 환경
-  @media only screen and (max-width: 430px) {
-    width: 100%;
+  aspect-ratio: 393 / 852;
+  
+  // 화면 비율보다 클 때 스크롤 가능
+  @media (max-height: 852px), (max-width: 393px) {
     height: 100%;
-    aspect-ratio: auto;
+    overflow-y: auto;  // 세로 스크롤 가능
   }
 `;
 

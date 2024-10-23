@@ -10,6 +10,7 @@ export const classListState = atom<classInfoType[]>({
             classId: 1,
             credit: 2,
             category: '교양',
+            subCategory: '기초교양',
         },
         {
             className: '전자회로',
@@ -44,19 +45,58 @@ export const classListState = atom<classInfoType[]>({
             classId: 6,
             credit: 2,
             category: '교양',
+            subCategory: '기초교양',
         },
         {
             className: '과학의 논쟁',
             classId: 7,
             credit: 3,
             category: '교양',
+            subCategory: '중핵교양',
         },
         {
             className: '요가',
             classId: 8,
             credit: 3,
             category: '교양',
-        }
+            subCategory: '기본교양',
+        },
+        {
+            className: '사회와 문화',
+            classId: 9,
+            credit: 2,
+            category: '교양',
+            subCategory: '자유교양', 
+        },
+        {
+            className: '사회와 문화1',
+            classId: 10,
+            credit: 2,
+            category: '교양',
+            subCategory: '자유교양', 
+        },
+        {
+            className: '사회와 문화2',
+            classId: 11,
+            credit: 2,
+            category: '교양',
+            subCategory: '자유교양', 
+        },
+        {
+            className: '사회와 문화3',
+            classId: 12,
+            credit: 2,
+            category: '교양',
+            subCategory: '자유교양', 
+        },
+        {
+            className: '사회와 문화4',
+            classId: 13,
+            credit: 2,
+            category: '교양',
+            subCategory: '자유교양', 
+        },
+
     ],
 });
 
