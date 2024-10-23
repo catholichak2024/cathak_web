@@ -6,22 +6,43 @@ import { attendedClassListState } from '../../../recoil/selectors/attendedClass'
 import DividingLine from '../../DividingLine/DividingLine';
 import EssentailBox from '../EssentailBox/EssentailBox';
 import Credit from '../Credit/Credit';
-import { classListState } from '../../../recoil/states/Classstates';
 import ClassType from '../ClassTypeList/ClassType/ClassType';
 import { userInfoState } from '../../../recoil/states/Userstate';
+import { MajorAreaListState } from '../../../recoil/states/majorstate';
 
 const ClassListGeneral: React.FC = () => {
-    const classList = useRecoilValue(classListState);
     const attendedClasses = useRecoilValue(attendedClassListState);
     const user = useRecoilValue(userInfoState);
+    const majorAreas = useRecoilValue(MajorAreaListState);
     
     const classTypes = ['기초교양', '중핵교양', '자유교양'];
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
     
+    // 사용자전공을 기반으로 해당 전공의 정보를 찾기
+    const majorInfo = majorAreas.flatMap(area => area.relatedMajors)
+                                 .find(major => major.name === user.major);
+
+    let description = '';                            
+     // 선택된 카테고리에 따라 description 설정
+    if (majorInfo) {
+        switch (selectedCategory) {
+            case '기초교양':
+                description = majorInfo.relatedbasicgeneral;
+                break;
+            case '중핵교양':
+                description = majorInfo.coregeneralText;
+                break;
+            case '자유교양':
+                description = '-';
+                break;
+            default:
+                break;
+        }
+    }
 
     const filteredClasses = selectedCategory
-        ? classList.filter(classItem => classItem.subCategory === selectedCategory)
-        : classList; 
+        ? attendedClasses.filter(classItem => classItem.subCategory === selectedCategory)
+        : attendedClasses; 
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
@@ -37,7 +58,7 @@ const ClassListGeneral: React.FC = () => {
                 />
                 <Credit />
                 <EssentailBox 
-                   description=" I-DESIGN, Career-DESIGN “인문/사회, 자연/과학, 휴먼/테크, 글로벌/영어” 각 분야별 3학점"
+                    description={description} // 선택된 카테고리에 맞는 description
                 />
                 <DividingLine />
                 <S.ClassBox>
