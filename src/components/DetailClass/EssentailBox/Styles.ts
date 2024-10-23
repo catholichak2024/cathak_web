@@ -39,4 +39,7 @@ export const DescriptionText = styled.p`
   margin-left: 16px;
   color: ${({ theme }) => theme.colors.alarm};
   font-size: 0.6rem;
+  white-space: pre-line;
+  min-width: 270px; /* 원하는 최소 너비를 설정하세요 */
+  max-width: 100%;
 `;
