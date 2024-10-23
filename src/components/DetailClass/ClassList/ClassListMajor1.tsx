@@ -15,7 +15,7 @@ const ClassListMajor1: React.FC = () => {
     const attendedClasses = useRecoilValue(attendedClassListState);
     const user = useRecoilValue(userInfoState);
     
-    const classTypes = ['제 1전공','타전공'];
+    const classTypes = ['본영역','타전공'];
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
     
 

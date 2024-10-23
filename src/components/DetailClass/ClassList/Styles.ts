@@ -5,6 +5,7 @@ export const Layout = styled.div`
   flex-direction: column;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.background};
+  margin-top: -40px;
 `;
 
 export const ClassContainer = styled.div`
@@ -16,7 +17,7 @@ export const ClassContainer = styled.div`
 `;
 
 export const ClassBox = styled.div`
-  max-height: 300px; /* 최대 높이를 제한 */
+  max-height: 300px;
   overflow-y: auto;
   /* 스크롤바 스타일 */
     &::-webkit-scrollbar {
