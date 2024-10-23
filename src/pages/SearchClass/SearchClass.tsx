@@ -8,6 +8,7 @@ import Header from '../../components/Header/Header';
 import { classListState } from '../../recoil/states/Classstates';
 import SearchBar from './SearchBar/SearchBar';
 import { classInfoType } from '../../recoil/types/classdetail'; // 클래스 타입 가져오기
+import { userInfoState } from '../../recoil/states/Userstate';
 
 const SearchClass: React.FC = () => {
     const classList = useRecoilValue(classListState);
@@ -15,7 +16,7 @@ const SearchClass: React.FC = () => {
     const [searchResult, setSearchResult] = useState<classInfoType[]>(classList);
     const [searchTerm, setSearchTerm] = useState<string>(''); // 검색어 상태
     const [isSearching, setIsSearching] = useState<boolean>(false);
-
+    const user = useRecoilValue(userInfoState);
     const classTypes = ['교양', '전공기초', '전공', '교양추천'];
 
     const handleCategoryClick = (category: string) => {
@@ -53,12 +54,12 @@ const SearchClass: React.FC = () => {
                 <SearchBar onSearch={handleSearch} />
                 {isSearching ? (
                     searchResult.length > 0 ? (
-                        <ClassContainer data={searchResult} />
+                        <ClassContainer data={searchResult} user={user} />
                     ) : (
                         <S.ErrorText>검색 결과가 없습니다.</S.ErrorText>
                     )
                 ) : (
-                    <ClassContainer data={filteredClasses} />
+                    <ClassContainer data={filteredClasses} user={user}/>
                 )}
             </S.Content>
         </S.Layout>

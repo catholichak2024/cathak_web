@@ -1,30 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './Styles';
 
 type ClassTypeProps = {
-  types: string[];
+    types: string[];
+    selectedType: string | null; 
+    onTypeClick: (type: string) => void;
 };
 
-const ClassType: React.FC<ClassTypeProps> = ({ types }) => {
-  const [selectedType, setSelectedType] = useState<string | null>(null);
-
-  const handleClick = (type: string) => {
-    setSelectedType(type);
-  };
-
-  return (
-    <S.layout>
-      {types.map((type, index) => (
-        <S.textWithLine key={index} onClick={() => handleClick(type)}>
-          <S.textContainer> 
-            {selectedType === type && <S.redDot />} 
-            <S.underlinedText>{type}</S.underlinedText>
-          </S.textContainer>
-          <S.line isSelected={selectedType === type} />
-        </S.textWithLine>
-      ))}
-    </S.layout>
-  );
+const ClassType: React.FC<ClassTypeProps> = ({ types, selectedType, onTypeClick }) => {
+    return (
+        <S.layout>
+            {types.map((type, index) => (
+                <S.textWithLine key={index} onClick={() => onTypeClick(type)}>
+                    <S.redDot isSelected={selectedType === type} /> 
+                    <S.underlinedText>{type}</S.underlinedText>
+                    <S.line style={{ backgroundColor: selectedType === type ? 'rgba(26, 38, 79, 1)' : '#cecece' }} /> 
+                </S.textWithLine>
+            ))}
+        </S.layout>
+    );
 };
 
 export default ClassType;
+
+
