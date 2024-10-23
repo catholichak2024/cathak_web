@@ -20,7 +20,7 @@ const ClassListGeneral: React.FC = () => {
     
 
     const filteredClasses = selectedCategory
-        ? classList.filter(classItem => classItem.category === selectedCategory)
+        ? classList.filter(classItem => classItem.subCategory === selectedCategory)
         : classList; 
 
     const handleCategoryClick = (category: string) => {

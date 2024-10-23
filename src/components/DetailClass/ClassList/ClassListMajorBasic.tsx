@@ -15,7 +15,7 @@ const ClassListMajorBasic: React.FC = () => {
     const attendedClasses = useRecoilValue(attendedClassListState);
     const user = useRecoilValue(userInfoState);
     
-    const classTypes = ['자전기','타전기'];
+    const classTypes = ['본영역','타계열'];
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
     
 

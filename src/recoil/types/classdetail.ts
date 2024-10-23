@@ -1,8 +1,9 @@
 export interface classInfoType {
     className: string;
     classId: number; // 수업아이디(사용자id아님)
-    credit: number;
-    category: '교양' | '전공기초' | '전공'; // 수업의 카테고리
+    credit: number;  //학점수
+    category: string; // 수업 (교양/전공기초/전공)
+    subCategory?: string; // 교양 세부 카테고리기(기초/중핵/기본)
     major?: string; // 전공기초나 전공일 경우 무슨 전공인지
 }
 
