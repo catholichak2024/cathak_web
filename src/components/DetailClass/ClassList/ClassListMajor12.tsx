@@ -38,22 +38,34 @@ const ClassListMajor12: React.FC = () => {
         }
     });
     
-    let description = '';                            
+    let description = '';   
+    let major1MinCredit = 0; 
+    let major2MinCredit = 0;                        
      // 선택된 카테고리에 따라 description 설정
      switch (selectedCategory) {
         case '제 1전공':
-            description = majorInfo?.major1 || ''; // 1전공의 description
+            if (majorInfo) {
+                description = majorInfo.major1 || '';
+                major1MinCredit = majorInfo.MajorCredit ? majorInfo.MajorCredit[1] : 0; // 최소 이수 학점 체크
+            }
             break;
         case '제 2전공':
-            description = doubleMajorInfo?.major2 || ''; // 2전공의 description
+            if (doubleMajorInfo) {
+                description = doubleMajorInfo.major2 || '';
+                major2MinCredit = doubleMajorInfo.MajorCredit ? doubleMajorInfo.MajorCredit[1] : 0; // 최소 이수 학점 체크
+            }
             break;
         case '타전공':
-            description = majorInfo?.othermajor || ''; // 타전공의 description
+            description = majorInfo?.othermajor || '';
             break;
         default:
             break;
     }
 
+    //최소이수학점/ 취득학점계산
+    const TotalminCredit = major1MinCredit + major2MinCredit;
+    const getTotalCredit = filteredClasses.reduce((acc, classItem) => acc + classItem.credit, 0);
+    
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
     };
@@ -66,7 +78,10 @@ const ClassListMajor12: React.FC = () => {
                     selectedType={selectedCategory}
                     onTypeClick={handleCategoryClick} 
                 />
-                <Credit />
+                <Credit 
+                    minimumCredit={TotalminCredit}
+                    getCredit={getTotalCredit}
+                />
                 <EssentailBox 
                     description={description} // 선택된 카테고리에 맞는 description
                 />
