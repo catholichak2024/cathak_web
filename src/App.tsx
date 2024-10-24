@@ -11,6 +11,7 @@ import MajorChange from './pages/MyPage/MajorChange';
 import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
+import ScorePage from './pages/Score/ScorePage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="detailclass/major1" element={<DetailClassMainPage />} />
               <Route path="detailclass/major12" element={<DetailClassMainPage />} />
               <Route path="detailclass/majorsecond" element={<DetailClassMainPage />} />
+              <Route path="scoreInfo" element={<ScorePage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
