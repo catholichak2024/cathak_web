@@ -1,12 +1,20 @@
 import React from 'react';
 import * as S from './Styles';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import eggLogo from '../../assets/login_image/egg_logo.svg'
 import eggLogin from '../../assets/login_image/egg_login.svg'
 import eggSignup from '../../assets/login_image/egg_signup.svg'
 
 const Login: React.FC = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('/Login/NextLogin');  
+  };
+
+  const handleSignupClick = () => {
+    // navigate('/회원가입화면')
+  }
 
   return (
     <S.Layout>
@@ -20,8 +28,16 @@ const Login: React.FC = () => {
       </S.Middle>
 
       <S.Bottom>
-        <S.BottomImage src={eggLogin} alt="First Bottom Image" />
-        <S.BottomImage src={eggSignup} alt="Second Bottom Image" />
+        <S.BottomImage1 
+          src={eggLogin}  
+          alt="login Image"
+          onClick={handleLoginClick} 
+        />
+        <S.BottomImage2 
+          src={eggSignup}
+          alt="signup Image" 
+          onClick={handleSignupClick}
+        />
       </S.Bottom>
     </S.Layout>
   )

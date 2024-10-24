@@ -13,7 +13,7 @@ import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
 import LoginPage from './pages/LoginPage/LoginPage';
-// import NextLoginPage from ./pages/LoginPage/NextLoginPage';
+import NextLoginPage from './pages/LoginPage/LoginNextPage/NextLoginPage';
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
             <Routes>
               <Route path="/" element={<SplashPage />} />
               <Route path="login" element={<LoginPage />} />
-              {/* <Route path="login/nextlogin" element={<NextLoginPage />} /> */}
+              <Route path="login/nextlogin" element={<NextLoginPage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="mypage" element={<MyPage/>}/>
               <Route path="mypage/majorchange" element={<MajorChange/>}/>

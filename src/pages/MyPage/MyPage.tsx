@@ -66,8 +66,8 @@ const MyPage: React.FC = () => {
 
         {showPopup && (
           <S.PopupOverlay onClick={closePopup}>
-            <S.PopupContent onClick={(e) => e.stopPropagation()} type={popupType}> {/* 팝업 타입에 따라 스타일 다르게 적용 */}
-              <S.PopupTitle>{popupType === 'logout' ? '로그아웃' : '회원탈퇴'}</S.PopupTitle>
+            <S.PopupContent onClick={(e) => e.stopPropagation()} type={popupType}> 
+              <S.PopupTitle type={popupType}>{popupType === 'logout' ? '로그아웃' : '회원탈퇴'}</S.PopupTitle>
               <S.PopupDescription>
                 {popupType === 'logout' 
                   ? '로그아웃 하시겠습니까?' 

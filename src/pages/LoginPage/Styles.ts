@@ -17,16 +17,18 @@ export const Top = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 90px;
 `;
 
 export const TopText1 = styled.div`
   font-size: 18px;
+  font-weight: 600;
   color: #626262;
 `;
 
 export const TopText2 = styled.div`
   font-size: 22px;
+  font-weight: bold;
   color: #1A264F;
   margin-top: 10px;
   text-align: center;
@@ -38,24 +40,31 @@ export const Middle = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  margin-top: 60px;
 `;
 
 export const EggLogo = styled.img`
   width: auto;
-  height: 300px; 
+  height: auto; 
   position: relative;
   top: -10px; 
 `;
 
 export const Bottom = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
 `;
 
-export const BottomImage = styled.img`
-  width: 150px; 
+export const BottomImage1 = styled.img`
+  width: auto; 
   height: auto;
-  margin: 0 10px; 
+  margin: 60px 10px 10px 10px; 
+`;
+export const BottomImage2 = styled.img`
+  width: auto; 
+  height: auto;
+  margin: 10px 10px; 
 `;
