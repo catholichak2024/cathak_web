@@ -12,8 +12,17 @@ import homeStar from '../../assets/home_image/home_star.svg';
 import homeBadge from '../../assets/home_image/home_badge.svg';
 import homeMascot2 from '../../assets/home_image/home_mascot_2.svg';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { classListState } from '../../recoil/states/Classstates'
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
+  const classList = useRecoilValue(classListState);
+
+  const generalClassCount = classList.filter((item) => item.category === '교양').length;
+  const majorBasicClassCount = classList.filter((item) => item.category === '전공기초').length;
+  const majorClassCount = classList.filter((item) => item.category === '전공').length;
+
   return (
     <S.Layout>
       <div style={{ position: 'absolute', top: 0, width: '100%', zIndex: 1000 }}>
@@ -28,19 +37,19 @@ const Home: React.FC = () => {
             <S.Detail>
               <img src={homeRectangleDetail} alt="home rectangle detail" />
               <S.TextOverlay>
-                <div>
+                <div onClick={() => navigate("/detailclass/general")}>
                   <span>교양</span>
-                  <span>0</span>
+                  <span>{generalClassCount}</span>
                 </div>
                 <S.Line />
-                <div>
+                <div onClick={() => navigate("/detailclass/majorbasic")}>
                   <span>전공기초</span>
-                  <span>0</span>
+                  <span>{majorBasicClassCount}</span>
                 </div>
                 <S.Line />
-                <div>
+                <div onClick={() => navigate("/detailclass/major1")}>
                   <span>전공</span>
-                  <span>0</span>
+                  <span>{majorClassCount}</span>
                 </div>
               </S.TextOverlay>
             </S.Detail>
