@@ -160,7 +160,7 @@ export const Account = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  top: 62%;
+  top: 75%;
   left: 45px;
 `;
 
@@ -176,7 +176,7 @@ export const IdContainer = styled.div`
   justify-content: space-between;
   width: 320px;
   position: absolute;
-  top: 67%;
+  top: 83%;
   left: 5%;
   align-items: start;
 `;
@@ -196,7 +196,7 @@ export const IdNameText = styled.span`
 export const Bottom = styled.div`
   position: absolute;
   left: 30px;
-  top: 69%;
+  top: 85%;
   width: 400px;
   padding: 15px;
   display: flex;

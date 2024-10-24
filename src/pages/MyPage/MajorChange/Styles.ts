@@ -25,9 +25,9 @@ export const Container = styled.div`
   width: 100%;
   z-index: 1000;
   display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  padding-top: 30px; /* Header 위의 여백 문제 해결 */
+  justify-content: center; 
+  align-items: center;
+  padding-top: 30px; 
 `;
 
 export const TitleText = styled.span`
@@ -145,7 +145,7 @@ export const DepartmentInput = styled.input`
   text-align: left;
   padding: 5px;
   width: 292px;
-  height: 30px;
+  height: 25px;
   border: 2px solid #D6E8F1;
   border-radius: 15px;
   background-color: #D6E8F1;
@@ -177,15 +177,15 @@ export const SaveText = styled.span`
 
 export const SaveButton = styled.button`
   position: absolute;
-  bottom: 20%;
+  bottom: 8%;
   right: 10%;
   background-color: white;
   color: black;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 12px;
 
   &:hover {
     background-color: white;
