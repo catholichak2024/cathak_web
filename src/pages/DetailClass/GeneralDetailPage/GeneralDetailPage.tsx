@@ -4,7 +4,6 @@ import ClassListGeneral from '../../../components/DetailClass/ClassList/ClassLis
 import { useNavigate } from 'react-router-dom';
 
 const GeneralDetailPage = () => {
-  const navigate = useNavigate();
 
     return (
       <S.Layout>
