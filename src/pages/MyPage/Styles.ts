@@ -21,7 +21,7 @@ export const Top = styled.div`
 
 export const MyBigRectangle = styled.div`
   width: 100%;
-  height: auto;
+  height: 350px;
   position: relative; 
   display: flex;
   justify-content: center;
@@ -63,7 +63,7 @@ export const TextImageContainer = styled.div`
 `;
 
 export const MajorText = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   color: black;
   margin-left: 45px;
@@ -93,7 +93,7 @@ export const MajorRectangleContainer = styled.div`
 `;
 
 export const MajorRectangle = styled.img`
-  width: 325px;
+  width: 320px;
   height: auto;
   object-fit: cover;
 `;
@@ -103,7 +103,7 @@ export const OverlayContainer = styled.div`
   top: 10%; 
   left: 4%;
   width: 310px;
-  height: 100px;
+  height: 90px;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
@@ -116,6 +116,7 @@ export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  flex-basis: 50%;
 `;
 
 export const MajorImage1 = styled.img`
@@ -133,7 +134,7 @@ export const MajorImage2 = styled.img`
 
 export const MajorText1 = styled.div`
   font-size: 14px;
-  font-color: #1A264F;
+  color: #1A264F;
   font-weight: bold;
   margin-top: 10px;
   text-align: center;
@@ -143,7 +144,7 @@ export const MajorText2 = styled.div`
   font-size: 14px;
   margin-top: 10px;
   text-align: center;
-  font-color: #1A264F;
+  color: #1A264F;
   font-weight: bold;
 `;
 
@@ -159,12 +160,12 @@ export const Account = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  top: 75%;
+  top: 62%;
   left: 45px;
 `;
 
 export const AccountTitle = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   justify-content: center;
   margin-top: 15px;
@@ -175,7 +176,8 @@ export const IdContainer = styled.div`
   justify-content: space-between;
   width: 320px;
   position: absolute;
-  bottom: 120px; 
+  top: 67%;
+  left: 5%;
   align-items: start;
 `;
 
@@ -194,7 +196,7 @@ export const IdNameText = styled.span`
 export const Bottom = styled.div`
   position: absolute;
   left: 30px;
-  bottom: 30px;
+  top: 69%;
   width: 400px;
   padding: 15px;
   display: flex;
@@ -219,4 +221,78 @@ export const MyDelete = styled.img`
   height: auto;
   object-fit: contain;
 `;
+
+export const PopupOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+export const PopupContent = styled.div`
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 320px; 
+  height: 194px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 요소를 가운데 정렬 */
+  justify-content: center; /* 요소들을 수직 중앙에 배치 */
+`;
+
+export const PopupTitle = styled.h2`
+  margin: 0;
+  font-size: 18px;
+`;
+
+export const PopupDescription = styled.p`
+  margin: 5px 0 10px; 
+  font-size: 14px;
+  color: #626262
+`;
+
+export const ButtonContainer = styled.div`
+  justify-content: center;
+  width: auto;
+  margin-top: 10px;
+  margin-right: 2px;
+`;
+
+export const CloseButton = styled.button`
+  background-color: #F1F1F1;
+  border: none;
+  width: 106px;
+  height: 38px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 8px;
+  right: 10%;
+
+  &:hover {
+    background-color: #D6E8F1;
+  }
+`;
+
+export const ConfirmButton = styled.button`
+  background-color: #F1F1F1;
+  border: none;
+  width: 106px;
+  height: 38px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 8px;
+
+  &:hover {
+    background-color: #D6E8F1;
+  }
+`;
+
 

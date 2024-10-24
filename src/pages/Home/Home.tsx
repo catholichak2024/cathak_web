@@ -23,6 +23,12 @@ const Home: React.FC = () => {
   const majorBasicClassCount = classList.filter((item) => item.category === '전공기초').length;
   const majorClassCount = classList.filter((item) => item.category === '전공').length;
 
+  const totalCredits = classList.reduce((acc, item) => acc + item.credit, 0);
+  const totalAverage = classList.length ? Math.round((totalCredits / classList.length) * 10) / 10 : 0;
+  const majorClasses = classList.filter(item => item.category === '전공');
+  const majorCredits = majorClasses.reduce((acc, item) => acc + item.credit, 0);
+  const majorAverage = majorClasses.length ? Math.round((majorCredits / majorClasses.length) * 10) / 10 : 0;
+
   return (
     <S.Layout>
       <div style={{ position: 'absolute', top: 0, width: '100%', zIndex: 1000 }}>
@@ -68,7 +74,7 @@ const Home: React.FC = () => {
             </div>
 
             <S.TotalGradeText>
-              <S.LargeNumber>0</S.LargeNumber> <S.SmallNumber>/130</S.SmallNumber>
+              <S.LargeNumber>{totalCredits}</S.LargeNumber> <S.SmallNumber>/130</S.SmallNumber>
               <img src={homeMascot2} alt="home mascot2" />  
             </S.TotalGradeText>
           </S.LargeTextWithIcon>
@@ -82,7 +88,7 @@ const Home: React.FC = () => {
                 총 성적
             </S.TextWithIcon>
             <S.TotalGradeText>
-              <S.LargeNumber2>0</S.LargeNumber2>  
+              <S.LargeNumber2>{totalAverage}</S.LargeNumber2>  
               <S.SmallNumber2>/ 4.5</S.SmallNumber2> 
             </S.TotalGradeText>
             <S.HomeHapRectangle2 src={homeHapRectangle2} alt="home hap rectangle2" />
@@ -94,7 +100,7 @@ const Home: React.FC = () => {
                 전공 성적
             </S.TextWithIcon>
             <S.TotalGradeText>
-              <S.LargeNumber2>0</S.LargeNumber2>  
+              <S.LargeNumber2>{majorAverage}</S.LargeNumber2>  
               <S.SmallNumber2>/ 4.5</S.SmallNumber2> 
             </S.TotalGradeText>
             <S.HomeHapRectangle2 src={homeHapRectangle2} alt="home hap rectangle2" />

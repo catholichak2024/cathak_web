@@ -15,19 +15,6 @@ export const Layout = styled.div`
     padding: 20px;
     text-align: center;
   }
-
-  // @media (max-width: 852px) {
-  //   h1 {
-  //     font-size: 2rem;
-  //   }
-  // }
-
-  // @media (max-width: 393px) 
-  //   h1 {
-  //     font-size: 1.8rem;
-  //   }
-  //   padding: 10px;
-  // }
 `;
 
 export const Top = styled.div`
@@ -39,9 +26,11 @@ export const Top = styled.div`
 
 export const HomeRectangleImage = styled.img`
   width: 100%;
-  height: auto;
+  height: 350px;
   object-fit: cover;
-  z-index: 1;
+  border-radius: 25px;
+  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.3);
+  z-index: 2;
 `;
 
 export const HomeEllipseImage = styled.img`
@@ -196,8 +185,8 @@ export const LargeTextWithIcon = styled(TextWithIcon)`
   align-items: center;
   width: 100%;
   position: absolute;
-  top: 20px; 
-  left:25px; 
+  top: 40px; 
+  left:40px; 
   font-size: 13px;  
   color: #1A264F;
   font-weight: bold;
@@ -210,7 +199,7 @@ export const LargeTextWithIcon = styled(TextWithIcon)`
 `;
 
 export const LargeNumber = styled.span`
-  font-size: 70px; 
+  font-size: 45px; 
   font-weight: 400;
   color: #1A264F;
 `;
@@ -233,7 +222,7 @@ export const TotalGradeText = styled.div`
 `;
 
 export const SmallNumber = styled.span`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 380;
   color: #1A264F;
   margin-left: 5px;
@@ -241,7 +230,7 @@ export const SmallNumber = styled.span`
 `;
 
 export const LargeNumber2 = styled.span`
-  font-size: 50px; 
+  font-size: 30px; 
   font-weight: 400;  
   color: #626262; 
   margin-top: 35px; 
@@ -249,10 +238,10 @@ export const LargeNumber2 = styled.span`
 `;
 
 export const SmallNumber2 = styled.span`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 380;
   color: #626262;
-  margin-left: 5px;
+  margin-left: 3px;
   margin-top: 60px;  
 `;
 
