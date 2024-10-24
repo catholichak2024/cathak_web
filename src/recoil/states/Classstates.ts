@@ -13,7 +13,7 @@ export const classListState = atom<classInfoType[]>({
             subCategory: '기초교양',
         },
         {
-            className: '그리스도교',
+            className: '그리스도교사상과문화',
             classId: 2,
             credit: 2,
             category: '교양',

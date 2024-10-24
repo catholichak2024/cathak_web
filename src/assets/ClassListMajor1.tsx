@@ -22,8 +22,7 @@ const ClassListMajor1: React.FC = () => {
     // 사용자전공을 기반으로 해당 전공의 정보를 찾기
     const majorInfo = majorAreas.flatMap(area => area.relatedMajors)
                                  .find(major => major.name === user.major);
-   
-    //전공수업정렬
+
     const filteredClasses = attendedClasses.filter((classItem) => {
         if (classItem.category !== '전공') return false; // 전공 수업이 아닌 경우 제외
 
@@ -35,14 +34,12 @@ const ClassListMajor1: React.FC = () => {
         return false;
     });
 
-    let description = '';   
-    let major1MinCredit = 0;                         
-     // 전공 설명,최소이수학점
+    let description = '';                            
+     // 선택된 카테고리에 따라 description 설정
     if (majorInfo) {
         switch (selectedCategory) {
             case '제 1전공':
                 description = majorInfo.major1;
-                major1MinCredit = majorInfo.MajorCredit[0]
                 break;
             case '타전공':
                 description = majorInfo.othermajor;
@@ -51,10 +48,6 @@ const ClassListMajor1: React.FC = () => {
                 break;
         }
     }
-
-    //취득학점계산
-    const getTotalCredit = filteredClasses.reduce((acc, classItem) => acc + classItem.credit, 0);
-    
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
     };
@@ -67,10 +60,7 @@ const ClassListMajor1: React.FC = () => {
                     selectedType={selectedCategory}
                     onTypeClick={handleCategoryClick} 
                 />
-                <Credit 
-                    minimumCredit={major1MinCredit}
-                    getCredit={getTotalCredit}
-                />
+                <Credit />
                 <EssentailBox 
                     description={description} // 선택된 카테고리에 맞는 description
                 />
