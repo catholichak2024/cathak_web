@@ -1,12 +1,10 @@
-
-
-
 import React, { useState } from 'react';
 import * as S from './Styles';
 import { NotsaveClass, SaveClass } from '../../../assets/icon';
 import { classInfoType } from '../../../recoil/types/classdetail';
 import { userInfoType } from '../../../recoil/types/userdetail';
 
+//추후 사용자가 저장, 삭제했을 때 서버에 요청 보내기 구현해야함
 interface Props {
     data: classInfoType[];
     user:userInfoType;
@@ -42,41 +40,3 @@ const ClassContainer = ({ data,user }: Props) => {
 };
 
 export default ClassContainer;
-
-// import React from 'react';
-// import * as S from './Styles';
-// import { useRecoilValue } from 'recoil';
-// import { classInfoType } from '../../../recoil/types/classdetail';
-// import { userInfoState } from '../../../recoil/states/Userstate';
-// import { useTheme } from 'styled-components';
-// import { NotsaveClass, SaveClass } from '../../../assets/icon';
-
-// interface Props {
-//     data: classInfoType[];
-// }
-
-// const ClassContainer = ({ data }: Props) => {
-//     const theme = useTheme();
-//     const user = useRecoilValue(userInfoState);
-
-//     //추후에 saveClass를 user.attendedClasses에 추가해야함
-//     return (
-//         <S.Layout>
-//             {data.map((d) => (
-//                 <S.Container key={d.classId}>
-//                     <S.ClassName>{d.className}</S.ClassName>
-//                     <S.Credit>{d.credit}학점s</S.Credit>
-//                     <S.IconWrapper>
-//                         {user.attendedClasses.includes(d.classId) ? (
-//                             <SaveClass />
-//                         ) : (
-//                             <NotsaveClass />
-//                         )}
-//                     </S.IconWrapper>
-//                 </S.Container>
-//             ))}
-//         </S.Layout>
-//     );
-// }
-
-// export default ClassContainer;

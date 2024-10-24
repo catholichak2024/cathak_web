@@ -23,7 +23,7 @@ const SignUp: React.FC = () => {
         if (!registrationInfo.id.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,12}$/)) {
         newErrors.id = '아이디는 3~12자리의 영문 및 숫자 조합이어야 합니다.';
         }
-        if (!registrationInfo.password.match(/^[A-Za-z\d!@#$%^&*]{5,15}$/)) {
+        if (!registrationInfo.password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=])[A-Za-z\d!@#$%^&*()_\-+=]{5,15}$/)) {
         newErrors.password = '비밀번호는 5~15자리의 영문, 숫자, 특수문자 조합이어야 합니다.';
         }
         if (registrationInfo.password !== registrationInfo.confirmPassword) {

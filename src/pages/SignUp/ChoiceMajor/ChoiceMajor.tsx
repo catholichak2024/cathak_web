@@ -40,6 +40,7 @@ const customStyles:StylesConfig = {
                 id="major-select"
                 options={options}
                 placeholder="학과명으로 검색"
+                noOptionsMessage={() => '일치하는 학과가 없습니다.'}
                 isClearable
                 isSearchable
                 styles={customStyles}

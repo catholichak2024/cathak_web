@@ -3,8 +3,8 @@ import * as S from './Styles';
 
 type ClassTypeProps = {
     types: string[];
-    selectedType: string | null; // 선택된 카테고리 추가
-    onTypeClick: (type: string) => void; // 클릭 핸들러 정의
+    selectedType: string | null; 
+    onTypeClick: (type: string) => void; 
 };
 
 const ClassType: React.FC<ClassTypeProps> = ({ types, selectedType, onTypeClick }) => {

@@ -14,10 +14,10 @@ const SearchClass: React.FC = () => {
     const classList = useRecoilValue(classListState);
     const [selectedCategory, setSelectedCategory] = useState<string>('교양');
     const [searchResult, setSearchResult] = useState<classInfoType[]>(classList);
-    const [searchTerm, setSearchTerm] = useState<string>(''); // 검색어 상태
+    const [searchTerm, setSearchTerm] = useState<string>(''); 
     const [isSearching, setIsSearching] = useState<boolean>(false);
     const user = useRecoilValue(userInfoState);
-    const classTypes = ['교양', '전공기초', '전공', '교양추천'];
+    const classTypes = ['교양', '전공기초', '전공', '챗봇'];
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
@@ -41,7 +41,7 @@ const SearchClass: React.FC = () => {
             // setFilteredClasses(classList); // 검색어가 없으면 기본 목록으로 되돌림
         }
     };
-
+   
     return (
         <S.Layout>
             <Header backarrow catholiclogo2 />
@@ -51,7 +51,9 @@ const SearchClass: React.FC = () => {
                     selectedType={selectedCategory}
                     onTypeClick={handleCategoryClick} 
                 />
-                <SearchBar onSearch={handleSearch} />
+                {selectedCategory !== '챗봇' && (
+                    <SearchBar onSearch={handleSearch} />
+                )}
                 {isSearching ? (
                     searchResult.length > 0 ? (
                         <ClassContainer data={searchResult} user={user} />
