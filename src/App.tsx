@@ -9,6 +9,7 @@ import HomePage from './pages/Home/Home';
 import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
+import SignUp from './pages/SignUp/SignUp';
 function App() {
   return (
     <RecoilRoot>
@@ -17,6 +18,7 @@ function App() {
           <ThemeProvider theme={theme}>
             <Routes>
               <Route path="/" element={<SplashPage />} />
+              <Route path="signup" element={<SignUp/>} />
               <Route path="home" element={<HomePage />} />
               <Route path="searchclass" element={<SearchPage />} />
               <Route path="detailclass/general" element={<DetailClassMainPage />} />
