@@ -18,15 +18,19 @@ const MyPage: React.FC = () => {
   const navigate = useNavigate();
 
   const [showPopup, setShowPopup] = useState(false);
-
-  const openPopup = () => setShowPopup(true);
-  const closePopup = () => setShowPopup(false);
-  const handleLogout = () => {
-    closePopup();
-    navigate('/'); 
-  };
+  const [popupType, setPopupType] = useState('');
 
   const userInfo = useRecoilValue(userInfoState);
+
+  const openPopup = (type: string) => {
+    setPopupType(type); 
+    setShowPopup(true); 
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setPopupType(''); 
+  };
 
   const goToMajorChange = () => {
     navigate('/Mypage/MajorChange'); 
@@ -34,6 +38,16 @@ const MyPage: React.FC = () => {
 
   const handlePasswordClick = () => {
     navigate('/mypage/password');
+  };
+
+  const handleConfirm = () => {
+    closePopup();
+    if (popupType === 'logout') {
+      navigate('/Login'); 
+    } else if (popupType === 'delete') {
+      console.log("회원 탈퇴 완료.");
+      navigate('/Login'); 
+    }
   };
 
   return (
@@ -46,22 +60,30 @@ const MyPage: React.FC = () => {
             src={myLogout} 
             alt="my logout" 
             style={{ width: '43px', height: '13px', position: 'absolute', top: '40px', right: '30px' }} 
-            onClick={openPopup}
+            onClick={() => openPopup('logout')}
           />
         </div>
 
         {showPopup && (
           <S.PopupOverlay onClick={closePopup}>
-            <S.PopupContent onClick={(e) => e.stopPropagation()}> 
-              <S.PopupTitle>로그아웃</S.PopupTitle>
-              <S.PopupDescription>로그아웃 하시겠습니까?</S.PopupDescription>
+            <S.PopupContent onClick={(e) => e.stopPropagation()} type={popupType}> {/* 팝업 타입에 따라 스타일 다르게 적용 */}
+              <S.PopupTitle>{popupType === 'logout' ? '로그아웃' : '회원탈퇴'}</S.PopupTitle>
+              <S.PopupDescription>
+                {popupType === 'logout' 
+                  ? '로그아웃 하시겠습니까?' 
+                  : '탈퇴하면 기존 데이터는 복구되지 않습니다.'}
+              </S.PopupDescription>
               <S.ButtonContainer>
-                <S.CloseButton onClick={closePopup}>닫기</S.CloseButton>
-                <S.ConfirmButton onClick={handleLogout}>확인</S.ConfirmButton>
+                <S.CloseButton onClick={closePopup} type={popupType}>닫기</S.CloseButton>
+                <S.ConfirmButton onClick={handleConfirm} type={popupType}> 
+                  {popupType === 'logout' ? '확인' : '계정 삭제'}
+                </S.ConfirmButton>
               </S.ButtonContainer>
             </S.PopupContent>
           </S.PopupOverlay>
         )}
+
+        
       </>
 
       <S.Top>
@@ -109,7 +131,7 @@ const MyPage: React.FC = () => {
           <S.MyPassword src={myPassword} alt="First image" />
         </S.ImageWrapper>
 
-        <S.ImageWrapper>
+        <S.ImageWrapper onClick={() => openPopup('delete')}>
           <S.MyDelete src={myDelete} alt="Second image" />
         </S.ImageWrapper>
       </S.Bottom>

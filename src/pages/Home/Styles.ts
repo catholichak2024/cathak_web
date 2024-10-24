@@ -19,6 +19,7 @@ export const Layout = styled.div`
 
 export const Top = styled.div`
   width: 100%;
+  height: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,10 +27,8 @@ export const Top = styled.div`
 
 export const HomeRectangleImage = styled.img`
   width: 100%;
-  height: 350px;
+  height: 80%;
   object-fit: cover;
-  border-radius: 25px;
-  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.3);
   z-index: 2;
 `;
 
@@ -44,10 +43,10 @@ export const HomeEllipseImage = styled.img`
 
 export const HomeMascotImage = styled.img`
   position: absolute;
-  top: 16.5%; 
-  left: 36.5%;
-  weight: 63%;
-  height: 63%;
+  top: 28%; 
+  left: 41%;
+  weight: 50%;
+  height: 50%;
   z-index: 3; 
 `;
 
@@ -64,6 +63,7 @@ export const Detail = styled.div`
 `;
 
 export const Image = styled.img`
+  top:40%;
   width: 80%;
   height: 30%
   height: auto;
@@ -112,12 +112,15 @@ export const Container = styled.div`
   justify-content: flex-start; 
   width: 100%;
   margin-left: 80px; 
+  margin-top:20px;
 `;
 
 export const HomeGradeManage = styled.img`
   width:  80px;
-  height: 20px;        
+  height: 20px;  
+  margin-top:30px;      
 `;
+
 
 export const Middle = styled.div`
   width: 100%;
@@ -129,9 +132,9 @@ export const Middle = styled.div`
 `;
 
 export const HomeHapRectangle1Container = styled.div`
-  position: relative;  
-  width: 80%;
-  max-width: 500px;
+  position: relative;
+  right: 1.5%;  
+  width: 77%;
 `;
 
 export const HomeHapRectangle1 = styled.img`
@@ -145,8 +148,6 @@ export const HomeHapRectangle2Container = styled.div`
   justify-content: space-between;
   width: 80%;
   height: auto;
-  gap: 0;
-  margin: 0;
 `;
 
 export const HomeHapRectangle2Block = styled.div`
@@ -185,7 +186,7 @@ export const LargeTextWithIcon = styled(TextWithIcon)`
   align-items: center;
   width: 100%;
   position: absolute;
-  top: 40px; 
+  top: 35px; 
   left:40px; 
   font-size: 13px;  
   color: #1A264F;

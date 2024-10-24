@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Header/Header';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +18,23 @@ const MyPassword: React.FC = () => {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{15,}$/;
     return passwordRegex.test(password);
   };
+
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
+
+  useEffect(() => {
+    const backButton = document.querySelector('button'); 
+    if (backButton) {
+      backButton.addEventListener('click', handleBackClick);
+    }
+
+    return () => {
+      if (backButton) {
+        backButton.removeEventListener('click', handleBackClick);
+      }
+    };
+  }, []);
 
   const handleNewPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;

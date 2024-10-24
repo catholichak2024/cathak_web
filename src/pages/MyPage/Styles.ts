@@ -160,7 +160,8 @@ export const Account = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  top: 75%;
+  margin-top: 0;
+  top: 530px;
   left: 45px;
 `;
 
@@ -176,7 +177,7 @@ export const IdContainer = styled.div`
   justify-content: space-between;
   width: 320px;
   position: absolute;
-  top: 83%;
+  top: 580px;
   left: 5%;
   align-items: start;
 `;
@@ -196,7 +197,7 @@ export const IdNameText = styled.span`
 export const Bottom = styled.div`
   position: absolute;
   left: 30px;
-  top: 85%;
+  top: 590px;
   width: 400px;
   padding: 15px;
   display: flex;
@@ -235,17 +236,17 @@ export const PopupOverlay = styled.div`
   z-index: 999;
 `;
 
-export const PopupContent = styled.div`
+export const PopupContent = styled.div<{ type: string }>`  // type을 prop으로 받아서 스타일 적용
   background: white;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
-  width: 320px; 
-  height: 194px; 
+  width: 320px;
+  height: 194px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 요소를 가운데 정렬 */
-  justify-content: center; /* 요소들을 수직 중앙에 배치 */
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PopupTitle = styled.h2`
@@ -266,7 +267,7 @@ export const ButtonContainer = styled.div`
   margin-right: 2px;
 `;
 
-export const CloseButton = styled.button`
+export const CloseButton = styled.button<{ type: string }>`
   background-color: #F1F1F1;
   border: none;
   width: 106px;
@@ -277,12 +278,13 @@ export const CloseButton = styled.button`
   right: 10%;
 
   &:hover {
-    background-color: #D6E8F1;
+    background-color: ${({ type }) => type === 'delete' ? '#FF3B3B' : '#D6E8F1'}; 
+    color: ${({ type }) => type === 'delete' ? 'white' : 'black'};
   }
 `;
 
-export const ConfirmButton = styled.button`
-  background-color: #F1F1F1;
+export const ConfirmButton = styled.button<{ type: string }>`
+  background-color: #F1F1F1; 
   border: none;
   width: 106px;
   height: 38px;
@@ -291,8 +293,11 @@ export const ConfirmButton = styled.button`
   margin-left: 8px;
 
   &:hover {
-    background-color: #D6E8F1;
+    background-color: ${({ type }) => type === 'delete' ? '#FF3B3B' : '#D6E8F1'}; 
+    color: ${({ type }) => type === 'delete' ? 'white' : 'black'};
   }
 `;
+
+
 
 
