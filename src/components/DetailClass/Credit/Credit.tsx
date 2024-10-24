@@ -8,7 +8,7 @@ interface CreditSectionProps {
     getCredit: number;
 }
 
-const ClassList: React.FC<CreditSectionProps> = ({ minimumCredit, getCredit }) => {
+const Credit: React.FC<CreditSectionProps> = ({ minimumCredit, getCredit }) => {
     return(
         <S.Layout>
             <S.CreditContainer>
@@ -27,4 +27,4 @@ const ClassList: React.FC<CreditSectionProps> = ({ minimumCredit, getCredit }) =
     )
 }
 
-export default ClassList;
+export default Credit;
