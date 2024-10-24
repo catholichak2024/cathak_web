@@ -10,6 +10,8 @@ export interface MajorInfoType {
     freegeneralText: string; //자유 교양 뭔지 설명
     mainAreaMajorBasicsText: string;
     otherAreaMajorBasicsText : string; //타계열 설명
+    MajorBasicMinCredit:[number,number]; //전공기초의 최소이수학점
+    MajorCredit: [number,number]; //전공 최소이수학점(심화/복전)
     major1 : string; //1전공 설명
     major2 : string; //복수전공일경우 설명
     minor : string; //부전공있을경우 설명 

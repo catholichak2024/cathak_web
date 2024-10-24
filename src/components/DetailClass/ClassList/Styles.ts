@@ -17,7 +17,7 @@ export const ClassContainer = styled.div`
 `;
 
 export const ClassBox = styled.div`
-  max-height: 300px;
+  max-height: 280px;
   overflow-y: auto;
   /* 스크롤바 스타일 */
     &::-webkit-scrollbar {

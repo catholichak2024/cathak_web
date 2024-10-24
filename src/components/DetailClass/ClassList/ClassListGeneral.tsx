@@ -9,12 +9,13 @@ import Credit from '../Credit/Credit';
 import ClassType from '../ClassTypeList/ClassType/ClassType';
 import { userInfoState } from '../../../recoil/states/Userstate';
 import { MajorAreaListState } from '../../../recoil/states/majorstate';
+import { CreditByIdData } from '../../../recoil/states/CreditByIdData';
 
 const ClassListGeneral: React.FC = () => {
     const attendedClasses = useRecoilValue(attendedClassListState);
     const user = useRecoilValue(userInfoState);
     const majorAreas = useRecoilValue(MajorAreaListState);
-    
+    const CreditgeneralData = useRecoilValue(CreditByIdData);
     const classTypes = ['기초교양', '중핵교양', '자유교양'];
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
     
@@ -22,15 +23,20 @@ const ClassListGeneral: React.FC = () => {
     const majorInfo = majorAreas.flatMap(area => area.relatedMajors)
                                  .find(major => major.name === user.major);
 
-    let description = '';                            
+    
+    let description = ''; 
+    let basicGeneralMinCredit = 0;       
+    let coreGeneralMinCredit = 0;                      
      // 선택된 카테고리에 따라 description 설정
     if (majorInfo) {
         switch (selectedCategory) {
             case '기초교양':
                 description = majorInfo.relatedbasicgeneral;
+                basicGeneralMinCredit = CreditgeneralData.basicGeneralCredit;
                 break;
             case '중핵교양':
                 description = majorInfo.coregeneralText;
+                coreGeneralMinCredit = CreditgeneralData.coreGeneralCredit;
                 break;
             case '자유교양':
                 description = '-';
@@ -44,6 +50,10 @@ const ClassListGeneral: React.FC = () => {
         ? attendedClasses.filter(classItem => classItem.subCategory === selectedCategory)
         : attendedClasses; 
 
+    const TotalminCredit = basicGeneralMinCredit + coreGeneralMinCredit;
+    const getTotalCredit = filteredClasses.reduce((acc, classItem) => acc + classItem.credit, 0);
+        
+
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
     };
@@ -56,7 +66,10 @@ const ClassListGeneral: React.FC = () => {
                     selectedType={selectedCategory}
                     onTypeClick={handleCategoryClick} 
                 />
-                <Credit />
+                <Credit 
+                    minimumCredit={TotalminCredit}
+                    getCredit={getTotalCredit}
+                />
                 <EssentailBox 
                     description={description} // 선택된 카테고리에 맞는 description
                 />
