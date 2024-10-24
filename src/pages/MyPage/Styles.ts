@@ -236,7 +236,7 @@ export const PopupOverlay = styled.div`
   z-index: 999;
 `;
 
-export const PopupContent = styled.div<{ type: string }>`  // type을 prop으로 받아서 스타일 적용
+export const PopupContent = styled.div<{ type: string }>` 
   background: white;
   padding: 10px;
   border-radius: 10px;
@@ -249,9 +249,10 @@ export const PopupContent = styled.div<{ type: string }>`  // type을 prop으로
   justify-content: center;
 `;
 
-export const PopupTitle = styled.h2`
+export const PopupTitle = styled.h2<{ type: string }>`
   margin: 0;
   font-size: 18px;
+  color: ${({ type }) => type === 'delete' ? '#FF3B3B' : 'black'};  
 `;
 
 export const PopupDescription = styled.p`
