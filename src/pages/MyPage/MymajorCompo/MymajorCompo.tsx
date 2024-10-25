@@ -29,3 +29,5 @@ const MymajorCompo: React.FC<ClassTypeProps> = ({ whataMajor,myMajor }) => {
 };
 
 export default MymajorCompo;
+
+

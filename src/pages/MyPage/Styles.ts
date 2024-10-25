@@ -123,3 +123,5 @@ export const passwordBox = styled.div`
   transform: translate(0%, -380%); 
   cursor:pointer;
 `;
+
+

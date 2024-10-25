@@ -14,37 +14,28 @@ const MyPage2: React.FC = () => {
   // 사용자 전공 상태에 따른 whataMajor 및 myMajor 설정
   const whataMajor: string[] = ['제 1전공'];
   const myMajor: string[] = [user.major];
+
+
+
   if (user.doubleMajor) {
     whataMajor.push('제 2전공');
     myMajor.push(user.doubleMajor);
   }
+
+
   if (user.minor) {
     whataMajor.push('부전공');
     myMajor.push(user.minor);
   }
+
+
+
   return (
     <S.Layout>
       <Header backarrow mypageText Logout/>
       <S.Top>
         <S.HayangiBox>
           <Hayangi />
-
-    
-          
-            
-    
-
-          
-          Expand Down
-          
-            
-    
-
-          
-          Expand Up
-    
-    @@ -62,4 +62,4 @@
-  
         </S.HayangiBox>
         <S.UserName>{user.name}</S.UserName>  
       </S.Top>
@@ -76,3 +67,4 @@ const MyPage2: React.FC = () => {
 }; 
 
 export default MyPage2;
+
