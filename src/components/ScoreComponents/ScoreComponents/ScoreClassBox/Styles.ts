@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// 전체 박스 레이아웃 스타일
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;

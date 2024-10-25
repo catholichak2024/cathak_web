@@ -15,15 +15,20 @@ const MyPage2: React.FC = () => {
   const whataMajor: string[] = ['제 1전공'];
   const myMajor: string[] = [user.major];
 
+
+
   if (user.doubleMajor) {
     whataMajor.push('제 2전공');
     myMajor.push(user.doubleMajor);
   }
 
+
   if (user.minor) {
     whataMajor.push('부전공');
     myMajor.push(user.minor);
   }
+
+
 
   return (
     <S.Layout>
@@ -34,7 +39,6 @@ const MyPage2: React.FC = () => {
         </S.HayangiBox>
         <S.UserName>{user.name}</S.UserName>  
       </S.Top>
-
       <S.Bottom>
         <S.Middle>
             <S.MajorBold>전공</S.MajorBold> 
@@ -63,3 +67,4 @@ const MyPage2: React.FC = () => {
 }; 
 
 export default MyPage2;
+

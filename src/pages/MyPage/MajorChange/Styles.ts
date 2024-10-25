@@ -25,17 +25,17 @@ export const Container = styled.div`
   width: 100%;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
-  align-items: center; 
+  justify-content: center; 
+  align-items: center;
+  padding-top: 30px; 
 `;
 
 export const TitleText = styled.span`
   font-size: 18px;
-  position: absolute;
-  top: 5%;
-  left: 44%;
   text-align: center;
+  font-weight: 600;
 `;
+
 
 export const MyBigRectangle = styled.div`
   width: 100%;
@@ -112,6 +112,8 @@ export const ImageButton = styled.button.withConfig({
     height: auto;
     transition: fill 0.3s ease;
     fill: ${({ isActive }) => (isActive ? '#5E93B6' : 'white')};
+    filter: blur(0.2px);
+    filter-shadow: ${({ isActive }) => (isActive ? '0px 4px 8px rgba(0, 0, 0, 0.2)' : 'none')};
   }
 
   span {
@@ -143,7 +145,7 @@ export const DepartmentInput = styled.input`
   text-align: left;
   padding: 5px;
   width: 292px;
-  height: 30px;
+  height: 25px;
   border: 2px solid #D6E8F1;
   border-radius: 15px;
   background-color: #D6E8F1;
@@ -175,18 +177,17 @@ export const SaveText = styled.span`
 
 export const SaveButton = styled.button`
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #5E93B6;
-  color: white;
-  padding: 10px 20px;
+  bottom: 8%;
+  right: 10%;
+  background-color: white;
+  color: black;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 12px;
 
   &:hover {
-    background-color: #49789e;
+    background-color: white;
   }
 `;
