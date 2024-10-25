@@ -5,218 +5,123 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   justify-content: flex-start;
   height: 100vh;
-  width:
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   color: #333;
 `;
 
 export const Top = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-`;
-
-export const MyBigRectangle = styled.div`
-  width: 100%;
-  height: auto;
-  position: relative; 
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; 
-`;
-
-export const MainImage = styled.img`
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  z-index: 1;
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-`;
-
-export const MyHayangi = styled.img`
-  width: auto; 
-  height: auto;
-  bottom: 20%;
-  position: absolute;
-  z-index: 2;
-`;
-
-export const NameText = styled.div`
-  position: absolute;
-  font-size: 18px;
-  font-weight: bold;
-  color: black;
-  bottom: 11%;
-  z-index: 2;
-`;
-
-export const TextImageContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+  background-color: #d6e8f1;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  padding: 8px; 
+  box-shadow: 0 4px 10px #1a264f; 
   align-items: center;
-  width: 100%;
-  gap: 5px;
-  margin-top: 5px;
-`;
-
-export const MajorText = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  color: black;
-  margin-left: 45px;
-`;
-
-export const MyMajorChange = styled.img`
-  width: 40px;
-  height: 40px;
-  margin-right: 45px;
-`;
-
-export const Major = styled.div`
-  position: absolute;
-  top: 55%;
-  display: flex;
   justify-content: center;
-  padding-bottom: 15px;
-  // border-bottom: 1px solid #AED3EC;
-  z-index: 4;
+  width: 100%; 
+  height: 320px;
+`;
+export const HayangiBox = styled.div`
+  position: relative;      
+  margin-left: 100px;
+  margin-top: 70px;    
+  font-weight: bold;    
+`;
+export const UserName = styled.div`
+  font-size: 17px;        
+  margin: 0px;              
+  color: #333;    
+  font-weight: bold; 
+  margin-top: 10px; 
+  margin-left: 170px;   
 `;
 
-export const MajorRectangleContainer = styled.div`
-  position: relative;
-  width: 325px;
-  height: auto;
-  overflow: hidden;
-`;
 
-export const MajorRectangle = styled.img`
-  width: 325px;
-  height: auto;
-  object-fit: cover;
-`;
-
-export const OverlayContainer = styled.div`
+export const Middle = styled.div`
   position: absolute;
-  top: 10%; 
-  left: 4%;
-  width: 310px;
-  height: 100px;
+  top: 70%;              
+  left: 50%;
+  transform: translate(-50%, -48%);
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  padding: 0 20px;
-  overflow: hidden;
-  box-sizing: border-box;
-`;
-
-export const ImageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-`;
-
-export const MajorImage1 = styled.img`
-  width: auto;
-  height: auto;
-  object-fit: cover;
-`;
-
-export const MajorImage2 = styled.img`
-  width: auto;
-  height: auto;
-  object-fit: cover;
-`;
-
-
-export const MajorText1 = styled.div`
-  font-size: 14px;
-  font-color: #1A264F;
-  font-weight: bold;
-  margin-top: 10px;
-  text-align: center;
-`;
-
-export const MajorText2 = styled.div`
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
-  font-color: #1A264F;
-  font-weight: bold;
-`;
-
-export const Divider = styled.div`
-  height: 59px;
-  width: 2px;
-  background-color: #D6E8F1;
-  margin: 0 20px;
-`;
-
-export const Account = styled.div`
-  position: absolute;
-  display: flex;
+  width: 80%;
   align-items: center;
-  width: 100%;
-  top: 75%;
-  left: 45px;
 `;
 
-export const AccountTitle = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  justify-content: center;
-  margin-top: 15px;
-`;
 
-export const IdContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 320px;
-  position: absolute;
-  bottom: 120px; 
-  align-items: start;
-`;
-
-export const IdText = styled.span`
-  font-size: 12px;
-  font-weight: 600;
-  margin-left: 25.5px;
-`;
-
-export const IdNameText = styled.span`
-  font-size: 12px;
-  z-index: 1;
-  margin-right: 30px;
-`;
 
 export const Bottom = styled.div`
+    align-items: center; 
+    justify-content: center;
+    position: relative; 
+    width: 100%; 
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const MajorBold = styled.div`
+  font-size: 17px;        
+  margin: 50px;              
+  color: #333; 
+  transform: translate(-180%, -820%);   
+  font-weight: bold;    
+`;
+
+export const AccountBold = styled.div`
+  font-size: 17px;               
+  color: #333; 
+  transform: translate(-50%, 90%);  
+  margin-left: -250px; 
+  font-weight: bold;    
+`;
+
+export const GrandGoto = styled.div`
   position: absolute;
-  left: 30px;
-  bottom: 30px;
-  width: 400px;
-  padding: 15px;
+  top: 8%;            
+  left: 50%;
+  transform: translate(280%, -380%); 
+  cursor:pointer;
+`;
+
+export const MyIdBox = styled.div`
+  position: absolute;
+  top: 70%;              
+  left: 50%;
+  transform: translate(-50%, -52%);
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: start;
+  width: 80%;
+  align-items: center;
+  gap: 220px;
 `;
 
-export const ImageWrapper = styled.div`
-  width: auto;
-  margin-bottom: 10px;
+export const IdInfoText = styled.div`
+  font-size: 12px;                
+  color: #626262;   
+  font-weight: bold;    
 `;
 
-export const MyPassword = styled.img`
-  width: auto;
-  height: auto;
-  object-fit: contain;
+export const IdInfo = styled.div`
+  font-size: 10px;                
+  color: #626262;   
+  font-weight: bold;    
 `;
 
-export const MyDelete = styled.img`
-  width: auto;
-  height: auto;
-  object-fit: contain;
+export const exitMember = styled.div`
+  position: absolute;
+  top: 110%;            
+  left: 10%;
+  transform: translate(0%, -380%); 
+  cursor:pointer;   
 `;
+
+export const passwordBox = styled.div`
+  position: absolute;
+  top: 100%;            
+  left: 10%;
+  transform: translate(0%, -380%); 
+  cursor:pointer;
+`;
+
 

@@ -16,7 +16,7 @@ export const IconLayout = styled.button`
   background: none;
   border: none;
   padding: 0; 
-  margin: 0 30px; //헤더 두개 사이즈 조절
+  margin: 0 30px; 
 `;
 
 export const ButtonLayout = styled.button`
@@ -29,14 +29,15 @@ export const ButtonLayout = styled.button`
 `;
 
 export const ConditionText = styled.div`
-  font-size: 16px; // 원하는 폰트 크기
+  font-size: 16px;
   color: #000000; 
-  margin: 0 -5px; 
+  margin: 0 -14px 0 -4px; 
   font-weight: bold;
 `;
 
 export const LogoutText = styled.div`
-  font-size: 10px; // 원하는 폰트 크기
-  color: #333; // 원하는 색상
-  margin: 0 10px; // 원하는 여백
+  font-size: 10px;
+  color: #626262;
+  margin: 0 10px; 
+  font-weight: bold;
 `;

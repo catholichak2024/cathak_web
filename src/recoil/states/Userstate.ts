@@ -6,6 +6,8 @@ export const userInfoState = atom<userInfoType>({
     key: 'userInfoState',
     default: {
         name: '김가대',
+        userid: 1,
+        id: 'kimgadae',
         studentid: 231234567,  //학번
         major: '컴퓨터정보공학부',   
         doubleMajor: '화학과', // 복수전공

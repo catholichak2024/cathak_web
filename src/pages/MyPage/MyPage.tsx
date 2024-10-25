@@ -1,81 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './StylesM';
 import Header from '../../components/Header/Header';
-import myBigRectangle from '../../assets/my_image/my_big_rectangle.svg';
-import myHayangi from '../../assets/my_image/my_hayangi.svg';
-import myDelete from '../../assets/my_image/my_delete.svg';
-import myPassword from '../../assets/my_image/my_password.svg';
-import myRectangle from '../../assets/my_image/my_rectangle.svg';
-import myMajorChange from '../../assets/my_image/my_major_change.svg';
-import majorOne from '../../assets/my_image/major_one.svg';
-import majorTwo from '../../assets/my_image/major_two.svg';
+import { Hayangi, Major_change, Password, MemberExit } from '../../assets/icon';
+import { userInfoState } from '../../recoil/states/Userstate';
+import { useRecoilValue } from 'recoil';
+import MymajorCompo from './MymajorCompo/MymajorCompo';
 import { useNavigate } from 'react-router-dom';
 
-const MyPage: React.FC = () => {
+const Mypage: React.FC = () => {
+  const user = useRecoilValue(userInfoState);
   const navigate = useNavigate();
 
-  const goToMajorChange = () => {
-    navigate('/Mypage/MajorChange'); 
-  };
+  // 사용자 전공 상태에 따른 whataMajor 및 myMajor 설정
+  const whataMajor: string[] = ['제 1전공'];
+  const myMajor: string[] = [user.major];
+
+  if (user.doubleMajor) {
+    whataMajor.push('제 2전공');
+    myMajor.push(user.doubleMajor);
+  }
+
+  if (user.minor) {
+    whataMajor.push('부전공');
+    myMajor.push(user.minor);
+  }
 
   return (
     <S.Layout>
-
       <Header backarrow mypageText Logout/>
-
       <S.Top>
-        <S.MyBigRectangle>
-          <S.MainImage src={myBigRectangle} alt="my big rectangle" />
-          <S.MyHayangi src={myHayangi} alt="my hayangi" />
-          <S.NameText>이름</S.NameText>
-        </S.MyBigRectangle>
+        <S.HayangiBox>
+          <Hayangi />
+        </S.HayangiBox>
+        <S.UserName>{user.name}</S.UserName>  
       </S.Top>
 
-      <S.TextImageContainer>
-        <S.MajorText>전공</S.MajorText>
-        <S.MyMajorChange src={myMajorChange} alt="right image" onClick={goToMajorChange}/>
-      </S.TextImageContainer>
-
-      <S.MajorRectangleContainer>
-        <S.MajorRectangle src={myRectangle} alt="Major image" /> 
-        <S.OverlayContainer>
-          <S.ImageContainer>
-            <S.MajorImage1 src={majorOne} alt="First Image" />
-            <S.MajorText1>컴퓨터정보공학부</S.MajorText1>
-          </S.ImageContainer>
-
-          <S.Divider />
-
-          <S.ImageContainer>
-            <S.MajorImage2 src={majorTwo} alt="Second Image" />
-            <S.MajorText2>정보통신전자공학부</S.MajorText2>
-          </S.ImageContainer>
-        </S.OverlayContainer>
-      </S.MajorRectangleContainer>
-    
-
-      <S.Account>
-        <S.AccountTitle>계정</S.AccountTitle>
-      </S.Account>
-
-      <S.IdContainer>
-        <S.IdText>아이디</S.IdText>
-        <S.IdNameText>이름</S.IdNameText>
-      </S.IdContainer>
-
       <S.Bottom>
-        <S.ImageWrapper>
-          <S.MyPassword src={myPassword} alt="First image" />
-        </S.ImageWrapper>
-
-        <S.ImageWrapper>
-          <S.MyDelete src={myDelete} alt="Second image" />
-        </S.ImageWrapper>
+        <S.Middle>
+            <S.MajorBold>전공</S.MajorBold> 
+            <S.GrandGoto onClick={() => navigate('/mypage/majorchange')}>
+              <Major_change />
+            </S.GrandGoto>
+        </S.Middle>
+        <MymajorCompo
+                    whataMajor={whataMajor} 
+                    myMajor={myMajor} 
+              />
+        <S.AccountBold>계정</S.AccountBold>
+        <S.MyIdBox>
+            <S.IdInfoText>아이디</S.IdInfoText> 
+            <S.IdInfo>{user.id}</S.IdInfo>
+        </S.MyIdBox>
+        <S.passwordBox>
+          <Password />
+        </S.passwordBox>
+        <S.exitMember>
+          <MemberExit />
+        </S.exitMember>
       </S.Bottom>
-      
     </S.Layout>
-  )
-}
+  );
+}; 
 
-
-export default MyPage;
+export default Mypage;
