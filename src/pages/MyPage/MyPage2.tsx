@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as S from './StylesM';
+import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import { Hayangi, Major_change, Password, MemberExit } from '../../assets/icon';
 import { userInfoState } from '../../recoil/states/Userstate';
@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import MymajorCompo from './MymajorCompo/MymajorCompo';
 import { useNavigate } from 'react-router-dom';
 
-const Mypage: React.FC = () => {
+const MyPage2: React.FC = () => {
   const user = useRecoilValue(userInfoState);
   const navigate = useNavigate();
 
@@ -62,4 +62,4 @@ const Mypage: React.FC = () => {
   );
 }; 
 
-export default Mypage;
+export default MyPage2;
