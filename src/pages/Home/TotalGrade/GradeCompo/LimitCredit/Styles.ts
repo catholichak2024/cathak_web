@@ -12,13 +12,15 @@ export const Layout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
   box-shadow: 0 4px 10px #789cad;
+  max-width: 100px; /* 최대 너비 설정 */
+  width: 100%;
 `;
 
 
 export const CreditContainer = styled.div`
   display: flex;
   margin-bottom: -0.9rem;
-  justify-content: center; 
+  margin-left: -2.0rem;
 `;
 
 export const IconBox = styled.div`
@@ -34,18 +36,19 @@ export const NumberCreditContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 0.3rem;
   margin-bottom: -0.9rem;
 `;
 
 export const Credit = styled.span`
   font-weight: bold;
-  font-size: 4rem;
+  font-size: 3rem;
   color: ${({ theme }) => theme.colors.gray};
 `;
 
 export const CreditText = styled.span`
-  font-size: 0.8rem;
-  margin-left: 0.4rem;
+  font-size: 0.9rem;
+  margin-left: 0.2rem;
   color: ${({ theme }) => theme.colors.gray};
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
 `;

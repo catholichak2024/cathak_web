@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector,atom } from 'recoil';
 import { classListState } from '../states/Classstates';
 import { userInfoState } from '../states/Userstate';
 
@@ -14,4 +14,10 @@ export const attendedClassListState = selector({
             userInfo.attendedClasses.includes(classItem.classId)
         );
     },
+});
+
+//수강한 수업의 학점저장
+export const selectedGradesState = atom<{ [key: number]: number | null }>({
+    key: 'selectedGradesState',
+    default: {},
 });

@@ -12,7 +12,7 @@ const Credit: React.FC<CreditSectionProps> = ({ getCredit }) => {
         <S.Layout>
             <S.CreditContainer>
                 <LimitCredit 
-                    icon={<BlackStar />}
+                    icon={<BlackStar style={{ width: '120%', marginRight: '-6px' }} />}
                     whatcredit="총 학점"
                     credit={getCredit}
                 />
