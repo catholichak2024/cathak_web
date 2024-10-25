@@ -15,9 +15,11 @@ import SplashPage from './pages/Splash/Splash';
 import LoginPage from './pages/LoginPage/LoginPage';
 import LoginFind from './pages/LoginPage/LoginFind/LoginFind';
 import SignupFind from './pages/LoginPage/SignupFind/SignupFind';
+import SignupNext from './pages/LoginPage/SignupNext/SignupNext';
 import LoginComplete from './pages/LoginPage/LoginComplete/LoginComplete';
 import NextLoginPage from './pages/LoginPage/LoginNextPage/NextLoginPage';
 import ScorePage from './pages/Score/ScorePage';
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
               <Route path="login/nextlogin" element={<NextLoginPage />} />
               <Route path="loginfind" element={<LoginFind />}/>
               <Route path="signupfind" element={<SignupFind />}/>
+              <Route path="signupNext" element={<SignupNext />}/>
               <Route path="logincomplete" element={<LoginComplete />}/>
               <Route path="home" element={<HomePage />} />
               <Route path="mypage" element={<MyPage/>}/>

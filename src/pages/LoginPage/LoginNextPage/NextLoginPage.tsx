@@ -12,11 +12,11 @@ const NextLogin: React.FC = () => {
 
   // 아이디 찾기/비밀번호 찾기 만든다면
   const handleFindIdClick = () => {
-    navigate('/find-id'); 
+    navigate('/LoginFind'); 
   }; 
 
   const handleFindPwClick = () => {
-    navigate('/find-password');  
+    navigate('/SignupFind');  
   };
 
   const handleLogin = () => {
