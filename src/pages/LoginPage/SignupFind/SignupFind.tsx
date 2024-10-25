@@ -43,7 +43,7 @@ const SignupFind: React.FC = () => {
   // 제출 시 검증 및 페이지 이동
   const handleSubmit = () => {
     if (isFormValid) {
-      navigate('/SignupNext'); // 다음 페이지로 이동
+      navigate('/SignupNext'); 
     }
   };
 
@@ -56,8 +56,8 @@ const SignupFind: React.FC = () => {
         </S.TitleContainer>
 
         <S.Description>
-          등록된 학번과 아이디로<br />
-          회원가입을 진행할 수 있습니다.
+          등록된 학번과 아이디로 <br />
+          비밀번호를 찾으실 수 있습니다.
         </S.Description>
         <S.HorizontalLine />
       </S.Top>
