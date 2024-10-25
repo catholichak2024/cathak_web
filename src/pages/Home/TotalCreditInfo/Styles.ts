@@ -12,6 +12,7 @@ export const Layout = styled.div`
   height: 110px;
   max-width: 270px; /* 최대 너비 설정 */
   width: 100%;
+  cursor:pointer;
 `;
 
 export const CreditContainer = styled.div`

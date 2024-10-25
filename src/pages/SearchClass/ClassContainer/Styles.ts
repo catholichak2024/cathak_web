@@ -4,7 +4,6 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 90%;
   overflow-y: scroll;
 
 `;

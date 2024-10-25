@@ -12,8 +12,16 @@ export const Layout = styled.div`
 `;
 
 export const IconLayout = styled.button`
-  cursor: pointer;
   width: 20%;
+  background: none;
+  border: none;
+  padding: 0; 
+  margin: 0 30px; //헤더 두개 사이즈 조절
+`;
+
+export const ButtonLayout = styled.button`
+  cursor: pointer;
+  width: 50%;
   background: none;
   border: none;
   padding: 0; 

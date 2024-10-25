@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import { Mascothayangi, Ellipse, GradeManage } from '../../assets/icon';
@@ -119,6 +119,5 @@ const calculateMajorGrade = () => {
     </S.Layout>
   );
 }; 
-
 
 export default Home;
