@@ -5,7 +5,7 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   height: 100vh;
   background-color: backbasic;
   color: #333;
@@ -13,14 +13,14 @@ export const Layout = styled.div`
 
 export const Top = styled.div`
   width: 100%;
-  margin-top: 20%;
+  margin-top: 10px;
 `;
 
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  padding-left: 45px; 
+  padding-left: 50px; 
 `;
 
 export const TitleText = styled.h1`
@@ -34,16 +34,9 @@ export const Description = styled.p`
   margin-top: 10px;
   font-size: 14px;
   text-align: left; 
-  padding-left: 20px; 
+  padding-left: 50px; 
   line-height: 1.3;
   color: #626262;
-  padding-left: 45px; 
-`;
-
-export const PswImage = styled.img`
-  width: auto;
-  height: auto;
-  margin-right: 45px;
 `;
 
 export const HorizontalLine = styled.hr`
@@ -57,37 +50,38 @@ export const HorizontalLine = styled.hr`
 
 export const Middle = styled.div`
   width: 100%;
-  margin-top: 20px; 
+  margin-top: 40px; 
   display: flex;
-  margin-left: 110px;
   flex-direction: column;
-  align-items: flex-center;
+  align-items: center;
 `;
 
 export const Label = styled.label`
-  font-size: 11px;
+  font-size: 12px;
   color: #1A264F;
-  margin: 1px;
-  display: block;
-  padding-left: 15px;
+  margin-bottom: 4px;
   font-weight: bold;
+  text-align: left;
+  width: 100%;
+  max-width: 280px;
 `;
 
 export const Input = styled.input.withConfig({
   shouldForwardProp: (prop) => prop !== 'hasError',
 })<{ hasError: boolean }>`
-  width: 254px;
-  height: 35px;
-  margin-left:10px;
-  border: 2px solid ${({ hasError }) => (hasError ? '#FF5C5C' : 'White')};
+  width: 270px;
+  height: 40px;
+  border: 2px solid ${({ hasError }) => (hasError ? '#FF5C5C' : 'white')};
   border-radius: 15px;
-  padding: -5px 10px;
-  font-size: 12px;
+  padding: 0 5px;
+  font-size: 11px;
   color: #1A264F;
   outline: none;
+  margin-bottom: 1px;
 
   &::placeholder {
-    color: #A1A1A1; 
+    color: #A1A1A1;
+    font-size: 11px;
   }
 
   &:focus {
@@ -100,10 +94,12 @@ export const ErrorMessage = styled.p.withConfig({
 })<{ isVisible: boolean }>`
   color: #FF5C5C;
   font-size: 11px;
-  margin-top: 5px;
+  margin-top: 2px;
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   height: 16px;
-  padding-left: 16px; 
+  text-align: left;
+  width: 100%;
+  max-width: 280px;
 `;
 
 export const SubmitButton = styled.button`
@@ -114,12 +110,12 @@ export const SubmitButton = styled.button`
   border: none;
   border-radius: 15px;
   font-size: 14px;
+  margin-left: 5px;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  margin-top: 70px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; 
   transition: background-color 0.3s ease;
 
   &:hover {

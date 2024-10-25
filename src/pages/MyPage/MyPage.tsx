@@ -9,6 +9,7 @@ import myRectangle from '../../assets/my_image/my_rectangle.svg';
 import myMajorChange from '../../assets/my_image/my_major_change.svg';
 import majorOne from '../../assets/my_image/major_one.svg';
 import majorTwo from '../../assets/my_image/major_two.svg';
+import myLogOut from '../../assets/my_image/my_logout.svg';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userInfoState } from '../../recoil/states/Userstate';
@@ -54,7 +55,7 @@ const MyPage: React.FC = () => {
     <S.HeaderWrapper>
       <Header backarrow={true} />
       <S.LogoutIcon 
-        src={myLogout} 
+        src={myLogOut}  
         alt="my logout" 
         onClick={() => openPopup('logout')}
       />

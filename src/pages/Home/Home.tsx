@@ -16,7 +16,7 @@ const Home: React.FC = () => {
 
   const user = useRecoilValue(userInfoState);
   const classList = useRecoilValue(classListState);
-  const selectedGrades = useRecoilValue(selectedGradesState);4
+  const selectedGrades = useRecoilValue(selectedGradesState);
 
 
   // 각 타입에 맞는 학점/성적을 계산
