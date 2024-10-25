@@ -27,3 +27,16 @@ export const ButtonLayout = styled.button`
   padding: 0; 
   margin: 0;
 `;
+
+export const ConditionText = styled.div`
+  font-size: 16px; // 원하는 폰트 크기
+  color: #000000; 
+  margin: 0 -5px; 
+  font-weight: bold;
+`;
+
+export const LogoutText = styled.div`
+  font-size: 10px; // 원하는 폰트 크기
+  color: #333; // 원하는 색상
+  margin: 0 10px; // 원하는 여백
+`;
