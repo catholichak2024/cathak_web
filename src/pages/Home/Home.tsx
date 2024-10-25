@@ -98,17 +98,4 @@ const Home: React.FC = () => {
   );
 }; 
 
-<<<<<<< Updated upstream
 export default Home;
-=======
-
-export default Home;
-function setTouchStartX(clientX: number) {
-  throw new Error('Function not implemented.');
-}
-
-function setTouchEndX(clientX: number) {
-  throw new Error('Function not implemented.');
-}
-
->>>>>>> Stashed changes
