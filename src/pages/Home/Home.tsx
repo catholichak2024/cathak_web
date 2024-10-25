@@ -52,11 +52,13 @@ const Home: React.FC = () => {
               />
           </S.Detail>
       </S.Top>
-      <GradeManage />
-      <Credit getCredit={0} />
-      <Grade totalgrade={0} majorgrade={0} />
-      
-       
+      <S.Bottom>
+        <S.GrandGoto>
+          <GradeManage />
+        </S.GrandGoto>
+        <Credit getCredit={0} />
+        <Grade totalgrade={0} majorgrade={0} />
+      </S.Bottom>
     </S.Layout>
   );
 }; 
