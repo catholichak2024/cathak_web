@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import * as S from './StylesCh';
-import Header from '../../components/Header/Header';
-import myBigRectangle from '../../assets/my_image/my_big_rectangle.svg';
-import myHayangi from '../../assets/my_image/my_hayangi.svg';
-import majorMulti from '../../assets/major/major_multi.svg';
+import * as S from './Styles';
+import Header from '../../../components/Header/Header';
+import myBigRectangle from '../../../assets/my_image/my_big_rectangle.svg';
+import myHayangi from '../../..//assets/my_image/my_hayangi.svg';
+import majorMulti from '../../../assets/major/major_multi.svg';
+import majorMulti2 from '../../../assets/my_image/major_multi2.svg';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -13,10 +14,15 @@ const MajorChange: React.FC = () => {
   const [department2, setDepartment2] = useState('');
   const navigate = useNavigate();
 
+
+  const activeImages = [
+    majorMulti2,  
+    majorMulti2,  
+    majorMulti2,  
+  ];
+
   const handleImageClick = (index: number): void => {
-    if (index !== selectedImage) {
-      setSelectedImage(index);
-    }
+    setSelectedImage(index);
   };
 
   const handleSave = () => {
@@ -50,20 +56,21 @@ const MajorChange: React.FC = () => {
       </S.MajorSelect>
 
       <S.ImageContainer>
-        <S.ImageButton isActive={selectedImage === 0} onClick={() => handleImageClick(0)}>
-          <img src={majorMulti} alt="이미지 1" />
-          <span>전공심화</span>
-        </S.ImageButton>
-
-        <S.ImageButton isActive={selectedImage === 1} onClick={() => handleImageClick(1)}>
-          <img src={majorMulti} alt="이미지 2" />
-          <span>복수전공</span>
-        </S.ImageButton>
-
-        <S.ImageButton isActive={selectedImage === 2} onClick={() => handleImageClick(2)}>
-          <img src={majorMulti} alt="이미지 3" />
-          <span>부전공</span>
-        </S.ImageButton>
+        {[0, 1, 2].map((index) => (
+          <S.ImageButton
+            key={index}
+            isActive={selectedImage === index} 
+            onClick={() => handleImageClick(index)} 
+          >
+            <img
+              src={selectedImage === index ? activeImages[index] : majorMulti}
+              alt={`이미지 ${index + 1}`}
+            />
+            <span>
+              {index === 0 ? '전공심화' : index === 1 ? '복수전공' : '부전공'}
+            </span>
+          </S.ImageButton>
+        ))}
       </S.ImageContainer>
 
       {selectedImage === 0 && (
