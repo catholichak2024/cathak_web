@@ -31,9 +31,9 @@ const Home: React.FC = () => {
 
   return (
     <S.Layout>
-      <div style={{ position: 'absolute', top: 0, width: '100%', zIndex: 1000 }}>
+      <S.HeaderContainer>
         <Header catholiclogo1={true} catholicnamelogo={true} />
-      </div>
+      </S.HeaderContainer>
       <S.Top>
         <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
           <S.HomeRectangleImage src={homeRectangle} alt="home rectangle" />

@@ -53,90 +53,85 @@ const MyPage: React.FC = () => {
   return (
     <S.Layout>
 
-      <>
-        <div style={{ position: 'absolute', top: 0, width: '100%', zIndex: 1000, display: 'flex', justifyContent: 'space-between' }}>
-          <Header backarrow={true} />
-          <img 
-            src={myLogout} 
-            alt="my logout" 
-            style={{ width: '43px', height: '13px', position: 'absolute', top: '40px', right: '30px' }} 
-            onClick={() => openPopup('logout')}
-          />
-        </div>
+    <S.HeaderWrapper>
+      <Header backarrow={true} />
+      <S.LogoutIcon 
+        src={myLogout} 
+        alt="my logout" 
+        onClick={() => openPopup('logout')}
+      />
+    </S.HeaderWrapper>
 
-        {showPopup && (
-          <S.PopupOverlay onClick={closePopup}>
-            <S.PopupContent onClick={(e) => e.stopPropagation()} type={popupType}> 
-              <S.PopupTitle type={popupType}>{popupType === 'logout' ? '로그아웃' : '회원탈퇴'}</S.PopupTitle>
-              <S.PopupDescription>
-                {popupType === 'logout' 
-                  ? '로그아웃 하시겠습니까?' 
-                  : '탈퇴하면 기존 데이터는 복구되지 않습니다.'}
-              </S.PopupDescription>
-              <S.ButtonContainer>
-                <S.CloseButton onClick={closePopup} type={popupType}>닫기</S.CloseButton>
-                <S.ConfirmButton onClick={handleConfirm} type={popupType}> 
-                  {popupType === 'logout' ? '확인' : '계정 삭제'}
-                </S.ConfirmButton>
-              </S.ButtonContainer>
-            </S.PopupContent>
-          </S.PopupOverlay>
-        )}
+    {showPopup && (
+      <S.PopupOverlay onClick={closePopup}>
+        <S.PopupContent onClick={(e) => e.stopPropagation()} type={popupType}> 
+          <S.PopupTitle type={popupType}>{popupType === 'logout' ? '로그아웃' : '회원탈퇴'}</S.PopupTitle>
+          <S.PopupDescription>
+            {popupType === 'logout' 
+              ? '로그아웃 하시겠습니까?' 
+              : '탈퇴하면 기존 데이터는 복구되지 않습니다.'}
+          </S.PopupDescription>
+          <S.ButtonContainer>
+            <S.CloseButton onClick={closePopup} type={popupType}>닫기</S.CloseButton>
+            <S.ConfirmButton onClick={handleConfirm} type={popupType}> 
+              {popupType === 'logout' ? '확인' : '계정 삭제'}
+            </S.ConfirmButton>
+          </S.ButtonContainer>
+        </S.PopupContent>
+      </S.PopupOverlay>
+    )}
 
-        
-      </>
+    <S.Top>
+      <S.MyBigRectangle>
+        <S.MainImage src={myBigRectangle} alt="my big rectangle" />
+        <S.MyHayangi src={myHayangi} alt="my hayangi" />
+        <S.NameText>{userInfo.name}</S.NameText>
+      </S.MyBigRectangle>
+    </S.Top>
 
-      <S.Top>
-        <S.MyBigRectangle>
-          <S.MainImage src={myBigRectangle} alt="my big rectangle" />
-          <S.MyHayangi src={myHayangi} alt="my hayangi" />
-          <S.NameText>{userInfo.name}</S.NameText>
-        </S.MyBigRectangle>
-      </S.Top>
+    <S.TextImageContainer>
+      <S.MajorText>전공</S.MajorText>
+      <S.MyMajorChange src={myMajorChange} alt="right image" onClick={goToMajorChange}/>
+    </S.TextImageContainer>
 
-      <S.TextImageContainer>
-        <S.MajorText>전공</S.MajorText>
-        <S.MyMajorChange src={myMajorChange} alt="right image" onClick={goToMajorChange}/>
-      </S.TextImageContainer>
+    <S.MajorRectangleContainer>
+      <S.MajorRectangle src={myRectangle} alt="Major image" /> 
+      <S.OverlayContainer>
+        <S.ImageContainer>
+          <S.MajorImage1 src={majorOne} alt="First Image" />
+          <S.MajorText1>{userInfo.major}</S.MajorText1>
+        </S.ImageContainer>
 
-      <S.MajorRectangleContainer>
-        <S.MajorRectangle src={myRectangle} alt="Major image" /> 
-        <S.OverlayContainer>
-          <S.ImageContainer>
-            <S.MajorImage1 src={majorOne} alt="First Image" />
-            <S.MajorText1>{userInfo.major}</S.MajorText1>
-          </S.ImageContainer>
+        <S.Divider />
 
-          <S.Divider />
+        <S.ImageContainer>
+          <S.MajorImage2 src={majorTwo} alt="Second Image" />
+          <S.MajorText2>{userInfo.doubleMajor}</S.MajorText2>
+        </S.ImageContainer>
+      </S.OverlayContainer>
+    </S.MajorRectangleContainer>
 
-          <S.ImageContainer>
-            <S.MajorImage2 src={majorTwo} alt="Second Image" />
-            <S.MajorText2>{userInfo.doubleMajor}</S.MajorText2>
-          </S.ImageContainer>
-        </S.OverlayContainer>
-      </S.MajorRectangleContainer>
-    
+    <S.Account>
+      <S.AccountTitle>계정</S.AccountTitle>
+    </S.Account>
 
-      <S.Account>
-        <S.AccountTitle>계정</S.AccountTitle>
-      </S.Account>
+    <S.IdContainer>
+      <S.IdText>아이디</S.IdText>
+      <S.IdNameText>{userInfo.name}</S.IdNameText>
+    </S.IdContainer>
 
-      <S.IdContainer>
-        <S.IdText>아이디</S.IdText>
-        <S.IdNameText>{userInfo.name}</S.IdNameText>
-      </S.IdContainer>
+    <S.Bottom>
+    <S.ImageWrapper onClick={handlePasswordClick}>
+      <S.MyPassword src={myPassword} alt="First image" />
+    </S.ImageWrapper>
 
-      <S.Bottom>
-        <S.ImageWrapper onClick={handlePasswordClick}>
-          <S.MyPassword src={myPassword} alt="First image" />
-        </S.ImageWrapper>
+    <S.ImageWrapper onClick={() => openPopup('delete')}>
+      <S.MyDelete src={myDelete} alt="Second image" />
+    </S.ImageWrapper>
+  </S.Bottom>
 
-        <S.ImageWrapper onClick={() => openPopup('delete')}>
-          <S.MyDelete src={myDelete} alt="Second image" />
-        </S.ImageWrapper>
-      </S.Bottom>
-      
-    </S.Layout>
+</S.Layout>
+
   )
 }
 

@@ -12,6 +12,25 @@ export const Layout = styled.div`
   color: #333;
 `;
 
+export const HeaderWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const LogoutIcon = styled.img`
+  width: 43px;
+  height: 13px;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  cursor: pointer;
+`;
+
+
 export const Top = styled.div`
   width: 100%;
   display: flex;

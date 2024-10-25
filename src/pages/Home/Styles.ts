@@ -246,3 +246,10 @@ export const SmallNumber2 = styled.span`
   margin-top: 60px;  
 `;
 
+export const HeaderContainer = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+`;
+
