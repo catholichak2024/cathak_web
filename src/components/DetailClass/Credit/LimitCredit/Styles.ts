@@ -34,6 +34,7 @@ export const Credit = styled.span`
   font-weight: bold;
   font-size: 4rem;
   color: ${({ theme }) => theme.colors.navy};
+  font-weight: 360;
 `;
 
 export const CreditText = styled.span`

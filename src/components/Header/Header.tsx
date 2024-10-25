@@ -31,13 +31,19 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo}: Pr
         <S.Layout>
             <S.IconLayout>
                 {backarrow && (
-                  <BackArrow width={'100%'} onClick={handleBackClick} />
+                  <S.ButtonLayout onClick={handleBackClick}>
+                    <BackArrow width={'100%'}/>
+                  </S.ButtonLayout>
                 )}
                 {catholiclogo1 && (<CatholicLogo width={'100%'} aria-label="Catholic Logo1"/>)}
             </S.IconLayout>
             <S.IconLayout>
                 {catholiclogo2 && (<CatholicLogo width={'100%'} />)}
-                {catholicnamelogo && (<CatholicNameLogo width={'100%'} aria-label="Catholic Name Logo" onClick={handleLogoClick}/>)}
+                {catholicnamelogo && (
+                    <S.ButtonLayout onClick={handleLogoClick}>
+                        <CatholicNameLogo width={'100%'}  />
+                    </S.ButtonLayout>
+                )}
             </S.IconLayout>
         </S.Layout>
     )

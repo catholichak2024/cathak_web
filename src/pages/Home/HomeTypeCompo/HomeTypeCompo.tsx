@@ -12,10 +12,13 @@ const HomeTypeCompo: React.FC<ClassTypeProps> = ({ types, credit, onTypeClick })
         <S.Layout>
             {types.map((type, index) => (
                 <S.NumberCreditContainer key={index} onClick={() => onTypeClick(type)}>
-                    <S.WhatCreditText>{type}</S.WhatCreditText>
-                    <S.Credit>
-                        {credit.find(c => c.type === type)?.credit || 0} {/* 해당 타입의 학점을 출력 */}
-                    </S.Credit>
+                    <S.TextContainer>
+                        <S.WhatCreditText>{type}</S.WhatCreditText>
+                        <S.Credit>
+                            {credit.find(c => c.type === type)?.credit || 0} {/* 해당 타입의 학점을 출력 */}
+                        </S.Credit>
+                    </S.TextContainer>
+                    {(type === '교양' || type === '전공기초') && <S.VerticalLine />}
                 </S.NumberCreditContainer>
             ))}
         </S.Layout>

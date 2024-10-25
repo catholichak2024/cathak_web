@@ -42,12 +42,10 @@ export const HomeEllipseImage = styled.img`
 
 export const HomeMascotImage = styled.img`
   position: absolute;
-  top: 28%; 
-  left: 41%;
-  weight: 50%;
-  height: 50%;
-  z-index: 3;
-
+  top: 8%;            
+  left: 25%;
+  transform: translate(-50%, -50%); 
+  cursor:pointer;
 `;
 
 export const Detail = styled.div`

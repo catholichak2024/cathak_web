@@ -14,10 +14,19 @@ export const Layout = styled.div`
 
 export const NumberCreditContainer = styled.div`
   display: flex;
-  flex-direction: column; 
   align-items: center;
+  justify-content: center;
   cursor:pointer;
   position: relative;
+`;
+
+export const TextContainer = styled.div`
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 3px; // 줄과의 간격
+    justify-content: center;
 `;
 
 export const WhatCreditText = styled.span`
@@ -32,4 +41,12 @@ export const Credit = styled.span`
   /* font-size: 1rem; */
   font-size: 12px;
   font-weight: bold;
+`;
+
+export const VerticalLine = styled.div`
+    width: 2px;
+    height: 30px; 
+    background-color: #d6e8f1; 
+    margin-left: 23px;
+    margin-right: -30px;
 `;
