@@ -76,9 +76,21 @@ const calculateMajorGrade = () => {
   const majorGrade = calculateMajorGrade()
 
   const handleCategoryClick = (category: string) => {
-    // 카테고리 클릭 시의 동작 정의
-    console.log(category);
+    // 카테고리 클릭 시 해당 경로로 이동
+    if (category === '교양') {
+      navigate('/detailclass/general');
+    } else if (category === '전공기초') {
+      navigate('/detailclass/majorbasic');
+    } else if (category === '전공') {
+      if (user.doubleMajor) {
+        navigate('/detailclass/major12'); // 복수전공이 있는 경우
+      } else if (user.minor) {
+        navigate('/detailclass/majorsecond'); // 부전공이 있는 경우
+      } else if (user.major) {
+        navigate('/detailclass/major1'); // 전공심화
+      }
   };
+}
 
   return (
     <S.Layout>
