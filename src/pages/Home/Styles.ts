@@ -12,7 +12,8 @@ export const Layout = styled.div`
 
 export const Top = styled.div`
     background-color: white;
-    border-radius: 30px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
     padding: 20px;
     align-items: center; 
     justify-content: center;
@@ -20,6 +21,16 @@ export const Top = styled.div`
     position: relative; 
     width: 100%; 
     height: 320px;
+`;
+
+export const Bottom = styled.div`
+    align-items: center; 
+    justify-content: center;
+    position: relative; 
+    width: 100%; 
+    height: 320px;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const Ellipse = styled.img`
@@ -37,6 +48,13 @@ export const Mascot = styled.div`
   left: 65%;
   transform: translate(-50%, -50%);
   z-index: 2;       
+`;
+
+export const GrandGoto = styled.div`
+  position: absolute;
+  top: 8%;            
+  left: 25%;
+  transform: translate(-50%, -50%); 
 `;
 
 export const Detail = styled.div`
