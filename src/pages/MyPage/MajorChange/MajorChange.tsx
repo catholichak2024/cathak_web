@@ -6,6 +6,9 @@ import myHayangi from '../../..//assets/my_image/my_hayangi.svg';
 import majorMulti from '../../../assets/major/major_multi.svg';
 import majorMulti2 from '../../../assets/my_image/major_multi2.svg';
 import { useNavigate } from 'react-router-dom';
+import { Hayangi } from '../../../assets/icon';
+import { userInfoState } from '../../../recoil/states/Userstate';
+import { useRecoilValue } from 'recoil';
 
 
 const MajorChange: React.FC = () => {
@@ -13,6 +16,7 @@ const MajorChange: React.FC = () => {
   const [department1, setDepartment1] = useState('');
   const [department2, setDepartment2] = useState('');
   const navigate = useNavigate();
+  const user = useRecoilValue(userInfoState);
 
 
   const activeImages = [
@@ -36,19 +40,12 @@ const MajorChange: React.FC = () => {
 
   return (
     <S.Layout>
-      <S.Container>
-        <Header backarrow={true}/>
-        <S.TitleText>
-          전공변경
-        </S.TitleText>
-      </S.Container>
-
+      <Header backarrow majorchange Logout/>
       <S.Top>
-        <S.MyBigRectangle>
-          <S.MainImage src={myBigRectangle} alt="my big rectangle" />
-          <S.MyHayangi src={myHayangi} alt="my hayangi" />
-          <S.NameText>이름</S.NameText>
-        </S.MyBigRectangle>
+        <S.HayangiBox>
+          <Hayangi />
+        </S.HayangiBox>
+        <S.UserName>{user.name}</S.UserName>  
       </S.Top>
 
       <S.MajorSelect>

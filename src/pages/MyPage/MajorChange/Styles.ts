@@ -11,14 +11,6 @@ export const Layout = styled.div`
   color: #333;
 `;
 
-export const Top = styled.div`
-  width: 100%;
-  height: 350px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-`;
-
 export const Container = styled.div`
   position: absolute;
   top: 6px;
@@ -190,4 +182,30 @@ export const SaveButton = styled.button`
   &:hover {
     background-color: white;
   }
+`;
+
+export const Top = styled.div`
+  background-color: #d6e8f1;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  padding: 8px; 
+  box-shadow: 0 4px 10px #1a264f; 
+  align-items: center;
+  justify-content: center;
+  width: 100%; 
+  height: 320px;
+`;
+export const HayangiBox = styled.div`
+  position: relative;      
+  margin-left: 100px;
+  margin-top: 70px;    
+  font-weight: bold;    
+`;
+export const UserName = styled.div`
+  font-size: 17px;        
+  margin: 0px;              
+  color: #333;    
+  font-weight: bold; 
+  margin-top: 10px; 
+  margin-left: 170px;   
 `;
