@@ -9,11 +9,12 @@ import { useRecoilValue } from 'recoil';
 import Credit from './TotalCreditInfo/Credit';
 import Grade from './TotalGrade/Grade';
 import { selectedGradesState } from '../../recoil/selectors/attendedClass';
+import { useNavigate } from 'react-router-dom';
 
 
 const Home: React.FC = () => {
   const HomeTypeCompos = ['교양', '전공기초', '전공'];
-
+  const navigate = useNavigate();
   const user = useRecoilValue(userInfoState);
   const classList = useRecoilValue(classListState);
   const selectedGrades = useRecoilValue(selectedGradesState);
@@ -79,7 +80,7 @@ const Home: React.FC = () => {
       <S.Top>
           <Ellipse />
           <S.Mascot>
-            <Mascothayangi />npm install -g typescript
+            <Mascothayangi />
 
           </S.Mascot>
           <S.Detail>
@@ -92,7 +93,7 @@ const Home: React.FC = () => {
           </S.Detail>
       </S.Top>
       <S.Bottom>
-        <S.GrandGoto>
+        <S.GrandGoto onClick={() => navigate('/scoreInfo')}>
           <GradeManage />
         </S.GrandGoto>
         <Credit getCredit={totalCredits} />

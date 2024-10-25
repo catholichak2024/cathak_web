@@ -40,4 +40,5 @@ export const LogoutText = styled.div`
   color: #626262;
   margin: 0 10px; 
   font-weight: bold;
+  cursor: pointer;
 `;
