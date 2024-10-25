@@ -3,6 +3,8 @@ import Select from 'react-select'; // react-select 가져오기
 import * as S from './Styles'; // Styles 파일에서 styled-components를 import
 import { classInfoType } from '../../../../../recoil/types/classdetail';
 import { userInfoType } from '../../../../../recoil/types/userdetail';
+import { selectedGradesState } from '../../../../../recoil/selectors/attendedClass';
+import { useRecoilState } from 'recoil';
 
 interface Props {
     data: classInfoType[];
@@ -22,12 +24,12 @@ const gradeOptions = [
     { value: 0, label: 'F' }
 ];
 
-const ClassContainer: React.FC<Props> = ({ data, user }) => {
-    const [savedClasses, setSavedClasses] = useState<number[]>(user.attendedClasses);
-    const [selectedGrades, setSelectedGrades] = useState<{ [key: number]: number | null }>({});
+const ClassContainer: React.FC<Props> = ({ data }) => {
+    const [selectedGrades, setSelectedGrades] = useRecoilState(selectedGradesState);
+
 
     const handleGradeChange = (classId: number, option: { value: number; label: string } | null) => {
-        setSelectedGrades(prev => ({
+        setSelectedGrades((prev: any) => ({
             ...prev,
             [classId]: option ? option.value : null // 선택된 값을 숫자로 저장
         }));

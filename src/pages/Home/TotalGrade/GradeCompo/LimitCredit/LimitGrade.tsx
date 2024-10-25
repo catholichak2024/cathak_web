@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Styles';
 
 
-const LimitGrade: React.FC<{ icon : React.ReactNode ,credit : number, whatcredit: string }> = ({ icon, credit, whatcredit }) => {
+const LimitGrade: React.FC<{ icon : React.ReactNode ,credit : string, whatcredit: string }> = ({ icon, credit, whatcredit }) => {
     return(
         <S.Layout>
             <S.CreditContainer>
