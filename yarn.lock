@@ -2205,6 +2205,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-select@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/@types/react-select/-/react-select-5.0.0.tgz"
+  integrity sha512-vddLcBpzUMVpVNmnBtpC5cyZ2ajaHx/g6SHUo6lmMw0FIiOzrtmoSQ4UI6TRl+sm8TGGT+Oir8NRMZfYQtgr8Q==
+  dependencies:
+    react-select "*"
+
 "@types/react-transition-group@^4.4.0":
   version "4.4.11"
   resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.11.tgz"
@@ -8165,7 +8172,7 @@ react-scripts@^5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
-react-select@^5.8.1:
+react-select@*, react-select@^5.8.1:
   version "5.8.1"
   resolved "https://registry.npmjs.org/react-select/-/react-select-5.8.1.tgz"
   integrity sha512-RT1CJmuc+ejqm5MPgzyZujqDskdvB9a9ZqrdnVLsvAHjJ3Tj0hELnLeVPQlmYdVKCdCpxanepl6z7R5KhXhWzg==
