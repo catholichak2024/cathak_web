@@ -40,7 +40,7 @@ const MajorChange: React.FC = () => {
 
   return (
     <S.Layout>
-      <Header backarrow majorchange Logout/>
+      <Header backarrow majorchange/>
       <S.Top>
         <S.HayangiBox>
           <Hayangi />
