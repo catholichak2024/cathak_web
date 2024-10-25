@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const Layout = styled.div`
   position: relative;
   display: flex;
@@ -85,8 +86,7 @@ export const GrandGoto = styled.div`
 `;
 
 export const MyIdBox = styled.div`
-
-position: absolute;
+  position: absolute;
   top: 70%;              
   left: 50%;
   transform: translate(-50%, -52%);
