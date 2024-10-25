@@ -1,99 +1,112 @@
 import React from 'react';
 import * as S from './Styles';
 import Header from '../../components/Header/Header';
-import { Mascothayangi, Ellipse, GradeManage } from '../../assets/icon';
-import HomeTypeCompo from './HomeTypeCompo/HomeTypeCompo';
-import { userInfoState } from '../../recoil/states/Userstate';
-import { classListState } from '../../recoil/states/Classstates';
+import homeRectangle from '../../assets/home_image/home_rectangle.svg';
+import homeEllipse from '../../assets/home_image/home_ellipse.svg';
+import homeMascot from '../../assets/home_image/home_mascot_hayangi.svg';
+import homeRectangleDetail from '../../assets/home_image/home_rectangle_detail.svg';
+import homeGradeManage from '../../assets/home_image/home_grademanage.svg';
+import homeHapRectangle1 from '../../assets/home_image/home_hap_rectangle1.svg';
+import homeHapRectangle2 from '../../assets/home_image/home_hap_rectangle2.svg';
+import homeStar from '../../assets/home_image/home_star.svg';
+import homeBadge from '../../assets/home_image/home_badge.svg';
+import homeMascot2 from '../../assets/home_image/home_mascot_2.svg';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import Credit from './TotalCreditInfo/Credit';
-import Grade from './TotalGrade/Grade';
-import { selectedGradesState } from '../../recoil/selectors/attendedClass';
+import { classListState } from '../../recoil/states/Classstates'
 
 const Home: React.FC = () => {
-  const HomeTypeCompos = ['교양', '전공기초', '전공'];
-
-  const user = useRecoilValue(userInfoState);
+  const navigate = useNavigate();
   const classList = useRecoilValue(classListState);
-  const selectedGrades = useRecoilValue(selectedGradesState);
 
-  // 각 타입에 맞는 학점/성적을 계산
-  const calculateCredits = (category?: string) => {
-    const attendedClasses = user.attendedClasses; // 사용자가 수강한 클래스 ID
-    return classList
-      .filter(classItem => attendedClasses.includes(classItem.classId) && (!category || classItem.category === category))
-      .reduce((acc, classItem) => acc + classItem.credit, 0);
-  };
+  const generalClassCount = classList.filter((item) => item.category === '교양').length;
+  const majorBasicClassCount = classList.filter((item) => item.category === '전공기초').length;
+  const majorClassCount = classList.filter((item) => item.category === '전공').length;
 
-  //총성적계산
-  const calculateTotalGrade = () => {
-    const totalScore = classList.reduce((acc, classItem) => {
-      const grade = selectedGrades[classItem.classId];
-      return grade !== null && grade !== undefined
-        ? acc + (grade * classItem.credit)
-        : acc;
-    }, 0);
-
-    const totalCredits = calculateCredits();
-    return totalCredits ? (totalScore / totalCredits).toFixed(1) : "0.0";
-  };
-
-  //총 전공성적계산
-  const calculateMajorGrade = () => {
-    const totalScore = classList.reduce((acc, classItem) => {
-      if (classItem.category === '전공') { // 전공 수업만 필터링
-        const grade = selectedGrades[classItem.classId];
-        return grade !== null && grade !== undefined
-          ? acc + (grade * classItem.credit)
-          : acc;
-      }
-      return acc;
-    }, 0);
-
-    const totalCredits = calculateCredits('전공'); // 전공 수업에 대한 학점만 계산
-    return totalCredits ? (totalScore / totalCredits).toFixed(1) : "0.0";
-  };
-
-  //총 학점수
-  const credits = HomeTypeCompos.map(type => ({
-    type,
-    credit: calculateCredits(type),
-  }));
-
-  // 전체 수업 학점/성적/전공성적 계산
-  const totalCredits = calculateCredits();
-  const totalGrade = calculateTotalGrade(); 
-  const majorGrade = calculateMajorGrade()
-
-  const handleCategoryClick = (category: string) => {
-    // 카테고리 클릭 시의 동작 정의
-    console.log(category);
-  };
+  const totalCredits = classList.reduce((acc, item) => acc + item.credit, 0);
+  const totalAverage = classList.length ? Math.round((totalCredits / classList.length) * 10) / 10 : 0;
+  const majorClasses = classList.filter(item => item.category === '전공');
+  const majorCredits = majorClasses.reduce((acc, item) => acc + item.credit, 0);
+  const majorAverage = majorClasses.length ? Math.round((majorCredits / majorClasses.length) * 10) / 10 : 0;
 
   return (
     <S.Layout>
-      <Header catholiclogo1 catholicnamelogo />
+      <div style={{ position: 'absolute', top: 0, width: '100%', zIndex: 1000 }}>
+        <Header catholiclogo1={true} catholicnamelogo={true} />
+      </div>
       <S.Top>
-          <Ellipse />
-          <S.Mascot>
-            <Mascothayangi />
-          </S.Mascot>
-          <S.Detail>
-              <S.UserName>{user.name}</S.UserName>
-              <HomeTypeCompo 
-                    types={HomeTypeCompos} 
-                    credit={credits}
-                    onTypeClick={handleCategoryClick} 
-              />
-          </S.Detail>
+        <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+          <S.HomeRectangleImage src={homeRectangle} alt="home rectangle" />
+          <S.HomeEllipseImage src={homeEllipse} alt="home ellipse" />
+          <S.HomeMascotImage src={homeMascot} alt="home mascot" />
+          <div>
+            <S.Detail>
+              <img src={homeRectangleDetail} alt="home rectangle detail" />
+              <S.TextOverlay>
+                <div onClick={() => navigate("/detailclass/general")}>
+                  <span>교양</span>
+                  <span>{generalClassCount}</span>
+                </div>
+                <S.Line />
+                <div onClick={() => navigate("/detailclass/majorbasic")}>
+                  <span>전공기초</span>
+                  <span>{majorBasicClassCount}</span>
+                </div>
+                <S.Line />
+                <div onClick={() => navigate("/detailclass/major1")}>
+                  <span>전공</span>
+                  <span>{majorClassCount}</span>
+                </div>
+              </S.TextOverlay>
+            </S.Detail>
+          </div>
+        </div>
       </S.Top>
-      <S.Bottom>
-        <S.GrandGoto>
-          <GradeManage />
-        </S.GrandGoto>
-        <Credit getCredit={totalCredits} />
-        <Grade totalgrade={totalGrade} majorgrade={majorGrade} />
-      </S.Bottom>
+      <S.Container>
+        <S.HomeGradeManage src={homeGradeManage} alt="home grademanage" />
+      </S.Container>
+      <S.Middle>
+        <S.HomeHapRectangle1Container>
+          <S.LargeTextWithIcon>
+            <div>
+              <img src={homeStar} alt="home star" />  
+              총 학점
+            </div>
+
+            <S.TotalGradeText>
+              <S.LargeNumber>{totalCredits}</S.LargeNumber> <S.SmallNumber>/130</S.SmallNumber>
+              <img src={homeMascot2} alt="home mascot2" />  
+            </S.TotalGradeText>
+          </S.LargeTextWithIcon>
+          <S.HomeHapRectangle1 src={homeHapRectangle1} alt="home hap rectangle1" />
+        </S.HomeHapRectangle1Container>
+
+        <S.HomeHapRectangle2Container>
+          <S.HomeHapRectangle2Block>
+            <S.TextWithIcon>
+              <img src={homeStar} alt="home star" /> 
+                총 성적
+            </S.TextWithIcon>
+            <S.TotalGradeText>
+              <S.LargeNumber2>{totalAverage}</S.LargeNumber2>  
+              <S.SmallNumber2>/ 4.5</S.SmallNumber2> 
+            </S.TotalGradeText>
+            <S.HomeHapRectangle2 src={homeHapRectangle2} alt="home hap rectangle2" />
+          </S.HomeHapRectangle2Block>
+
+          <S.HomeHapRectangle2Block>
+            <S.TextWithIcon>
+              <img src={homeBadge} alt="home badge" /> 
+                전공 성적
+            </S.TextWithIcon>
+            <S.TotalGradeText>
+              <S.LargeNumber2>{majorAverage}</S.LargeNumber2>  
+              <S.SmallNumber2>/ 4.5</S.SmallNumber2> 
+            </S.TotalGradeText>
+            <S.HomeHapRectangle2 src={homeHapRectangle2} alt="home hap rectangle2" />
+          </S.HomeHapRectangle2Block>
+        </S.HomeHapRectangle2Container>
+      </S.Middle>
     </S.Layout>
   );
 }; 
