@@ -76,6 +76,7 @@ export const SelectText = styled.p`
   font-size: 13px;
   color: #333;
   margin-left: 50px;
+  font-weight: bold;
 `;
 
 export const ImageContainer = styled.div`
@@ -172,13 +173,14 @@ export const SaveButton = styled.button`
   bottom: 8%;
   right: 10%;
   background-color: white;
-  color: black;
+  color: ${({ theme }) => theme.colors.gray};
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
 
+  font-weight: bold;
   &:hover {
     background-color: white;
   }
