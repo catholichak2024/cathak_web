@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import MymajorCompo from './MymajorCompo/MymajorCompo';
 import { useNavigate } from 'react-router-dom';
 
-const MyPage2: React.FC = () => {
+const MyPage: React.FC = () => {
   const user = useRecoilValue(userInfoState);
   const navigate = useNavigate();
 
@@ -66,5 +66,5 @@ const MyPage2: React.FC = () => {
   );
 }; 
 
-export default MyPage2;
+export default MyPage;
 

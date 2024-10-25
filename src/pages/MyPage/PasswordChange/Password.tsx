@@ -6,7 +6,7 @@ import pswImage from '../../../assets/psw/psw_lock.svg';
 import submitIcon from '../../../assets/psw/psw_complete.svg';
 import pswPopup from '../../../assets/psw/psw_popup.svg';
 
-const MyPassword: React.FC = () => {
+const Password: React.FC = () => {
   const navigate = useNavigate();
 
   const [currentPassword, setCurrentPassword] = useState('');
@@ -117,4 +117,4 @@ const MyPassword: React.FC = () => {
   );
 };
 
-export default MyPassword;
+export default Password;

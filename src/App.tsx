@@ -6,8 +6,8 @@ import { theme } from './styles/colors';
 import { ThemeProvider } from 'styled-components';
 import MainScreen from './components/MainScreen';
 import HomePage from './pages/Home/Home';
-import MyPage2 from './pages/MyPage/MyPage2';
-import MajorChange from './pages/MyPage/MajorChange';
+import MyPage from './pages/MyPage/MyPage';
+import MajorChange from './pages/MyPage/MajorChange/MajorChange';
 import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
@@ -18,6 +18,7 @@ import SignupNext from './pages/LoginPage/SignupNext/SignupNext';
 import LoginComplete from './pages/LoginPage/LoginComplete/LoginComplete';
 import NextLoginPage from './pages/LoginPage/LoginNextPage/NextLoginPage';
 import ScorePage from './pages/Score/ScorePage';
+import Password from './pages/MyPage/PasswordChange/Password';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
               <Route path="signupNext" element={<SignupNext />}/>
               <Route path="logincomplete" element={<LoginComplete />}/>
               <Route path="home" element={<HomePage />} />
-              <Route path="mypage" element={<MyPage2/>}/>
+              <Route path="mypage" element={<MyPage/>}/>
               <Route path="mypage/majorchange" element={<MajorChange/>}/>
               <Route path="mypage/password" element={<Password/>}/>
               <Route path="searchclass" element={<SearchPage />} />
