@@ -27,6 +27,7 @@ export const Content = styled.div`
   gap: 1rem;
 `;
 
+
 export const ErrorText = styled.div`
   display: flex;
   justify-content: flex-start;

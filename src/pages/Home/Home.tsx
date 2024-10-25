@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import { Mascothayangi, Ellipse, GradeManage } from '../../assets/icon';
@@ -98,4 +98,17 @@ const Home: React.FC = () => {
   );
 }; 
 
+<<<<<<< Updated upstream
 export default Home;
+=======
+
+export default Home;
+function setTouchStartX(clientX: number) {
+  throw new Error('Function not implemented.');
+}
+
+function setTouchEndX(clientX: number) {
+  throw new Error('Function not implemented.');
+}
+
+>>>>>>> Stashed changes
