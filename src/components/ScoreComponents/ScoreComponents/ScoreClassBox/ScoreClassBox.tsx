@@ -18,7 +18,7 @@ const ScoreClassBox: React.FC = () => {
                 <ClassInfoTitleBox />
                 <DividingLine />
                 <S.ClassBox>
-                <ClassContainer data={attendedClasses} user={user} />
+                  <ClassContainer data={attendedClasses} user={user} />
                 </S.ClassBox>
             </S.ScoreContainer>
         </S.Layout>

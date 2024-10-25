@@ -55,6 +55,7 @@ export const GrandGoto = styled.div`
   top: 8%;            
   left: 25%;
   transform: translate(-50%, -50%); 
+  cursor:pointer;
 `;
 
 export const Detail = styled.div`

@@ -17,71 +17,84 @@ const ClassListMajorBasic: React.FC = () => {
     const classTypes = ['본영역','타계열'];
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
     
-    // 사용자전공을 기반으로 해당 전공의 영역을 찾기
-    const majorAreaInfo = majorAreas.flatMap(area => area.relatedMajors)
+    // 사용자전공 정보
+    const major1Info = majorAreas.flatMap(area => area.relatedMajors)
                                  .find(major => major.name === user.major);
-    const doubleMajorAreaInfo = majorAreas.flatMap(area => area.relatedMajors)
+    const doubleMajorInfo = majorAreas.flatMap(area => area.relatedMajors)
                                  .find(major => major.name === user.doubleMajor);
-    const minorAreaInfo = majorAreas.flatMap(area => area.relatedMajors)
+    const minorInfo = majorAreas.flatMap(area => area.relatedMajors)
                                  .find(major => major.name === user.minor);
+
+    //사용자 전공의 영역정보
+    const majorAreaInfo = majorAreas.find(area =>
+        area.relatedMajors.some(major => major.name === user.major)
+    );
+    const doubleMajorAreaInfo = majorAreas.find(area =>
+        area.relatedMajors.some(major => major.name === user.major)
+    );
+    const minorAreaInfo = majorAreas.find(area =>
+        area.relatedMajors.some(major => major.name === user.major)
+    );
 
     //전공기초수업정렬
     const filteredClasses = attendedClasses.filter((classItem) => {
-        if (classItem.category !== '전공기초') return false; // 전공 기초수업이 아닌 경우 제외
+        if (classItem.category !== '전공기초') return false;
 
         if (selectedCategory === '본영역') {
-            return classItem.majorArea === user.majorArea || classItem.majorArea === user.doubleMajorArea || classItem.majorArea === user.minor;  // 사용자의 1전공,2전공의 영역과 같은 경우
-        } else if (selectedCategory === '타계열') {
-            return classItem.majorArea !== user.majorArea && classItem.majorArea !== user.doubleMajorArea && classItem.majorArea !== user.minor;;  
+            return [majorAreaInfo?.areaname, doubleMajorAreaInfo?.areaname, minorAreaInfo?.areaname]
+                .includes(classItem.majorArea);
+        } else {
+            return ![majorAreaInfo?.areaname, doubleMajorAreaInfo?.areaname, minorAreaInfo?.areaname]
+                .includes(classItem.majorArea);
         }
     });
-
+    
     let description = '';  
     let major1MinCredit = 0;
 
     //1전공(설명, 최소이수학점)
-    if (majorAreaInfo) {
+    if (major1Info) {
         const majorInfo = selectedCategory === '본영역' 
-            ? majorAreaInfo.mainAreaMajorBasicsText 
-            : majorAreaInfo.otherAreaMajorBasicsText;
+            ? major1Info.mainAreaMajorBasicsText 
+            : major1Info.otherAreaMajorBasicsText;
 
         //설명
         description = `[${user.major}]\n${majorInfo}`;
 
         //최소이수학점
         major1MinCredit = selectedCategory === '본영역' 
-            ? majorAreaInfo.MajorBasicMinCredit[0]  // 본영역 최소이수 학점
-            : majorAreaInfo.MajorBasicMinCredit[1]; // 타계열 최소이수 학점
+            ? major1Info.MajorBasicMinCredit[0]  // 본영역 최소이수 학점
+            : major1Info.MajorBasicMinCredit[1]; // 타계열 최소이수 학점
     }
     
     // 2전공(설명, 최소이수학점)
     let major2MinCredit = 0;
-    if (doubleMajorAreaInfo) {
+    if (doubleMajorInfo) {
         const doubleMajorSubjects = selectedCategory === '본영역' 
-            ? doubleMajorAreaInfo.mainAreaMajorBasicsText
-            : doubleMajorAreaInfo.otherAreaMajorBasicsText;
+            ? doubleMajorInfo.mainAreaMajorBasicsText
+            : doubleMajorInfo.otherAreaMajorBasicsText;
     
         description += `\n\n[${user.doubleMajor}]\n${doubleMajorSubjects}`;
         
         major2MinCredit = selectedCategory === '본영역' 
-            ? doubleMajorAreaInfo.MajorBasicMinCredit[0]  // 본영역 최소이수 학점
-            : doubleMajorAreaInfo.MajorBasicMinCredit[1]; // 타계열 최소이수 학점
+            ? doubleMajorInfo.MajorBasicMinCredit[0]  // 본영역 최소이수 학점
+            : doubleMajorInfo.MajorBasicMinCredit[1]; // 타계열 최소이수 학점
    
         
     }
 
     // 부전공(설명, 최소이수학점)
     let minorMinCredit = 0;
-    if (minorAreaInfo) {
+    if (minorInfo) {
         const minorSubjects = selectedCategory === '본영역' 
-            ? minorAreaInfo.mainAreaMajorBasicsText
-            : minorAreaInfo.otherAreaMajorBasicsText;
+            ? minorInfo.mainAreaMajorBasicsText
+            : minorInfo.otherAreaMajorBasicsText;
 
         description += `\n\n[${user.minor}]\n${minorSubjects}`;
 
         minorMinCredit = selectedCategory === '본영역' 
-            ? minorAreaInfo.MajorBasicMinCredit[0]  // 본영역 최소이수 학점
-            : minorAreaInfo.MajorBasicMinCredit[1]; // 타계열 최소이수 학점
+            ? minorInfo.MajorBasicMinCredit[0]  // 본영역 최소이수 학점
+            : minorInfo.MajorBasicMinCredit[1]; // 타계열 최소이수 학점
     
     }
 
