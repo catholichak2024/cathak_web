@@ -4,7 +4,6 @@ import Header from '../../components/Header/Header';
 import myBigRectangle from '../../assets/my_image/my_big_rectangle.svg';
 import myHayangi from '../../assets/my_image/my_hayangi.svg';
 import myDelete from '../../assets/my_image/my_delete.svg';
-import myLogout from '../../assets/my_image/my_logout.svg';
 import myPassword from '../../assets/my_image/my_password.svg';
 import myRectangle from '../../assets/my_image/my_rectangle.svg';
 import myMajorChange from '../../assets/my_image/my_major_change.svg';
@@ -52,7 +51,6 @@ const MyPage: React.FC = () => {
 
   return (
     <S.Layout>
-
     <S.HeaderWrapper>
       <Header backarrow={true} />
       <S.LogoutIcon 
@@ -131,7 +129,6 @@ const MyPage: React.FC = () => {
   </S.Bottom>
 
 </S.Layout>
-
   )
 }
 

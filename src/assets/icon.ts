@@ -27,3 +27,14 @@ export { ReactComponent as GradeManage } from './home_image/home_grademanage.svg
 export { ReactComponent as Mascotsmall } from './home_image/home_mascot_2.svg';
 export { ReactComponent as Badge } from './home_image/home_badge.svg';
 export { ReactComponent as BlackStar } from './home_image/home_star.svg';
+
+//마이페이지
+export { ReactComponent as Major_one } from './my_image/major_one.svg';
+export { ReactComponent as Major_two } from './my_image/major_two.svg';
+export { ReactComponent as Big_rectangle } from './my_image/my_big_rectangle.svg';
+export { ReactComponent as Delete } from './my_image/my_delete.svg';
+export { ReactComponent as Hayangi } from './my_image/my_hayangi.svg';
+export { ReactComponent as Logout } from './my_image/my_logout.svg';
+export { ReactComponent as Major_change } from './my_image/my_major_change.svg';
+export { ReactComponent as Password } from './my_image/my_password.svg';
+export { ReactComponent as Rectangle } from './my_image/my_rectangle.svg';
