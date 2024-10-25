@@ -6,7 +6,7 @@ import { theme } from './styles/colors';
 import { ThemeProvider } from 'styled-components';
 import MainScreen from './components/MainScreen';
 import HomePage from './pages/Home/Home';
-import MyPage from './pages/MyPage/MyPage';
+import MyPage2 from './pages/MyPage/MyPage2';
 import MajorChange from './pages/MyPage/MajorChange/MajorChange';
 import Password from './pages/MyPage/PasswordChange/Password'
 import SearchPage from './pages/SearchClass/SearchClass';
@@ -36,7 +36,7 @@ function App() {
               <Route path="signupNext" element={<SignupNext />}/>
               <Route path="logincomplete" element={<LoginComplete />}/>
               <Route path="home" element={<HomePage />} />
-              <Route path="mypage" element={<MyPage/>}/>
+              <Route path="mypage2" element={<MyPage2/>}/>
               <Route path="mypage/majorchange" element={<MajorChange/>}/>
               <Route path="mypage/password" element={<Password/>}/>
               <Route path="searchclass" element={<SearchPage />} />

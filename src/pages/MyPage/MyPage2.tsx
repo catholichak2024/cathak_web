@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as S from './StylesM';
+import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import { Hayangi, Major_change, Password, MemberExit } from '../../assets/icon';
 import { userInfoState } from '../../recoil/states/Userstate';
@@ -7,30 +7,44 @@ import { useRecoilValue } from 'recoil';
 import MymajorCompo from './MymajorCompo/MymajorCompo';
 import { useNavigate } from 'react-router-dom';
 
-const Mypage: React.FC = () => {
+const MyPage2: React.FC = () => {
   const user = useRecoilValue(userInfoState);
   const navigate = useNavigate();
 
   // 사용자 전공 상태에 따른 whataMajor 및 myMajor 설정
   const whataMajor: string[] = ['제 1전공'];
   const myMajor: string[] = [user.major];
-
   if (user.doubleMajor) {
     whataMajor.push('제 2전공');
     myMajor.push(user.doubleMajor);
   }
-
   if (user.minor) {
     whataMajor.push('부전공');
     myMajor.push(user.minor);
   }
-
   return (
     <S.Layout>
       <Header backarrow mypageText Logout/>
       <S.Top>
         <S.HayangiBox>
           <Hayangi />
+
+    
+          
+            
+    
+
+          
+          Expand Down
+          
+            
+    
+
+          
+          Expand Up
+    
+    @@ -62,4 +62,4 @@
+  
         </S.HayangiBox>
         <S.UserName>{user.name}</S.UserName>  
       </S.Top>
@@ -61,4 +75,4 @@ const Mypage: React.FC = () => {
   );
 }; 
 
-export default Mypage;
+export default MyPage2;
