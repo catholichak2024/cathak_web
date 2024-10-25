@@ -41,21 +41,27 @@ const Home: React.FC = () => {
     return totalGradesCount ? (totalScore / totalGradesCount).toFixed(1) : "0.0";
 };
 
-  //총 전공성적계산
-  const calculateMajorGrade = () => {
-    const totalScore = classList.reduce((acc, classItem) => {
-        if (classItem.category === '전공') {
-            const grade = selectedGrades[classItem.classId];
-            return grade !== null && grade !== undefined
-                ? acc + (grade)
-                : acc;
-        }
-        return acc;
-    }, 0);
+const calculateMajorGrade = () => {
+  const totalScore = classList.reduce((acc, classItem) => {
+      if (classItem.category === '전공') {
+          const grade = selectedGrades[classItem.classId];
+          return grade !== null && grade !== undefined
+              ? acc + grade
+              : acc;
+      }
+      return acc;
+  }, 0);
 
-    const totalGradesCount = Object.values(selectedGrades).filter(grade => grade !== null).length;
-    const totalCredits = calculateCredits('전공');
-    return totalGradesCount ? (totalScore / totalGradesCount).toFixed(1) : "0.0";
+  // 전공 수업의 개수 세기
+  const totalMajorGradesCount = classList.filter(classItem => classItem.category === '전공' &&
+                                                              selectedGrades[classItem.classId] !== null && 
+                                                              selectedGrades[classItem.classId] !== undefined).length;
+
+  console.log('Total Major Score:', totalScore); // 추가된 로그
+  console.log('Total Major Grades Count:', totalMajorGradesCount); // 추가된 로그
+
+  return totalMajorGradesCount ? (totalScore / totalMajorGradesCount).toFixed(1) : "0.0";
+  
 };
 
   //총 학점수
