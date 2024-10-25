@@ -5,7 +5,7 @@ export const Layout = styled.div`
   flex-direction: column;
   border-radius: 1rem; 
   padding: 1rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem -0.5rem;
   max-width: 110px; /* 최대 너비 설정 */
   width: 100%;
 `;
@@ -39,6 +39,7 @@ export const Credit = styled.span`
   font-weight: bold;
   font-size: 4rem;
   color: ${({ theme }) => theme.colors.navy};
+  font-weight: 330;
 `;
 
 export const CreditText = styled.span`

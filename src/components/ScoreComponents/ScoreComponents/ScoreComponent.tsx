@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import * as S from './Styles';
 import ScoreClassBox from './ScoreClassBox/ScoreClassBox';
 import DividingLine from '../../DividingLine/DividingLine';
+import { useRecoilState } from 'recoil';
+import { selectedGradesState } from '../../../recoil/selectors/attendedClass';
 
 const ScoreComponent: React.FC = () => {
-    
+    const [selectedGrades, setSelectedGrades] = useRecoilState(selectedGradesState);
+
     const handleSave = () => {
-        console.log('성적 저장');
+        // 성적 저장 로직
+        console.log('성적 저장', selectedGrades);
     };
 
     return(
