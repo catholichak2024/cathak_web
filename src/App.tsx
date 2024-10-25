@@ -14,7 +14,7 @@ import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
 import LoginPage from './pages/LoginPage/LoginPage';
 import NextLoginPage from './pages/LoginPage/LoginNextPage/NextLoginPage';
-
+import ScorePage from './pages/Score/ScorePage';
 
 function App() {
   return (
@@ -36,6 +36,7 @@ function App() {
               <Route path="detailclass/major1" element={<DetailClassMainPage />} />
               <Route path="detailclass/major12" element={<DetailClassMainPage />} />
               <Route path="detailclass/majorsecond" element={<DetailClassMainPage />} />
+              <Route path="scoreInfo" element={<ScorePage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>

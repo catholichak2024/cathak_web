@@ -5,6 +5,7 @@ export const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: relative;
   height: 100vh;
   background-color: backbasic;
   color: #333;
@@ -17,45 +18,80 @@ export const Layout = styled.div`
   }
 `;
 
-export const Top = styled.div`
-  width: 100%;
-  height: 320px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// export const Top = styled.div`
+//   width: 100%;
+//   height: 320px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 export const HomeRectangleImage = styled.img`
   width: 100%;
   height: 80%;
   object-fit: cover;
   z-index: 2;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const HomeEllipseImage = styled.img`
+export const Top = styled.div`
+    background-color: white;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    padding: 20px;
+    align-items: center; 
+    justify-content: center;
+    box-shadow: 0 4px 10px #1a5776; 
+    position: relative; 
+    width: 100%; 
+    height: 320px;
+`;
+
+export const Bottom = styled.div`
+    align-items: center; 
+    justify-content: center;
+    position: relative; 
+    width: 100%; 
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const Ellipse = styled.img`
+  width: 80%;             
+  position: absolute; 
+  top: 50%;              
+  left: 50%;   
+  transform: translate(-50%, -50%);  
+  z-index: 1;          
+`;
+
+export const Mascot = styled.div`
   position: absolute;
-  top: 10%; 
-  left: 50%;
-  transform: translateX(-50%);
-  object-fit: cover;
-  z-index:2
+  top: 50%;              
+  left: 65%;
+  transform: translate(-50%, -50%);
+  z-index: 2;       
 `;
 
-export const HomeMascotImage = styled.img`
+export const GrandGoto = styled.div`
   position: absolute;
   top: 28%; 
   left: 41%;
   weight: 50%;
   height: 50%;
   z-index: 3; 
+  top: 8%;            
+  left: 25%;
+  transform: translate(-50%, -50%); 
 `;
 
 export const Detail = styled.div`
   position: absolute;
-  top: 68%;
-  left: 15%;
-  width: 70%;
-  height: 90px;
+  top: 70%;              
+  left: 50%;
+  transform: translate(-50%, -52%);
+  z-index: 3; 
   display: flex;
   justify-content: center;
   magin: 10px;
@@ -126,8 +162,8 @@ export const Middle = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  width: 80%;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
@@ -245,6 +281,16 @@ export const SmallNumber2 = styled.span`
   margin-left: 3px;
   margin-top: 60px;  
 `;
+
+export const UserName = styled.div`
+  font-size: 17px;        
+  margin: 50px;              
+  color: #333;  
+  left: 20%;
+  transform: translate(-180%, 90%);   
+  font-weight: bold;    
+`;
+
 
 export const HeaderContainer = styled.div`
   position: absolute;

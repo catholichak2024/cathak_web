@@ -19,3 +19,11 @@ export { ReactComponent as LimitCreditIcon } from './icon/limitcredit.svg';
 
 //검색페이지
 export { ReactComponent as Search } from './icon/search.svg';
+
+//홈
+export { ReactComponent as Mascothayangi } from './home_image/home_mascot_hayangi.svg';
+export { ReactComponent as Ellipse } from './home_image/home_ellipse.svg';
+export { ReactComponent as GradeManage } from './home_image/home_grademanage.svg';
+export { ReactComponent as Mascotsmall } from './home_image/home_mascot_2.svg';
+export { ReactComponent as Badge } from './home_image/home_badge.svg';
+export { ReactComponent as BlackStar } from './home_image/home_star.svg';

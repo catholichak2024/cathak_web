@@ -7,7 +7,6 @@ export const Layout = styled.div`
   border-radius: 1rem; 
   padding: 16px;
   margin: -25px 16px 0;
-  display: flex;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 6px -1px ${({ theme }) => theme.colors.alarm};
 `;

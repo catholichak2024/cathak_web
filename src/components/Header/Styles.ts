@@ -8,6 +8,7 @@ export const Layout = styled.div`
   top: 2rem;
   left: 49%;
   transform: translateX(-50%);
+  z-index: 100;
 `;
 
 export const IconLayout = styled.button`
