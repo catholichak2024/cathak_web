@@ -13,6 +13,9 @@ import SearchPage from './pages/SearchClass/SearchClass';
 import DetailClassMainPage from './pages/DetailClass/detailClassMainPage';
 import SplashPage from './pages/Splash/Splash';
 import LoginPage from './pages/LoginPage/LoginPage';
+import LoginFind from './pages/LoginPage/LoginFind/LoginFind';
+import SignupFind from './pages/LoginPage/SignupFind/SignupFind';
+import LoginComplete from './pages/LoginPage/LoginComplete/LoginComplete';
 import NextLoginPage from './pages/LoginPage/LoginNextPage/NextLoginPage';
 import ScorePage from './pages/Score/ScorePage';
 
@@ -26,6 +29,9 @@ function App() {
               <Route path="/" element={<SplashPage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="login/nextlogin" element={<NextLoginPage />} />
+              <Route path="loginfind" element={<LoginFind />}/>
+              <Route path="signupfind" element={<SignupFind />}/>
+              <Route path="logincomplete" element={<LoginComplete />}/>
               <Route path="home" element={<HomePage />} />
               <Route path="mypage" element={<MyPage/>}/>
               <Route path="mypage/majorchange" element={<MajorChange/>}/>
