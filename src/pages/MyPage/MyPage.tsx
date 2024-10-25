@@ -1,137 +1,64 @@
-import React, {useState} from 'react';
-import * as S from './Styles';
+import React, { useState } from 'react';
+import * as S from './StylesM';
 import Header from '../../components/Header/Header';
-import myBigRectangle from '../../assets/my_image/my_big_rectangle.svg';
-import myHayangi from '../../assets/my_image/my_hayangi.svg';
-import myDelete from '../../assets/my_image/my_delete.svg';
-import myPassword from '../../assets/my_image/my_password.svg';
-import myRectangle from '../../assets/my_image/my_rectangle.svg';
-import myMajorChange from '../../assets/my_image/my_major_change.svg';
-import majorOne from '../../assets/my_image/major_one.svg';
-import majorTwo from '../../assets/my_image/major_two.svg';
-import myLogOut from '../../assets/my_image/my_logout.svg';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { Hayangi, Major_change, Password, MemberExit } from '../../assets/icon';
 import { userInfoState } from '../../recoil/states/Userstate';
+import { useRecoilValue } from 'recoil';
+import MymajorCompo from './MymajorCompo/MymajorCompo';
+import { useNavigate } from 'react-router-dom';
 
-const MyPage: React.FC = () => {
+const Mypage: React.FC = () => {
+  const user = useRecoilValue(userInfoState);
   const navigate = useNavigate();
 
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupType, setPopupType] = useState('');
+  // 사용자 전공 상태에 따른 whataMajor 및 myMajor 설정
+  const whataMajor: string[] = ['제 1전공'];
+  const myMajor: string[] = [user.major];
 
-  const userInfo = useRecoilValue(userInfoState);
+  if (user.doubleMajor) {
+    whataMajor.push('제 2전공');
+    myMajor.push(user.doubleMajor);
+  }
 
-  const openPopup = (type: string) => {
-    setPopupType(type); 
-    setShowPopup(true); 
-  };
-
-  const closePopup = () => {
-    setShowPopup(false);
-    setPopupType(''); 
-  };
-
-  const goToMajorChange = () => {
-    navigate('/Mypage/MajorChange'); 
-  };
-
-  const handlePasswordClick = () => {
-    navigate('/mypage/password');
-  };
-
-  const handleConfirm = () => {
-    closePopup();
-    if (popupType === 'logout') {
-      navigate('/Login'); 
-    } else if (popupType === 'delete') {
-      console.log("회원 탈퇴 완료.");
-      navigate('/Login'); 
-    }
-  };
+  if (user.minor) {
+    whataMajor.push('부전공');
+    myMajor.push(user.minor);
+  }
 
   return (
     <S.Layout>
-    <S.HeaderWrapper>
-      <Header backarrow={true} />
-      <S.LogoutIcon 
-        src={myLogOut}  
-        alt="my logout" 
-        onClick={() => openPopup('logout')}
-      />
-    </S.HeaderWrapper>
+      <Header backarrow mypageText Logout/>
+      <S.Top>
+        <S.HayangiBox>
+          <Hayangi />
+        </S.HayangiBox>
+        <S.UserName>{user.name}</S.UserName>  
+      </S.Top>
+      <S.Bottom>
+        <S.Middle>
+            <S.MajorBold>전공</S.MajorBold> 
+            <S.GrandGoto onClick={() => navigate('/mypage/majorchange')}>
+              <Major_change />
+            </S.GrandGoto>
+        </S.Middle>
+        <MymajorCompo
+                    whataMajor={whataMajor} 
+                    myMajor={myMajor} 
+              />
+        <S.AccountBold>계정</S.AccountBold>
+        <S.MyIdBox>
+            <S.IdInfoText>아이디</S.IdInfoText> 
+            <S.IdInfo>{user.id}</S.IdInfo>
+        </S.MyIdBox>
+        <S.passwordBox>
+          <Password />
+        </S.passwordBox>
+        <S.exitMember>
+          <MemberExit />
+        </S.exitMember>
+      </S.Bottom>
+    </S.Layout>
+  );
+}; 
 
-    {showPopup && (
-      <S.PopupOverlay onClick={closePopup}>
-        <S.PopupContent onClick={(e) => e.stopPropagation()} type={popupType}> 
-          <S.PopupTitle type={popupType}>{popupType === 'logout' ? '로그아웃' : '회원탈퇴'}</S.PopupTitle>
-          <S.PopupDescription>
-            {popupType === 'logout' 
-              ? '로그아웃 하시겠습니까?' 
-              : '탈퇴하면 기존 데이터는 복구되지 않습니다.'}
-          </S.PopupDescription>
-          <S.ButtonContainer>
-            <S.CloseButton onClick={closePopup} type={popupType}>닫기</S.CloseButton>
-            <S.ConfirmButton onClick={handleConfirm} type={popupType}> 
-              {popupType === 'logout' ? '확인' : '계정 삭제'}
-            </S.ConfirmButton>
-          </S.ButtonContainer>
-        </S.PopupContent>
-      </S.PopupOverlay>
-    )}
-
-    <S.Top>
-      <S.MyBigRectangle>
-        <S.MainImage src={myBigRectangle} alt="my big rectangle" />
-        <S.MyHayangi src={myHayangi} alt="my hayangi" />
-        <S.NameText>{userInfo.name}</S.NameText>
-      </S.MyBigRectangle>
-    </S.Top>
-
-    <S.TextImageContainer>
-      <S.MajorText>전공</S.MajorText>
-      <S.MyMajorChange src={myMajorChange} alt="right image" onClick={goToMajorChange}/>
-    </S.TextImageContainer>
-
-    <S.MajorRectangleContainer>
-      <S.MajorRectangle src={myRectangle} alt="Major image" /> 
-      <S.OverlayContainer>
-        <S.ImageContainer>
-          <S.MajorImage1 src={majorOne} alt="First Image" />
-          <S.MajorText1>{userInfo.major}</S.MajorText1>
-        </S.ImageContainer>
-
-        <S.Divider />
-
-        <S.ImageContainer>
-          <S.MajorImage2 src={majorTwo} alt="Second Image" />
-          <S.MajorText2>{userInfo.doubleMajor}</S.MajorText2>
-        </S.ImageContainer>
-      </S.OverlayContainer>
-    </S.MajorRectangleContainer>
-
-    <S.Account>
-      <S.AccountTitle>계정</S.AccountTitle>
-    </S.Account>
-
-    <S.IdContainer>
-      <S.IdText>아이디</S.IdText>
-      <S.IdNameText>{userInfo.name}</S.IdNameText>
-    </S.IdContainer>
-
-    <S.Bottom>
-    <S.ImageWrapper onClick={handlePasswordClick}>
-      <S.MyPassword src={myPassword} alt="First image" />
-    </S.ImageWrapper>
-
-    <S.ImageWrapper onClick={() => openPopup('delete')}>
-      <S.MyDelete src={myDelete} alt="Second image" />
-    </S.ImageWrapper>
-  </S.Bottom>
-
-</S.Layout>
-  )
-}
-
-
-export default MyPage;
+export default Mypage;

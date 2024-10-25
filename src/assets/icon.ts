@@ -38,3 +38,4 @@ export { ReactComponent as Logout } from './my_image/my_logout.svg';
 export { ReactComponent as Major_change } from './my_image/my_major_change.svg';
 export { ReactComponent as Password } from './my_image/my_password.svg';
 export { ReactComponent as Rectangle } from './my_image/my_rectangle.svg';
+export { ReactComponent as MemberExit } from './my_image/memberExit.svg';
