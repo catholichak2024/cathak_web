@@ -65,14 +65,14 @@ export const MajorBold = styled.div`
   font-size: 17px;        
   margin: 50px;              
   color: #333; 
-  transform: translate(-180%, -820%);   
+  transform: translate(-170%, -800%);   
   font-weight: bold;    
 `;
 
 export const AccountBold = styled.div`
   font-size: 17px;               
   color: #333; 
-  transform: translate(-50%, 90%);  
+  transform: translate(-50%, 130%);  
   margin-left: -250px; 
   font-weight: bold;    
 `;

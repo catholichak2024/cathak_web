@@ -10,7 +10,7 @@ export const Layout = styled.div`
   box-shadow: 0 4px 10px #789cad;
   width: 360px;
   min-width: 260px;
-  margin-top: -40px;
+  margin-top: -70px;
 `;
 
 export const MymajorContainer = styled.div`
