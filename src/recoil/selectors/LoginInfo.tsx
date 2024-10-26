@@ -1,8 +1,7 @@
 import { selector } from 'recoil';
 import { LoginRequest } from '../types/loginTypes';
-import { loginState } from '../states/Loginstate';
+import { loginState } from '../../recoil/states/Loginstate';
 
-// 로그인 API 호출을 위한 셀렉터
 export const loginInfoSelector = selector({
   key: 'loginInfoSelector',
   get: async ({ get }) => {
