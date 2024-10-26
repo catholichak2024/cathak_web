@@ -11,7 +11,6 @@ import Grade from './TotalGrade/Grade';
 import { selectedGradesState } from '../../recoil/selectors/attendedClass';
 import { useNavigate } from 'react-router-dom';
 
-
 const Home: React.FC = () => {
   const HomeTypeCompos = ['교양', '전공기초', '전공'];
   const navigate = useNavigate();
@@ -19,63 +18,60 @@ const Home: React.FC = () => {
   const classList = useRecoilValue(classListState);
   const selectedGrades = useRecoilValue(selectedGradesState);
 
-
   // 각 타입에 맞는 학점/성적을 계산
   const calculateCredits = (category?: string) => {
     const attendedClasses = user.attendedClasses; // 사용자가 수강한 클래스 ID
     return classList
       .filter(classItem => attendedClasses.includes(classItem.classId) && (!category || classItem.category === category))
-      .reduce((acc, classItem) => acc + classItem.credit, 0);
+      .reduce((acc, classItem) => {
+        const grade = selectedGrades[classItem.classId];
+        // F 성적을 가진 수업은 학점 계산에서 제외
+        return grade === 0 ? acc : acc + classItem.credit;
+      }, 0);
   };
 
-  //총성적계산
+  // 총 성적 계산
   const calculateTotalGrade = () => {
     const totalScore = classList.reduce((acc, classItem) => {
-        const grade = selectedGrades[classItem.classId];
-        return grade !== null && grade !== undefined
-            ? acc + (grade)
-            : acc;
+      const grade = selectedGrades[classItem.classId];
+      // 성적이 F일 경우 0으로 처리
+      return acc + (grade !== null && grade !== undefined ? grade : 0);
     }, 0);
 
-    // 사용자가 입력한 성적의 개수로 나누기
-    const totalGradesCount = Object.values(selectedGrades).filter(grade => grade !== null).length;
+    // 사용자가 입력한 성적의 개수로 나누기 (F도 개수에 포함됨)
+    const totalGradesCount = Object.values(selectedGrades).filter(grade => grade !== null && grade !== undefined).length;
     return totalGradesCount ? (totalScore / totalGradesCount).toFixed(1) : "0.0";
-};
+  };
 
-  //총 전공성적계산
+  // 총 전공 성적 계산
   const calculateMajorGrade = () => {
     const totalScore = classList.reduce((acc, classItem) => {
-        if (classItem.category === '전공') {
-            const grade = selectedGrades[classItem.classId];
-            return grade !== null && grade !== undefined
-                ? acc + grade
-                : acc;
-        }
-        return acc;
+      if (classItem.category === '전공') {
+        const grade = selectedGrades[classItem.classId];
+        // 성적이 F일 경우 0으로 처리
+        return acc + (grade !== null && grade !== undefined ? grade : 0);
+      }
+      return acc;
     }, 0);
 
-    // 전공 수업의 개수 세기
-  const totalMajorGradesCount = classList.filter(classItem => classItem.category === '전공' &&
-    selectedGrades[classItem.classId] !== null && 
-    selectedGrades[classItem.classId] !== undefined).length;
+    // 전공 수업의 개수 세기 (F도 개수에 포함됨)
+    const totalMajorGradesCount = classList.filter(classItem => classItem.category === '전공' &&
+      selectedGrades[classItem.classId] !== null && 
+      selectedGrades[classItem.classId] !== undefined).length;
 
-console.log('Total Major Score:', totalScore); // 추가된 로그
-console.log('Total Major Grades Count:', totalMajorGradesCount); // 추가된 로그
+    return totalMajorGradesCount ? (totalScore / totalMajorGradesCount).toFixed(1) : "0.0";
+  };
 
-return totalMajorGradesCount ? (totalScore / totalMajorGradesCount).toFixed(1) : "0.0";
-
-};
-
-  //총 학점수
+  // 총 학점 수
   const credits = HomeTypeCompos.map(type => ({
     type,
     credit: calculateCredits(type),
   }));
 
-  // 전체 수업 학점/성적/전공성적 계산
+  // 전체 수업 학점/성적/전공 성적 계산
   const totalCredits = calculateCredits();
   const totalGrade = calculateTotalGrade(); 
-  const majorGrade = calculateMajorGrade()
+  const majorGrade = calculateMajorGrade();
 
   const handleCategoryClick = (category: string) => {
     // 카테고리 클릭 시 해당 경로로 이동
@@ -91,27 +87,25 @@ return totalMajorGradesCount ? (totalScore / totalMajorGradesCount).toFixed(1) :
       } else if (user.major) {
         navigate('/detailclass/major1'); // 전공심화
       }
-  };
-}
-
+    }
+  }
 
   return (
     <S.Layout>
       <Header catholiclogo1 catholicnamelogo />
       <S.Top>
-          <Ellipse />
-          <S.Mascot>
-            <Mascothayangi />
-
-          </S.Mascot>
-          <S.Detail>
-              <S.UserName>{user.name}</S.UserName>
-              <HomeTypeCompo 
-                    types={HomeTypeCompos} 
-                    credit={credits}
-                    onTypeClick={handleCategoryClick} 
-              />
-          </S.Detail>
+        <Ellipse />
+        <S.Mascot>
+          <Mascothayangi />
+        </S.Mascot>
+        <S.Detail>
+          <S.UserName>{user.name}</S.UserName>
+          <HomeTypeCompo 
+            types={HomeTypeCompos} 
+            credit={credits}
+            onTypeClick={handleCategoryClick} 
+          />
+        </S.Detail>
       </S.Top>
       <S.Bottom>
         <S.GrandGoto onClick={() => navigate('/scoreInfo')}>
