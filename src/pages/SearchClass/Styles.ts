@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.backbasic};
   color: #333;
-  overflow: hidden;
+  /* overflow: hidden; */
   h1 {
     font-size: 2.5rem;
     margin: 0;

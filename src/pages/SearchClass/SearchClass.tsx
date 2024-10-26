@@ -1,14 +1,14 @@
-
 import React, { useState } from 'react';
 import * as S from './Styles';
 import { useRecoilValue } from 'recoil';
 import ClassType from './ClassType/ClassType';
-import ClassContainer from '../../components/DetailClass/ClassContainer/ClassContainer';
 import Header from '../../components/Header/Header';
 import { classListState } from '../../recoil/states/Classstates';
 import SearchBar from './SearchBar/SearchBar';
 import { classInfoType } from '../../recoil/types/classdetail'; // 클래스 타입 가져오기
 import { userInfoState } from '../../recoil/states/Userstate';
+import ClassContainer from './ClassContainer/ClassContainer';
+import Chatbot from '../chatbot/Chatbot';
 
 const SearchClass: React.FC = () => {
     const classList = useRecoilValue(classListState);
@@ -17,7 +17,7 @@ const SearchClass: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>(''); // 검색어 상태
     const [isSearching, setIsSearching] = useState<boolean>(false);
     const user = useRecoilValue(userInfoState);
-    const classTypes = ['교양', '전공기초', '전공', '교양추천'];
+    const classTypes = ['교양', '전공기초', '전공', '챗봇'];
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
@@ -43,6 +43,7 @@ const SearchClass: React.FC = () => {
     };
 
     return (
+        <>
         <S.Layout>
             <Header backarrow catholiclogo2 />
             <S.Content>
@@ -51,7 +52,7 @@ const SearchClass: React.FC = () => {
                     selectedType={selectedCategory}
                     onTypeClick={handleCategoryClick} 
                 />
-                <SearchBar onSearch={handleSearch} />
+                {selectedCategory !== '챗봇' && <SearchBar onSearch={handleSearch} />}
                 {isSearching ? (
                     searchResult.length > 0 ? (
                         <ClassContainer data={searchResult} user={user} />
@@ -62,7 +63,10 @@ const SearchClass: React.FC = () => {
                     <ClassContainer data={filteredClasses} user={user}/>
                 )}
             </S.Content>
+            {selectedCategory=='챗봇' &&<Chatbot/>}
         </S.Layout>
+        
+        </>
     );
 };
 

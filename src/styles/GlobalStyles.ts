@@ -8,6 +8,13 @@ export default createGlobalStyle`
     *, *::before, *::after{
         box-sizing: border-box;
     }
+    /* 웹 폰트 적용 */
+    @font-face { //Medium
+        font-family: 'Pretendard';
+        src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+    }
     a{
         color: inherit;
     }
@@ -31,8 +38,14 @@ export default createGlobalStyle`
         padding-left: 10px;
         border: none;
         background: none;
+        
     }
     h1, h2, h3, h4, h5, h6, p, a, div, span, input, button, textarea {
         letter-spacing: -0.25px;
+        font-family: 'Pretendard';
+    }
+    * {
+        font-family: 'Pretendard';
+        font-weight: 600;
     }
 `;

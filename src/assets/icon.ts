@@ -19,6 +19,7 @@ export { ReactComponent as LimitCreditIcon } from './icon/limitcredit.svg';
 
 //검색페이지
 export { ReactComponent as Search } from './icon/search.svg';
+export { ReactComponent as Reco } from './icon/reco.svg';
 
 //홈
 export { ReactComponent as Mascothayangi } from './home_image/home_mascot_hayangi.svg';

@@ -20,6 +20,8 @@ import NextLoginPage from './pages/LoginPage/LoginNextPage/NextLoginPage';
 import ScorePage from './pages/Score/ScorePage';
 import Password from './pages/MyPage/PasswordChange/Password';
 import SignUp from './pages/SignUp/SignUp';
+import Chatbot from './pages/chatbot/Chatbot';
+import GlobalStyles from './styles/GlobalStyles';
 
 
 function App() {
@@ -29,27 +31,31 @@ function App() {
       <Router>
         <MainScreen>
           <ThemeProvider theme={theme}>
-            <Routes>
-              <Route path="/" element={<SplashPage />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="login/nextlogin" element={<NextLoginPage />} />
-              <Route path="loginfind" element={<LoginFind />}/>
-              <Route path="signup" element={<SignUp/>} />
-              <Route path="signupfind" element={<SignupFind />}/>
-              <Route path="signupNext" element={<SignupNext />}/>
-              <Route path="logincomplete" element={<LoginComplete />}/>
-              <Route path="home" element={<HomePage />} />
-              <Route path="mypage" element={<MyPage/>}/>
-              <Route path="mypage/majorchange" element={<MajorChange/>}/>
-              <Route path="mypage/password" element={<Password/>}/>
-              <Route path="searchclass" element={<SearchPage />} />
-              <Route path="detailclass/general" element={<DetailClassMainPage />} />
-              <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />
-              <Route path="detailclass/major1" element={<DetailClassMainPage />} />
-              <Route path="detailclass/major12" element={<DetailClassMainPage />} />
-              <Route path="detailclass/majorsecond" element={<DetailClassMainPage />} />
-              <Route path="scoreInfo" element={<ScorePage />} />
-            </Routes>
+            <GlobalStyles/>
+              <Routes>
+                <Route path="/" element={<SplashPage />} />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="login/nextlogin" element={<NextLoginPage />} />
+                <Route path="loginfind" element={<LoginFind />}/>
+                <Route path="signup" element={<SignUp/>} />
+                <Route path="signupfind" element={<SignupFind />}/>
+                <Route path="signupNext" element={<SignupNext />}/>
+                <Route path="logincomplete" element={<LoginComplete />}/>
+                <Route path="home" element={<HomePage />} />
+                <Route path="mypage" element={<MyPage/>}/>
+                <Route path="mypage/majorchange" element={<MajorChange/>}/>
+                <Route path="mypage/password" element={<Password/>}/>
+                <Route path="searchclass" element={<SearchPage />} />
+                <Route path="/searchclass/chatbot" element={<Chatbot />} />
+                <Route path="detailclass/general" element={<DetailClassMainPage />} />
+                <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />
+                <Route path="detailclass/major1" element={<DetailClassMainPage />} />
+                <Route path="detailclass/major12" element={<DetailClassMainPage />} />
+                <Route path="detailclass/majorsecond" element={<DetailClassMainPage />} />
+                <Route path="scoreInfo" element={<ScorePage />} />
+                
+              </Routes>
+           
           </ThemeProvider>
         </MainScreen>
       </Router>
