@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const ErrorText = styled.p`
+  color: red;
+  font-size: 14px;
+  margin: 8px 0;
+`;
+
 export const Layout = styled.div`
   position: relative;
   display: flex;
