@@ -4,7 +4,7 @@ import { TotalGradeCredit } from "../recoil/types/Home";
 
 export const fetchTotalGradeCredit = async (): Promise<TotalGradeCredit> => {
     try {
-      const response = await authInstance().get<TotalGradeCredit>('/EveryGrade/grade'); // API 호출
+      const response = await authInstance().get<TotalGradeCredit>('/EveryGrade/home'); // API 호출
       const { status, data } = response; // 응답에서 상태와 데이터를 구조 분해 할당
   
       if (status === 200) {
