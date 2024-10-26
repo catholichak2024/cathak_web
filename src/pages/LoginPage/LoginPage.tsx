@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   };
 
   const handleSignupClick = () => {
-    // navigate('/회원가입화면')
+    navigate('/Signup')
   }
 
   return (

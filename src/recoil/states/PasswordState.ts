@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { PasswordRequest } from '../types/passwordTypes';
 
-export const userState = atom<PasswordRequest>({
+export const passwordState = atom<PasswordRequest>({
     key: 'passwordState',
     default: {
       number: "202400001",

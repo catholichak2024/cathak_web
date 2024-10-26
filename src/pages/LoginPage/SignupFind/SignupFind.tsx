@@ -4,46 +4,72 @@ import Header from '../../../components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import submitIcon2 from '../../../assets/login_image/login_find.svg';
 import { useRecoilValue } from 'recoil';
-import { userInfoState } from '../../../recoil/states/Userstate';
+import { passwordState } from '../../../recoil/states/PasswordState';
 
 const SignupFind: React.FC = () => {
   const navigate = useNavigate();
-  const userInfo = useRecoilValue(userInfoState);
 
   const [studentId, setStudentId] = useState('');
   const [username, setUsername] = useState('');
   const [studentIdError, setStudentIdError] = useState('');
   const [usernameError, setUsernameError] = useState('');
 
-  // 학번 유효성 검사
+  // 유효성 검사 함수들
   const validateStudentId = () => {
-    if (userInfo.studentid.toString() !== studentId) {
-      setStudentIdError('존재하지 않는 학번입니다');
+    if (!studentId) {
+      setStudentIdError('학번을 입력해주세요');
       return false;
-    } else {
-      setStudentIdError('');
-      return true;
     }
+    setStudentIdError('');
+    return true;
   };
 
-  // 아이디 유효성 검사
   const validateUsername = () => {
-    if (userInfo.name !== username) {
-      setUsernameError('존재하지 않는 아이디입니다');
+    if (!username) {
+      setUsernameError('아이디를 입력해주세요');
       return false;
-    } else {
-      setUsernameError('');
-      return true;
     }
+    setUsernameError('');
+    return true;
   };
 
-  const isFormValid =
-    studentId !== '' && username !== '' && studentIdError === '' && usernameError === '';
+  const isFormValid = studentId !== '' && username !== '' && studentIdError === '' && usernameError === '';
 
-  // 제출 시 검증 및 페이지 이동
-  const handleSubmit = () => {
-    if (isFormValid) {
-      navigate('/SignupNext'); 
+  // 제출 시 검증 및 API 호출
+  const handleSubmit = async () => {
+    const isStudentIdValid = validateStudentId();
+    const isUsernameValid = validateUsername();
+
+    if (!isStudentIdValid || !isUsernameValid) {
+      return;
+    }
+
+    try {
+      const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/findPw', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          number: studentId,
+          id: username,
+        }),
+      });
+
+      console.log("HTTP Status Code:", response.status); // HTTP 상태 코드 확인
+
+      if (response.ok && response.status === 200) {
+        const data = await response.json();
+        console.log("비밀번호 찾기 요청 성공:", data.message);
+        navigate('/SignupNext');
+      } else {
+        console.log("비밀번호 찾기 요청 실패.");
+        setStudentIdError('존재하지 않는 학번입니다.');
+        setUsernameError('존재하지 않는 아이디입니다.');
+      }
+    } catch (error) {
+      console.error('서버 오류:', error);
+      setStudentIdError('서버와의 연결에 문제가 발생했습니다.');
     }
   };
 
