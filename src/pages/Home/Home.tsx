@@ -1,97 +1,44 @@
-// Home.tsx
 import React, { useEffect } from 'react';
 import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import { Mascothayangi, Ellipse, GradeManage } from '../../assets/icon';
 import HomeTypeCompo from './HomeTypeCompo/HomeTypeCompo';
 import { userInfoState } from '../../recoil/states/Userstate';
-import { classListState } from '../../recoil/states/Classstates';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import Credit from './TotalCreditInfo/Credit';
 import Grade from './TotalGrade/Grade';
-import { selectedGradesState } from '../../recoil/selectors/attendedClass';
-import { fetchGradeData } from '../../apis/GradeSearch'; // 성적 데이터를 가져오는 API
-import { gradeState } from '../../recoil/states/Grade'; // gradeState 경로
 import { useNavigate } from 'react-router-dom';
+import { fetchTotalGradeCredit } from '../../apis/HomeTotalGrade'; // 성적 조회 API
+import { courseState } from '../../recoil/states/HomeStatae';
+import { TotalGradeCredit } from '../../recoil/types/Home'; // CourseData 인터페이스의 경로에 맞게 수정하세요.
 
 const Home: React.FC = () => {
   const HomeTypeCompos = ['교양', '전공기초', '전공'];
   const navigate = useNavigate();
   const user = useRecoilValue(userInfoState);
-  const classList = useRecoilValue(classListState);
-  const selectedGrades = useRecoilValue(selectedGradesState);
-  const setGrades = useSetRecoilState(gradeState); // gradeState에 접근
+  const setCourseData = useSetRecoilState(courseState); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const gradeResponse = await fetchGradeData(); // 성적 데이터 가져오기
-        setGrades(gradeResponse); // Recoil 상태에 저장
+        const gradeResponse: TotalGradeCredit = await fetchTotalGradeCredit(); // 성적 데이터 가져오기
+        setCourseData(gradeResponse); // Recoil 상태에 저장
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchData();
-  }, [setGrades]);
+  }, [setCourseData]);
 
-  // 각 타입에 맞는 학점/성적을 계산
-  const calculateCredits = (category?: string) => {
-    const attendedClasses = user.attendedClasses || []; // 기본값으로 빈 배열 설정
-    return classList
-      .filter(classItem => attendedClasses.includes(classItem.classId) && (!category || classItem.category === category))
-      .reduce((acc, classItem) => {
-        const gradeData = selectedGrades[classItem.classId];
-        // F 성적 또는 'NP' 성적을 가진 수업은 학점 계산에서 제외
-        return gradeData === 0 || gradeData === 6 ? acc : acc + classItem.credit;
-      }, 0);
-  };
-
-  // 총 성적 계산
-  const calculateTotalGrade = () => {
-    const totalScore = classList.reduce((acc, classItem) => {
-      const gradeData = selectedGrades[classItem.classId];
-      if (gradeData === 5 || gradeData === 6) {
-        // 'P'와 'NP'는 성적 점수에 포함되지 않음
-        return acc;
-      }
-      return acc + (gradeData !== null && gradeData !== undefined ? gradeData : 0);
-    }, 0);
-
-    // 사용자가 입력한 성적의 개수로 나누기
-    const totalGradesCount = Object.values(selectedGrades).filter(grade => grade !== null && grade !== 5 && grade !== 6).length;
-    return totalGradesCount ? (totalScore / totalGradesCount).toFixed(1) : "0.0";
-  };
-
-  // 총 전공 성적 계산
-  const calculateMajorGrade = () => {
-    const totalScore = classList.reduce((acc, classItem) => {
-      if (classItem.category === '전공') {
-        const gradeData = selectedGrades[classItem.classId];
-        // 성적이 F일 경우 0으로 처리
-        return acc + (gradeData !== null && gradeData !== undefined ? gradeData : 0);
-      }
-      return acc;
-    }, 0);
-
-    // 전공 수업의 개수 세기 (F도 개수에 포함됨)
-    const totalMajorGradesCount = classList.filter(classItem => classItem.category === '전공' &&
-      selectedGrades[classItem.classId] !== null && 
-      selectedGrades[classItem.classId] !== undefined).length;
-
-    return totalMajorGradesCount ? (totalScore / totalMajorGradesCount).toFixed(1) : "0.0";
-  };
-
-  // 총 학점 수
-  const credits = HomeTypeCompos.map(type => ({
-    type,
-    credit: calculateCredits(type),
-  }));
-
-  // 전체 수업 학점/성적/전공 성적 계산
-  const totalCredits = calculateCredits();
-  const totalGrade = calculateTotalGrade(); 
-  const majorGrade = calculateMajorGrade();
+  // Recoil 상태에서 학점/성적 가져오기
+  const courseData = useRecoilValue(courseState); // Recoil 상태 가져오기
+  const totalCredits = courseData?.data.totalCredits || 0; // 총 학점
+  const culturalCourses = courseData?.data.culturalCourses || 0; // 교양 과목 수
+  const majorFoundationCourses = courseData?.data.majorFoundationCourses || 0; // 전공 기초 과목 수
+  const majorCourses = courseData?.data.majorCourses || 0; // 전공 과목 수
+  const totalGPA = courseData?.data.totalGPA || 0; // 총 GPA
+  const majorGPA = courseData?.data.majorGPA || 0; // 전공 GPA
 
   const handleCategoryClick = (category: string) => {
     // 카테고리 클릭 시 해당 경로로 이동
@@ -122,7 +69,11 @@ const Home: React.FC = () => {
           <S.UserName>{user.name}</S.UserName>
           <HomeTypeCompo 
             types={HomeTypeCompos} 
-            credit={credits}
+            credit={[
+              { type: '교양', credit: culturalCourses },
+              { type: '전공기초', credit: majorFoundationCourses },
+              { type: '전공', credit: majorCourses },
+            ]}
             onTypeClick={handleCategoryClick} 
           />
         </S.Detail>
@@ -132,7 +83,7 @@ const Home: React.FC = () => {
           <GradeManage />
         </S.GrandGoto>
         <Credit getCredit={totalCredits} />
-        <Grade totalgrade={totalGrade} majorgrade={majorGrade} />
+        <Grade totalgrade={totalGPA} majorgrade={majorGPA} />
       </S.Bottom>
     </S.Layout>
   );

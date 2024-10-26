@@ -4,8 +4,8 @@ import LimitGrade from './GradeCompo/LimitCredit/LimitGrade';
 import { BlackStar, Badge } from '../../../assets/icon';
 
 interface CreditSectionProps {
-    totalgrade: string;
-    majorgrade: string;
+    totalgrade: string | number; // string 또는 number 타입 허용
+    majorgrade: string | number; // string 또는 number 타입 허용
 }
 
 const Grade: React.FC<CreditSectionProps> = ({ totalgrade, majorgrade }) => {

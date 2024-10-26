@@ -11,3 +11,4 @@ export interface GradeData {
 export interface GradeResponse {
     gradeData: GradeData[];
 }
+
