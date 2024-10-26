@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Header/Header';
 import { userInfoState } from '../../../recoil/states/Userstate';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { MajorChoice, Major, DoubleMajor, Minor,  Hayangi } from '../../../assets/icon';
+import { MajorChoice, Major, DoubleMajor, Minor, Hayangi } from '../../../assets/icon';
 import WhatMajorSelectCompo from './WhatMajorSelectCompo/WhatMajorSelectCompo';
 import SearchDropdown from './SearchDropdown';
 
@@ -26,17 +26,10 @@ const MajorChange: React.FC = () => {
       department1,
       department2,
       selectedImage,
+      selectedCategory, // 선택된 카테고리도 포함
     };
-    console.log('저장된 데이터:', data);
+    console.log('저장된 데이터:', data); // 콘솔에 저장된 데이터 출력
   };
-
-  setUser(prev => ({
-    ...prev,
-    major: department1,
-    doubleMajor: department2,
-    majorType: selectedCategory, // 전공 타입 저장
-  }));
-
 
   // 전공 선택 시 컴포넌트 변경
   const handleCategoryClick = (category: string) => {

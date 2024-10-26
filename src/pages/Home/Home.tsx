@@ -20,7 +20,7 @@ const Home: React.FC = () => {
 
   // 각 타입에 맞는 학점/성적을 계산
   const calculateCredits = (category?: string) => {
-    const attendedClasses = user.attendedClasses; // 사용자가 수강한 클래스 ID
+    const attendedClasses = user.attendedClasses || []; // 기본값으로 빈 배열 설정
     return classList
       .filter(classItem => attendedClasses.includes(classItem.classId) && (!category || classItem.category === category))
       .reduce((acc, classItem) => {
