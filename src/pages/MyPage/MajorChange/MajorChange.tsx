@@ -10,30 +10,35 @@ import SearchDropdown from './SearchDropdown';
 const MajorChange: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null); 
-  const [department1, setDepartment1] = useState('');
-  const [department2, setDepartment2] = useState('');
+  const [department1, setDepartment1] = useState('');  // 전공
+  const [department2, setDepartment2] = useState('');  // 복수전공
+  const [department3, setDepartment3] = useState('');  // 부전공
   const user = useRecoilValue(userInfoState);
-  const setUser = useSetRecoilState(userInfoState);
 
   const MajorTypeCompos = ['전공심화', '복수전공', '부전공'];
-
-  const handleImageClick = (index: number): void => {
-    setSelectedImage(index);
-  };
 
   const handleSave = () => {
     const data = {
       department1,
       department2,
-      selectedImage,
-      selectedCategory, // 선택된 카테고리도 포함
+      department3,
     };
     console.log('저장된 데이터:', data); // 콘솔에 저장된 데이터 출력
   };
 
   // 전공 선택 시 컴포넌트 변경
   const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category); 
+    setSelectedCategory(category);
+    // 카테고리 변경 시 상태 초기화
+    if (category === '전공심화') {
+      setDepartment2(''); // 복수전공 초기화
+      setDepartment3(''); // 부전공 초기화
+    } else if (category === '복수전공') {
+      setDepartment3(''); // 부전공 초기화
+    } else if (category === '부전공') {
+      setDepartment1(''); // 전공심화 초기화
+      setDepartment2(''); // 복수전공 초기화
+    }
   };
 
   const handleMajorChange = (type: 'major' | 'doubleMajor' | 'minor', value: string) => {
@@ -41,6 +46,8 @@ const MajorChange: React.FC = () => {
       setDepartment1(value);
     } else if (type === 'doubleMajor') {
       setDepartment2(value);
+    } else if (type === 'minor') {
+      setDepartment3(value);
     }
   };
 
@@ -70,7 +77,7 @@ const MajorChange: React.FC = () => {
           <S.WhatMajor>
             <Major />
           </S.WhatMajor>
-          <SearchDropdown onChange={(value) => handleMajorChange('major', value)}/>
+          <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
         </>
       )}
 
@@ -79,12 +86,11 @@ const MajorChange: React.FC = () => {
           <S.WhatMajor>
             <Major />
           </S.WhatMajor>
-          <SearchDropdown onChange={(value) => handleMajorChange('major', value)}/>
-          {/* 두 번째 드롭다운 */}
+          <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
           <S.WhatMajor>
             <DoubleMajor />
           </S.WhatMajor>
-          <SearchDropdown onChange={(value) => handleMajorChange('doubleMajor', value)}/>
+          <SearchDropdown onChange={(value) => handleMajorChange('doubleMajor', value)} />
         </>
       )}
 
@@ -93,12 +99,12 @@ const MajorChange: React.FC = () => {
           <S.WhatMajor>
             <Major />
           </S.WhatMajor>
-          <SearchDropdown onChange={(value) => handleMajorChange('major', value)}/>
+          <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
 
           <S.Whatminor>
             <Minor />
           </S.Whatminor>
-          <SearchDropdown onChange={(value) => handleMajorChange('minor', value)}/>
+          <SearchDropdown onChange={(value) => handleMajorChange('minor', value)} />
         </>
       )}
 
