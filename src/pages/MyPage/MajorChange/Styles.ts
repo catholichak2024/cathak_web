@@ -185,7 +185,6 @@ export const SaveButton = styled.button`
   position: absolute;
   bottom: 8%;
   right: 10%;
-  background-color: white;
   color: ${({ theme }) => theme.colors.gray};
   padding: 10px 15px;
   border: none;
