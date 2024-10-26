@@ -19,6 +19,7 @@ import LoginComplete from './pages/LoginPage/LoginComplete/LoginComplete';
 import NextLoginPage from './pages/LoginPage/LoginNextPage/NextLoginPage';
 import ScorePage from './pages/Score/ScorePage';
 import Password from './pages/MyPage/PasswordChange/Password';
+import SignUp from './pages/SignUp/SignUp';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
               <Route path="login" element={<LoginPage />} />
               <Route path="login/nextlogin" element={<NextLoginPage />} />
               <Route path="loginfind" element={<LoginFind />}/>
+              <Route path="signup" element={<SignUp/>} />
               <Route path="signupfind" element={<SignupFind />}/>
               <Route path="signupNext" element={<SignupNext />}/>
               <Route path="logincomplete" element={<LoginComplete />}/>
