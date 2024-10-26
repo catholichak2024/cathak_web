@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Header/Header';
-import majorMulti from '../../../assets/major/major_multi.svg';
-import DropDown from '../../../pages/MyPage/DropDown/DropDown';
-import majorMulti2 from '../../../assets/my_image/major_multi2.svg';
-import { useNavigate } from 'react-router-dom';
-import { Hayangi } from '../../../assets/icon';
 import { userInfoState } from '../../../recoil/states/Userstate';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { MajorChoice, Major, DoubleMajor, Minor,  Hayangi } from '../../../assets/icon';
+import WhatMajorSelectCompo from './WhatMajorSelectCompo/WhatMajorSelectCompo';
+import SearchDropdown from './SearchDropdown';
 
 const MajorChange: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null); 
   const [department1, setDepartment1] = useState('');
   const [department2, setDepartment2] = useState('');
-  const navigate = useNavigate();
   const user = useRecoilValue(userInfoState);
+  const setUser = useSetRecoilState(userInfoState);
 
-  const activeImages = [
-    majorMulti2,
-    majorMulti2,
-    majorMulti2,
-  ];
-
-  const options = ['학과1', '학과2', '학과3', '학과4'];
+  const MajorTypeCompos = ['전공심화', '복수전공', '부전공'];
 
   const handleImageClick = (index: number): void => {
     setSelectedImage(index);
@@ -37,6 +30,27 @@ const MajorChange: React.FC = () => {
     console.log('저장된 데이터:', data);
   };
 
+  setUser(prev => ({
+    ...prev,
+    major: department1,
+    doubleMajor: department2,
+    majorType: selectedCategory, // 전공 타입 저장
+  }));
+
+
+  // 전공 선택 시 컴포넌트 변경
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category); 
+  };
+
+  const handleMajorChange = (type: 'major' | 'doubleMajor' | 'minor', value: string) => {
+    if (type === 'major') {
+      setDepartment1(value);
+    } else if (type === 'doubleMajor') {
+      setDepartment2(value);
+    }
+  };
+
   return (
     <S.Layout>
       <Header backarrow majorchange />
@@ -48,90 +62,54 @@ const MajorChange: React.FC = () => {
       </S.Top>
 
       <S.MajorSelect>
-        <S.SelectText>전공 선택</S.SelectText>
+        <MajorChoice />
       </S.MajorSelect>
 
-      <S.ImageContainer>
-        {[0, 1, 2].map((index) => (
-          <S.ImageButton
-            key={index}
-            isActive={selectedImage === index}
-            onClick={() => handleImageClick(index)}
-          >
-            <img
-              src={selectedImage === index ? activeImages[index] : majorMulti}
-              alt={`이미지 ${index + 1}`}
-            />
-            <span>
-              {index === 0 ? '전공심화' : index === 1 ? '복수전공' : '부전공'}
-            </span>
-          </S.ImageButton>
-        ))}
-      </S.ImageContainer>
+      <WhatMajorSelectCompo
+        types={MajorTypeCompos} 
+        onTypeClick={handleCategoryClick} 
+        selectedCategory={selectedCategory}
+      />
 
-      {selectedImage !== null && (
+      {/* 선택된 카테고리에 따른 조건부 렌더링 */}
+      {selectedCategory === '전공심화' && (
         <>
-          {/* 전공심화: 제 1전공만 */}
-          {selectedImage === 0 && (
-            <S.Department>
-              <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
-              <DropDown
-                options={options}
-                value={department1}
-                onChange={(value) => setDepartment1(value)}
-              />
-            </S.Department>
-          )}
-
-          {/* 복수전공: 제 1전공, 제 2전공 */}
-          {selectedImage === 1 && (
-            <>
-              <S.Department>
-                <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
-                <DropDown
-                  options={options}
-                  value={department1}
-                  onChange={(value) => setDepartment1(value)}
-                />
-              </S.Department>
-              <S.Department>
-                <S.DepartmentTitle>제 2전공</S.DepartmentTitle>
-                <DropDown
-                  options={options}
-                  value={department2}
-                  onChange={(value) => setDepartment2(value)}
-                />
-              </S.Department>
-            </>
-          )}
-
-          {/* 부전공: 제 1전공, 부전공 */}
-          {selectedImage === 2 && (
-            <>
-              <S.Department>
-                <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
-                <DropDown
-                  options={options}
-                  value={department1}
-                  onChange={(value) => setDepartment1(value)}
-                />
-              </S.Department>
-              <S.Department>
-                <S.DepartmentTitle>부전공</S.DepartmentTitle>
-                <DropDown
-                  options={options}
-                  value={department2}
-                  onChange={(value) => setDepartment2(value)}
-                />
-              </S.Department>
-            </>
-          )}
+          <S.WhatMajor>
+            <Major />
+          </S.WhatMajor>
+          <SearchDropdown onChange={(value) => handleMajorChange('major', value)}/>
         </>
       )}
 
-      <S.SaveButton onClick={handleSave}>
-        저장하기
-      </S.SaveButton>
+      {selectedCategory === '복수전공' && (
+        <>
+          <S.WhatMajor>
+            <Major />
+          </S.WhatMajor>
+          <SearchDropdown onChange={(value) => handleMajorChange('major', value)}/>
+          {/* 두 번째 드롭다운 */}
+          <S.WhatMajor>
+            <DoubleMajor />
+          </S.WhatMajor>
+          <SearchDropdown onChange={(value) => handleMajorChange('doubleMajor', value)}/>
+        </>
+      )}
+
+      {selectedCategory === '부전공' && (
+        <>
+          <S.WhatMajor>
+            <Major />
+          </S.WhatMajor>
+          <SearchDropdown onChange={(value) => handleMajorChange('major', value)}/>
+
+          <S.Whatminor>
+            <Minor />
+          </S.Whatminor>
+          <SearchDropdown onChange={(value) => handleMajorChange('minor', value)}/>
+        </>
+      )}
+
+      <S.SaveButton onClick={handleSave}>저장하기</S.SaveButton>
     </S.Layout>
   );
 };

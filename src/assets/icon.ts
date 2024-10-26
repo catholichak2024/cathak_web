@@ -39,3 +39,9 @@ export { ReactComponent as Major_change } from './my_image/my_major_change.svg';
 export { ReactComponent as Password } from './my_image/my_password.svg';
 export { ReactComponent as Rectangle } from './my_image/my_rectangle.svg';
 export { ReactComponent as MemberExit } from './my_image/memberExit.svg';
+export { ReactComponent as MajorChoice } from './my_image/majorChoice.svg';
+
+//마이페이지 전공선택
+export { ReactComponent as Major } from './my_image/major.svg';
+export { ReactComponent as DoubleMajor } from './my_image/doublemajor.svg';
+export { ReactComponent as Minor } from './my_image/minor.svg';

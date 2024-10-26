@@ -63,20 +63,33 @@ export const NameText = styled.div`
   z-index: 2;
 `;
 
-export const MajorSelect = styled.div`
-  display: flex;
-  justify-content: flex-start; 
-  align-items: center;
-  padding: 10px;
-  width: 100%; 
+export const MajorSelect = styled.div` 
+  margin-top: 20px;  
+  left: 15%;
+  top: 70%;        
+  transform: translate(-315%, 50%); 
+  cursor:pointer;
 `;
 
+export const WhatMajor = styled.div` 
+  margin-top: -10px;  
+  left: 15%;
+  top: 70%;        
+  transform: translate(-315%, 50%);
+`;
 
-export const SelectText = styled.p`
-  font-size: 13px;
-  color: #333;
-  margin-left: 50px;
-  font-weight: bold;
+export const WhatMajor2 = styled.div` 
+  margin-top: -20px;  
+  left: 14%;
+  top: 70%;        
+  transform: translate(-307%, 50%); 
+`;
+
+export const Whatminor = styled.div` 
+  margin-top: -10px;  
+  left: 14%;
+  top: 70%;        
+  transform: translate(-415%, 50%); 
 `;
 
 export const ImageContainer = styled.div`
@@ -120,7 +133,7 @@ export const ImageButton = styled.button.withConfig({
 `;
 
 export const Department = styled.div`
-  margin: 5px 0;
+  margin: 15px 0;
   left: 20%;
   display: flex;
   flex-direction: column;
@@ -130,21 +143,21 @@ export const Department = styled.div`
 export const DepartmentTitle = styled.p`
   font-size: 11px;
   color: #626262;
-  margin-bottom: 2px;
+  margin-bottom: -12px;
+  margin-left: -9px;
 `;
 
 export const DepartmentInput = styled.input`
   font-size: 11px;
   text-align: left;
   padding: 5px;
-  width: 292px;
+  width: 102px;
   height: 25px;
   border: 2px solid #D6E8F1;
   border-radius: 15px;
   background-color: #D6E8F1;
   color: #A1A1A1;
   cursor: pointer;
-
   &:focus {
     outline: none;
     background-color: #D6E8F1;
