@@ -21,11 +21,11 @@ export const IconLayout = styled.button`
 
 export const ButtonLayout = styled.button`
   cursor: pointer;
-  width: 50%;
+  width: 60%;
   background: none;
   border: none;
   padding: 0; 
-  margin: 0;
+  margin-bottom: 9px;
 `;
 
 export const ConditionText = styled.div`
