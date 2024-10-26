@@ -8,6 +8,10 @@ export const userRegistrationState = atom<UserRegistrationType>({
     id: '',
     password: '',
     confirmPassword: '',
-    studentId: '', 
+    studentId: '',
+    major_type: '', 
+    major1: '', 
+    major2: undefined, 
+    minor: undefined,
   },
 });

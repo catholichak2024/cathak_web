@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from 'react';
 import * as S from './Styles';
 import { NotsaveClass, SaveClass } from '../../../assets/icon';

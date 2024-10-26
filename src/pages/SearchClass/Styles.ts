@@ -8,7 +8,7 @@ export const Layout = styled.div`
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.backbasic};
   color: #333;
-
+  overflow: hidden;
   h1 {
     font-size: 2.5rem;
     margin: 0;
@@ -18,13 +18,14 @@ export const Layout = styled.div`
   
 `;
 export const Content = styled.div`
-  width: 100%;
+  width: 90%;
   position: absolute;
   top: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  overflow: hidden;
 `;
 
 
@@ -39,3 +40,4 @@ export const ErrorText = styled.div`
   font-size: 12px;
 
 `;
+

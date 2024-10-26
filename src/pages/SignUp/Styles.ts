@@ -41,7 +41,7 @@ export const Body=styled.div`
 export const InputField=styled.div`
     position:relative;
     margin-bottom: 5%;
-    /* padding-bottom: 5%; */
+    /* margin-top: 5%; */
     div{
         
         font-size: 12px;
@@ -54,6 +54,11 @@ export const InputField=styled.div`
             color:rgba(239, 102, 102, 1);
             position:absolute;
         }
+    }
+    & .idMessage{
+        font-size: 8px;
+        
+        position:absolute;
     }
     input{
         font-size: 12px;
@@ -90,6 +95,7 @@ export const InputField=styled.div`
         border:none;
         font-size:8px;
         font-weight:600;
+        cursor:pointer;
     }
 `
 export const MajorTitle=styled.div`
@@ -98,12 +104,18 @@ export const MajorTitle=styled.div`
     margin-top: 10%;
     margin-bottom: 3%;
 `
+export const MajorErrorText=styled.div`
+    margin-top: 3px;
+    font-size: 8px;
+    color:rgba(239, 102, 102, 1);
+    padding-left:6%;
+`
 export const SaveButton=styled.button`
-    position:absolute;
-    right:10%;
-    bottom:5%;
-    padding:0;
-    /* margin-bottom:7%; */
+    /* position:absolute; */
+    /* right:10%;
+    bottom:5%; */
+    padding:30px 0px;
+    margin-left:250px;
     border: none;
     background-color: white;
     cursor: pointer;
