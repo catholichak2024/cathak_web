@@ -79,14 +79,14 @@ export const WhatMajor = styled.div`
 `;
 
 export const WhatMajor2 = styled.div` 
-  margin-top: -20px;  
-  left: 14%;
+  margin-top: -0px;  
+  left: 22%;
   top: 70%;        
-  transform: translate(-307%, 50%); 
+  transform: translate(-312%, 50%); 
 `;
 
 export const Whatminor = styled.div` 
-  margin-top: -10px;  
+  margin-top: -0px;  
   left: 14%;
   top: 70%;        
   transform: translate(-415%, 50%); 
@@ -183,7 +183,7 @@ export const SaveText = styled.span`
 
 export const SaveButton = styled.button`
   position: absolute;
-  bottom: 8%;
+  bottom: 100px;
   right: 10%;
   color: ${({ theme }) => theme.colors.gray};
   padding: 10px 15px;

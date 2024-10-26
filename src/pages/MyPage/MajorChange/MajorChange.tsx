@@ -87,9 +87,9 @@ const MajorChange: React.FC = () => {
             <Major />
           </S.WhatMajor>
           <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
-          <S.WhatMajor>
+          <S.WhatMajor2>
             <DoubleMajor />
-          </S.WhatMajor>
+          </S.WhatMajor2>
           <SearchDropdown onChange={(value) => handleMajorChange('doubleMajor', value)} />
         </>
       )}
