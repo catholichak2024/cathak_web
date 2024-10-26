@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { atom, useRecoilState } from 'recoil';
+import { passwordChangeState } from '../../../recoil/states/PasswordChangestates';
 import * as S from './Styles';
 import Header from '../../../components/Header/Header';
 import { useNavigate } from 'react-router-dom';
@@ -6,10 +8,12 @@ import submitIcon1 from '../../../assets/psw/psw_complete.svg';
 
 const SignupNext: React.FC = () => {
   const navigate = useNavigate();
+  const [passwordState, setPasswordState] = useRecoilState(passwordChangeState);
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [serverStatus, setServerStatus] = useState<string | null>(null);
 
   // 비밀번호 유효성 검사
   const validatePassword = (password: string) => {
@@ -23,9 +27,30 @@ const SignupNext: React.FC = () => {
   }, [password, confirmPassword, passwordError]);
 
   // 제출 버튼 클릭 시 처리
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isFormValid) {
-      navigate('/Login');
+      try {
+        setPasswordState({ pw: password });
+        const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/findPw', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ password }),
+        });
+        if (response.ok) {
+          setServerStatus('비밀번호 변경이 성공적으로 완료되었습니다.');
+          console.log('Current Password State:', passwordState);
+          navigate('/Login');
+        } else {
+          setServerStatus(`서버 오류: ${response.status}`);
+          console.log('Current Password State:', passwordState);
+        }
+      } catch (error) {
+        console.error('서버와의 통신 중 오류가 발생했습니다.', error);
+        setServerStatus('서버와의 통신 중 오류가 발생했습니다. 다시 시도해주세요.');
+        console.log('Current Password State:', passwordState);
+      }
     }
   };
 
@@ -62,11 +87,12 @@ const SignupNext: React.FC = () => {
           value={confirmPassword}
           placeholder="비밀번호 확인"
           onChange={(e) => setConfirmPassword(e.target.value)}
-          hasError={Boolean(confirmPassword && password !== confirmPassword)} // 비밀번호가 일치하지 않으면 true
+          hasError={Boolean(confirmPassword && password !== confirmPassword)} 
         />
         <S.ErrorMessage isVisible={Boolean(confirmPassword && password !== confirmPassword)}>
           비밀번호가 일치하지 않습니다.
         </S.ErrorMessage>
+
 
         <S.SubmitButton onClick={handleSubmit} disabled={!isFormValid}>
           <img src={submitIcon1} alt="아이콘" />

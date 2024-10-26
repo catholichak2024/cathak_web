@@ -14,6 +14,11 @@ const SignUp: React.FC = () => {
     const [isIdChecked, setIsIdChecked] = useState<boolean>(false);
     const navigate = useNavigate();
 
+    const handleSignBackClick = () => {
+        navigate(-1); 
+    };
+
+
     const handleMajorDataChange = (majorData: { majorType: string, major1: string | null, major2?: string | null, minor?: string | null }) => {
         setRegistrationInfo((prev): UserRegistrationType => ({
             ...prev,
@@ -144,7 +149,7 @@ const SignUp: React.FC = () => {
 
     return (
         <Layout>
-            <Header backarrow />
+            <Header backarrow/>
             <TitleText>회원가입</TitleText>
             <Line></Line>
             <Body>
