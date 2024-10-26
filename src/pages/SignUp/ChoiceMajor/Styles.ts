@@ -22,7 +22,7 @@ export const ButtonGroup=styled.div`
         width:70px;
         height:28px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 400;
         box-shadow: 0 0 4px rgba(94, 147, 182, 1);
         cursor: pointer;
         &.selected{
@@ -40,7 +40,7 @@ export const SelectGroup=styled.div`
     label{
         color:rgba(98, 98, 98, 1);
         font-size:12px;
-        font-weight: 600;
+        font-weight: 400;
         padding-left:6%;
     
     }

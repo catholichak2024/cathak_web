@@ -21,13 +21,14 @@ const customStyles: StylesConfig<OptionType, false> = {
     outline: 'none',
     color: 'rgba(161, 161, 161, 1)',
     fontSize: '12px',
-    fontWeight: '600',
+    fontWeight: '500',
   }),
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isFocused ? 'rgba(214, 232, 241, 1)' : 'white',
     color: 'rgba(26, 38, 79, 1)',
     fontSize: '12px',
+    fontWeight: '300',
   }),
 };
 

@@ -46,6 +46,6 @@ export default createGlobalStyle`
     }
     * {
         font-family: 'Pretendard';
-        font-weight: 600;
+        font-weight: 300;
     }
 `;

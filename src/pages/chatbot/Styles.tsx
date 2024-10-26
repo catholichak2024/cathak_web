@@ -93,6 +93,7 @@ export const RecoMessage=styled.div`
     height:auto;
     font-size: 12px;
     font-weight:300;
+    max-width: 240px;
 
 `
 export const MyContainer=styled.div`
@@ -107,6 +108,7 @@ export const RecoContainer=styled.div`
     display:flex;
     gap:5px;
     margin-bottom: 20px;
+    
 `
 export const InputContainer=styled.div`
     width:100%;

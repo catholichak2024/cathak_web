@@ -45,7 +45,7 @@ export const InputField=styled.div`
     div{
         
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 500;
         padding-left:6%;
         margin-bottom: 1%;
 
@@ -96,11 +96,12 @@ export const InputField=styled.div`
         font-size:8px;
         font-weight:600;
         cursor:pointer;
+        font-weight: 300;
     }
 `
 export const MajorTitle=styled.div`
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 10%;
     margin-bottom: 3%;
 `

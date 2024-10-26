@@ -46,7 +46,7 @@ const Chatbot: React.FC = () => {
                 const data = await response.json();
                 console.log(data);
              // 서버 응답 메시지 추가
-            setMessages((prevMessages) => [...prevMessages, { type: 'response', content: data.message || '응답을 받을 수 없습니다.' }]);
+            setMessages((prevMessages) => [...prevMessages, { type: 'response', content: data.response || '응답을 받을 수 없습니다.' }]);
         } catch (error) {
             console.error('서버 오류:', error);
             setMessages((prevMessages) => [...prevMessages, { type: 'response', content: '서버와의 통신에 실패했습니다.' }]);

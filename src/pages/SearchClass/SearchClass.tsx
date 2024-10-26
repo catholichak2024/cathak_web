@@ -7,8 +7,10 @@ import { classListState } from '../../recoil/states/Classstates';
 import SearchBar from './SearchBar/SearchBar';
 import { classInfoType } from '../../recoil/types/classdetail'; // 클래스 타입 가져오기
 import { userInfoState } from '../../recoil/states/Userstate';
-import ClassContainer from './ClassContainer/ClassContainer';
+
 import Chatbot from '../chatbot/Chatbot';
+
+import MajorContainer from './ClassContainer/MajorContainer';
 
 const SearchClass: React.FC = () => {
     const classList = useRecoilValue(classListState);
@@ -55,12 +57,13 @@ const SearchClass: React.FC = () => {
                 {selectedCategory !== '챗봇' && <SearchBar onSearch={handleSearch} />}
                 {isSearching ? (
                     searchResult.length > 0 ? (
-                        <ClassContainer data={searchResult} user={user} />
+                       
+                        <MajorContainer/>
                     ) : (
                         <S.ErrorText>검색 결과가 없습니다.</S.ErrorText>
                     )
                 ) : (
-                    <ClassContainer data={filteredClasses} user={user}/>
+                    <MajorContainer/>
                 )}
             </S.Content>
             {selectedCategory=='챗봇' &&<Chatbot/>}
