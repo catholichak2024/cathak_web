@@ -19,7 +19,7 @@ const Credit: React.FC<CreditSectionProps> = ({ minimumCredit, getCredit }) => {
                 />
                 <LimitCredit 
                     icon={<Star />}
-                    whatcredit="취득학점"
+                    whatcredit="이수학점"
                     credit={getCredit}
                 />
             </S.CreditContainer>
