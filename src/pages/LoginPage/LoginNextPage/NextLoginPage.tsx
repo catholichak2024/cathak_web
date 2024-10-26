@@ -22,12 +22,36 @@ const NextLogin: React.FC = () => {
     navigate('/SignupFind');  
   };
 
+  const handleSignupSuccess = async (signupData: LoginRequest) => {
+    try {
+      const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(signupData),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        setLoginInfo({ id: data.id, pw: data.pw });
+        console.log('회원가입 후 로그인 상태 업데이트 완료:', data);
+        navigate('/home');
+      } else {
+        console.error('회원가입 실패:', response.statusText);
+      }
+    } catch (error) {
+      console.error('회원가입 중 오류 발생:', error);
+    }
+  };
+  
+
   const handleLogin = async () => {
     if (loginInfo.id && loginInfo.pw) {
       try {
         setErrorMessage('로그인 중입니다...');
-        const response = await fetch('/api/login', {
-          method: 'GET',
+        const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/login', { // 절대 경로 사용
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -58,13 +82,14 @@ const NextLogin: React.FC = () => {
       <S.Top>
         <S.TopText>로그인을 해주세요</S.TopText>
       </S.Top>
-
+  
       <S.Middle>
         <S.EggLogo src={eggLogo} alt="egg Logo" />
       </S.Middle>
-
+  
       <S.Bottom>
-      <S.Input
+        {errorMessage && <S.ErrorText>{errorMessage}</S.ErrorText>} 
+        <S.Input
           type="text"
           placeholder="아이디 입력"
           value={loginInfo.id}
@@ -77,15 +102,16 @@ const NextLogin: React.FC = () => {
           onChange={(e) => setLoginInfo({ ...loginInfo, pw: e.target.value })}
         />
         <S.SaveButton onClick={handleLogin}>로그인</S.SaveButton>
-          
+        
         <S.LinkContainer>
-            <S.LinkText onClick={handleFindIdClick}>아이디 찾기</S.LinkText>
-            <S.Separator>|</S.Separator>
-            <S.LinkText onClick={handleFindPwClick}>비밀번호 찾기</S.LinkText>
-          </S.LinkContainer>
+          <S.LinkText onClick={handleFindIdClick}>아이디 찾기</S.LinkText>
+          <S.Separator>|</S.Separator>
+          <S.LinkText onClick={handleFindPwClick}>비밀번호 찾기</S.LinkText>
+        </S.LinkContainer>
       </S.Bottom>
     </S.Layout>
   );
+  
 }
 
 export default NextLogin;
