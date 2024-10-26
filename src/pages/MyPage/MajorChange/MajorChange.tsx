@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Header/Header';
-import myBigRectangle from '../../../assets/my_image/my_big_rectangle.svg';
-import myHayangi from '../../..//assets/my_image/my_hayangi.svg';
 import majorMulti from '../../../assets/major/major_multi.svg';
+import DropDown from '../../../pages/MyPage/DropDown/DropDown';
 import majorMulti2 from '../../../assets/my_image/major_multi2.svg';
 import { useNavigate } from 'react-router-dom';
 import { Hayangi } from '../../../assets/icon';
 import { userInfoState } from '../../../recoil/states/Userstate';
 import { useRecoilValue } from 'recoil';
-
 
 const MajorChange: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -18,12 +16,13 @@ const MajorChange: React.FC = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userInfoState);
 
-
   const activeImages = [
-    majorMulti2,  
-    majorMulti2,  
-    majorMulti2,  
+    majorMulti2,
+    majorMulti2,
+    majorMulti2,
   ];
+
+  const options = ['학과1', '학과2', '학과3', '학과4'];
 
   const handleImageClick = (index: number): void => {
     setSelectedImage(index);
@@ -40,12 +39,12 @@ const MajorChange: React.FC = () => {
 
   return (
     <S.Layout>
-      <Header backarrow majorchange/>
+      <Header backarrow majorchange />
       <S.Top>
         <S.HayangiBox>
           <Hayangi />
         </S.HayangiBox>
-        <S.UserName>{user.name}</S.UserName>  
+        <S.UserName>{user.name}</S.UserName>
       </S.Top>
 
       <S.MajorSelect>
@@ -56,8 +55,8 @@ const MajorChange: React.FC = () => {
         {[0, 1, 2].map((index) => (
           <S.ImageButton
             key={index}
-            isActive={selectedImage === index} 
-            onClick={() => handleImageClick(index)} 
+            isActive={selectedImage === index}
+            onClick={() => handleImageClick(index)}
           >
             <img
               src={selectedImage === index ? activeImages[index] : majorMulti}
@@ -70,75 +69,69 @@ const MajorChange: React.FC = () => {
         ))}
       </S.ImageContainer>
 
-      {selectedImage === 0 && (
-        <S.Department>
-          <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
-          <S.DepartmentInput
-            id="department1"
-            type="text"
-            placeholder="학과"
-            value={department1}
-            onChange={(e) => setDepartment1(e.target.value)}
-          />
-        </S.Department>
-      )}
-
-      {selectedImage === 1 && (
+      {selectedImage !== null && (
         <>
-          <S.Department>
-            <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
-            <S.DepartmentInput
-              id="department1"
-              type="text"
-              placeholder="학과"
-              value={department1}
-              onChange={(e) => setDepartment1(e.target.value)}
-            />
-          </S.Department>
+          {/* 전공심화: 제 1전공만 */}
+          {selectedImage === 0 && (
+            <S.Department>
+              <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
+              <DropDown
+                options={options}
+                value={department1}
+                onChange={(value) => setDepartment1(value)}
+              />
+            </S.Department>
+          )}
 
-          <S.Department>
-            <S.DepartmentTitle>제 2전공</S.DepartmentTitle>
-            <S.DepartmentInput
-              id="department2"
-              type="text"
-              placeholder="학과"
-              value={department2}
-              onChange={(e) => setDepartment2(e.target.value)}
-            />
-          </S.Department>
-        </>
-      )}
+          {/* 복수전공: 제 1전공, 제 2전공 */}
+          {selectedImage === 1 && (
+            <>
+              <S.Department>
+                <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
+                <DropDown
+                  options={options}
+                  value={department1}
+                  onChange={(value) => setDepartment1(value)}
+                />
+              </S.Department>
+              <S.Department>
+                <S.DepartmentTitle>제 2전공</S.DepartmentTitle>
+                <DropDown
+                  options={options}
+                  value={department2}
+                  onChange={(value) => setDepartment2(value)}
+                />
+              </S.Department>
+            </>
+          )}
 
-      {selectedImage === 2 && (
-        <>
-          <S.Department>
-            <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
-            <S.DepartmentInput
-              id="department1"
-              type="text"
-              placeholder="학과"
-              value={department1}
-              onChange={(e) => setDepartment1(e.target.value)}
-            />
-          </S.Department>
-
-          <S.Department>
-            <S.DepartmentTitle>제 2전공</S.DepartmentTitle>
-            <S.DepartmentInput
-              id="department2"
-              type="text"
-              placeholder="학과"
-              value={department2}
-              onChange={(e) => setDepartment2(e.target.value)}
-            />
-          </S.Department>
+          {/* 부전공: 제 1전공, 부전공 */}
+          {selectedImage === 2 && (
+            <>
+              <S.Department>
+                <S.DepartmentTitle>제 1전공</S.DepartmentTitle>
+                <DropDown
+                  options={options}
+                  value={department1}
+                  onChange={(value) => setDepartment1(value)}
+                />
+              </S.Department>
+              <S.Department>
+                <S.DepartmentTitle>부전공</S.DepartmentTitle>
+                <DropDown
+                  options={options}
+                  value={department2}
+                  onChange={(value) => setDepartment2(value)}
+                />
+              </S.Department>
+            </>
+          )}
         </>
       )}
 
       <S.SaveButton onClick={handleSave}>
         저장하기
       </S.SaveButton>
-
     </S.Layout>
   );
 };
