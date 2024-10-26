@@ -33,8 +33,7 @@ const Chatbot: React.FC = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        major: "컴퓨터 공학과", // 로그인한 사용자의 정보로 대체 필요
-                        student_id: 23, // 로그인한 사용자의 정보로 대체 필요
+                
                         question: question,
                     }),
                 });

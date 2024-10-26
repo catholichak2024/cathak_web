@@ -16,7 +16,7 @@ const MajorFoundationContainer: React.FC = () => {
         const fetchClassData = async () => {
             const token = localStorage.getItem('token');
             try {
-                const response = await fetch('http://13.125.38.246:3000/EveryGrade/majorfoundation', {
+                const response = await fetch('http://13.125.38.246:3000/EveryGrade/search?type=전공기초', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

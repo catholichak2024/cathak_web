@@ -51,6 +51,8 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.4",
+    "@types/universal-cookie": "^3.0.0",
     "cors": "^2.8.5",
     "eslint": "^8.11.0",
     "react-scripts": "^5.0.1"

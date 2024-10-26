@@ -25,6 +25,8 @@ export const Layout = styled.div`
   overflow-y: auto; 
   overflow-x: hidden;
   line-height: 1.3;
+  /* padding-top: 140px; */
+  
   
 `;
 

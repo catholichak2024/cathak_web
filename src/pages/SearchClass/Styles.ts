@@ -3,8 +3,9 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
+  align-items: center;
+  justify-content: center;
+  position:relative;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.backbasic};
   color: #333;
@@ -41,3 +42,9 @@ export const ErrorText = styled.div`
 
 `;
 
+export const Con=styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+`

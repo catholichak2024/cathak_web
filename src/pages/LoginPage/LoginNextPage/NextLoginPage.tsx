@@ -50,6 +50,7 @@ const NextLogin: React.FC = () => {
     if (loginInfo.id && loginInfo.pw) {
       try {
         setErrorMessage('로그인 중입니다...');
+        localStorage.removeItem('token');
         const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/login', { // 절대 경로 사용
           method: 'POST',
           headers: {
