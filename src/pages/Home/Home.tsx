@@ -25,8 +25,8 @@ const Home: React.FC = () => {
       .filter(classItem => attendedClasses.includes(classItem.classId) && (!category || classItem.category === category))
       .reduce((acc, classItem) => {
         const grade = selectedGrades[classItem.classId];
-        // F 성적을 가진 수업은 학점 계산에서 제외
-        return grade === 0 ? acc : acc + classItem.credit;
+        // F 성적 또는 'NP' 성적을 가진 수업은 학점 계산에서 제외
+        return grade === 0 || grade === 6 ? acc : acc + classItem.credit;
       }, 0);
   };
 
