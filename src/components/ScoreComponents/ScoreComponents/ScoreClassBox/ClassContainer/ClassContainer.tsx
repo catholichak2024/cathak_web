@@ -11,7 +11,7 @@ interface Props {
     user: userInfoType;
 }
 
-// 드롭다운 옵션 정의 (영어로)
+// 드롭다운 옵션 정의 
 const gradeOptions = [
     { value: 4.5, label: 'A+' },
     { value: 4.0, label: 'A0' },
@@ -22,8 +22,8 @@ const gradeOptions = [
     { value: 1.5, label: 'D+' },
     { value: 1.0, label: 'D0' },
     { value: 0, label: 'F' },
-    { value: 5, label: 'P' }, // Pass
-    { value: 6, label: 'NP' } // No Pass
+    { value: 5, label: 'P' }, 
+    { value: 6, label: 'NP' } 
 ];
 
 const ClassContainer: React.FC<Props> = ({ data }) => {
