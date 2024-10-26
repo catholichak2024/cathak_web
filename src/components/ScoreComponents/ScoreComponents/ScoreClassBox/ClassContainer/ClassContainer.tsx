@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select'; // react-select 가져오기
 import * as S from './Styles'; // Styles 파일에서 styled-components를 import
 import { classInfoType } from '../../../../../recoil/types/classdetail';
@@ -21,12 +21,13 @@ const gradeOptions = [
     { value: 2.0, label: 'C0' },
     { value: 1.5, label: 'D+' },
     { value: 1.0, label: 'D0' },
-    { value: 0, label: 'F' }
+    { value: 0, label: 'F' },
+    { value: 5, label: 'P' }, // Pass
+    { value: 6, label: 'NP' } // No Pass
 ];
 
 const ClassContainer: React.FC<Props> = ({ data }) => {
     const [selectedGrades, setSelectedGrades] = useRecoilState(selectedGradesState);
-
 
     const handleGradeChange = (classId: number, option: { value: number; label: string } | null) => {
         setSelectedGrades((prev: any) => ({
@@ -48,7 +49,7 @@ const ClassContainer: React.FC<Props> = ({ data }) => {
                             value={gradeOptions.find(option => option.value === selectedGrades[d.classId]) || null}
                             onChange={(option) => handleGradeChange(d.classId, option)} // 학점 변경 핸들러
                             placeholder=" "
-                            isSearchable={false}  //텍스트 입력 비활성화
+                            isSearchable={false}  // 텍스트 입력 비활성화
                             styles={{
                                 control: (base) => ({
                                     ...base,

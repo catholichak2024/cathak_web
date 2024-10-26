@@ -33,15 +33,18 @@ const Home: React.FC = () => {
   // 총 성적 계산
   const calculateTotalGrade = () => {
     const totalScore = classList.reduce((acc, classItem) => {
-      const grade = selectedGrades[classItem.classId];
-      // 성적이 F일 경우 0으로 처리
-      return acc + (grade !== null && grade !== undefined ? grade : 0);
+        const grade = selectedGrades[classItem.classId];
+        if (grade === 5 || grade === 6) {
+            // 'P'와 'NP'는 성적 점수에 포함되지 않음
+            return acc;
+        }
+        return acc + (grade !== null && grade !== undefined ? grade : 0);
     }, 0);
 
-    // 사용자가 입력한 성적의 개수로 나누기 (F도 개수에 포함됨)
-    const totalGradesCount = Object.values(selectedGrades).filter(grade => grade !== null && grade !== undefined).length;
+    // 사용자가 입력한 성적의 개수로 나누기
+    const totalGradesCount = Object.values(selectedGrades).filter(grade => grade !== null && grade !== 5 && grade !== 6).length;
     return totalGradesCount ? (totalScore / totalGradesCount).toFixed(1) : "0.0";
-  };
+};
 
   // 총 전공 성적 계산
   const calculateMajorGrade = () => {
