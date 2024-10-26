@@ -94,12 +94,14 @@ const NextLogin: React.FC = () => {
           placeholder="아이디 입력"
           value={loginInfo.id}
           onChange={(e) => setLoginInfo({ ...loginInfo, id: e.target.value })}
+          autoComplete="off"
         />
         <S.Input
           type="password"
           placeholder="비밀번호 입력"
           value={loginInfo.pw}
           onChange={(e) => setLoginInfo({ ...loginInfo, pw: e.target.value })}
+          autoComplete="off"
         />
         <S.SaveButton onClick={handleLogin}>로그인</S.SaveButton>
         
