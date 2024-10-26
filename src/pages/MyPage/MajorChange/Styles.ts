@@ -191,11 +191,9 @@ export const SaveButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
-
+  background: transparent;
   font-weight: bold;
-  &:hover {
-    background-color: white;
-  }
+  
 `;
 
 export const Top = styled.div`
