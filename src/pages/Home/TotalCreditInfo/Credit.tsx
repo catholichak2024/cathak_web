@@ -19,7 +19,7 @@ const Credit: React.FC<CreditSectionProps> = ({ getCredit }) => {
                     whatcredit="총 학점"
                     credit={getCredit}
                 />
-                <Mascotsmall />
+                <Mascotsmall style={{ width: '80%', height: '70%' }} />
             </S.CreditContainer>
         </S.Layout>
     )

@@ -8,11 +8,11 @@ export const Layout = styled.div`
   width: 100px;
   justify-content: center;
   align-items: center; 
-  margin: 1rem 0.8rem;
+  margin: 1rem 1.2rem;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
   box-shadow: 0 4px 10px #789cad;
-  min-width: 100px;
+  min-width: 110px;
   max-width: 100px; /* 최대 너비 설정 */
   width: 100%;
 `;

@@ -29,7 +29,7 @@ export const Bottom = styled.div`
     justify-content: center;
     position: relative; 
     width: 100%; 
-    height: 320px;
+    height: 330px;
     display: flex;
     flex-direction: column;
 `;
@@ -53,8 +53,8 @@ export const Mascot = styled.div`
 
 export const GrandGoto = styled.div`
   position: absolute;
-  top: 8%;            
-  left: 25%;
+  top: 15%;            
+  left: 27%;
   transform: translate(-50%, -50%);
   cursor:pointer; 
   `;

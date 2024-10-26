@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column; 
-  padding: 13px;
+  padding: 3px;
   margin-top: -10px;
 `;
 
