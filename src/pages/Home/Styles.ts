@@ -20,7 +20,7 @@ export const Top = styled.div`
     box-shadow: 0 4px 10px #1a5776; 
     position: relative; 
     width: 100%; 
-    height: 320px;
+    height: 360px;
 
 `;
 

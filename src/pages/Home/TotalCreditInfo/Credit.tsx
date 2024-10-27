@@ -15,11 +15,11 @@ const Credit: React.FC<CreditSectionProps> = ({ getCredit }) => {
         <S.Layout >
             <S.CreditContainer onClick={() => navigate('/searchclass')}>
                 <LimitCredit 
-                    icon={<BlackStar style={{ width: '120%', marginRight: '-6px' }} />}
+                    icon={<BlackStar style={{ width: '100%', marginRight: '-6px' }} />}
                     whatcredit="총 학점"
                     credit={getCredit}
                 />
-                <Mascotsmall style={{ width: '80%', height: '70%' }} />
+                <Mascotsmall style={{ width: '90%', height: '80%' }} />
             </S.CreditContainer>
         </S.Layout>
     )

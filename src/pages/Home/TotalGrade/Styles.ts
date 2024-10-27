@@ -4,7 +4,7 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column; 
   padding: 3px;
-  margin-top: -10px;
+  margin-top: -5px;
 `;
 
 export const CreditContainer = styled.div`

@@ -12,7 +12,7 @@ export default createGlobalStyle`
     @font-face { //Medium
         font-family: 'Pretendard';
         src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
-        font-weight: 500;
+        font-weight: 100;
         font-style: normal;
     }
     a{
@@ -46,6 +46,6 @@ export default createGlobalStyle`
     }
     * {
         font-family: 'Pretendard';
-        font-weight: 300;
+        font-weight: 100;
     }
 `;

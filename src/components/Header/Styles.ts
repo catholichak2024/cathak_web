@@ -21,7 +21,7 @@ export const IconLayout = styled.button`
 
 export const ButtonLayout = styled.button`
   cursor: pointer;
-  width: 60%;
+  width: 70%;
   background: none;
   border: none;
   padding: 0; 

@@ -5,15 +5,15 @@ export const Layout = styled.div`
   flex-direction: column;
   border-radius: 1rem; 
   padding: 1rem;
-  width: 100px;
+  width: 90px;
   justify-content: center;
   align-items: center; 
-  margin: 1rem 1.2rem;
+  margin: 1rem 0.4rem;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
   box-shadow: 0 4px 10px #789cad;
-  min-width: 110px;
-  max-width: 100px; /* 최대 너비 설정 */
+  min-width: 127px;
+  max-width: 118px; /* 최대 너비 설정 */
   width: 100%;
 `;
 
@@ -42,10 +42,9 @@ export const NumberCreditContainer = styled.div`
 `;
 
 export const Credit = styled.span`
-  font-weight: bold;
+  font-weight: 100;
   font-size: 2.5rem;
   color: ${({ theme }) => theme.colors.gray};
-  font-weight: 330;
 `;
 
 export const CreditText = styled.span`

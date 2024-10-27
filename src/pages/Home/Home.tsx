@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchTotalGradeCredit } from '../../apis/HomeTotalGrade'; // 성적 조회 API
 import { courseState } from '../../recoil/states/HomeStatae';
 import { TotalGradeCredit } from '../../recoil/types/Home'; // CourseData 인터페이스의 경로에 맞게 수정하세요.
+import { userState } from '../../recoil/states/UserFindstate';
 
 const Home: React.FC = () => {
   const HomeTypeCompos = ['교양', '전공기초', '전공'];
