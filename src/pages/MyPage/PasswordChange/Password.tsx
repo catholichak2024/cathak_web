@@ -1,10 +1,11 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import pswImage from '../../../assets/psw/psw_lock.svg';
 import submitIcon from '../../../assets/psw/psw_complete.svg';
-import pswPopup from '../../../assets/psw/psw_popup.svg';
+import { useRecoilState } from 'recoil';
+import { passwordChangeState } from '../../../recoil/states/PasswordChangestates';
 
 const Password: React.FC = () => {
   const navigate = useNavigate();
@@ -13,9 +14,10 @@ const Password: React.FC = () => {
   const [newPassword, setNewPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [passwordChange, setPasswordChange] = useRecoilState(passwordChangeState);
 
   const validatePassword = (password: string) => {
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{15,}$/;
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{5,15}$/;
     return passwordRegex.test(password);
   };
 
@@ -39,6 +41,7 @@ const Password: React.FC = () => {
   const handleNewPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
     setNewPassword(password);
+    setPasswordChange({ pw: password });
 
     if (!validatePassword(password)) {
       setPasswordError('영문+숫자+특수문자 조합의 15자리 비밀번호를 입력하세요.');
@@ -47,10 +50,37 @@ const Password: React.FC = () => {
     }
   };
 
-  const handleSubmit = () => {
-    if (validatePassword(newPassword)) {
-      setShowPopup(true);
-    } 
+  const handleSubmit = async () => {
+    if (!validatePassword(newPassword)) {
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('token');
+
+      // Step 1: 현재 비밀번호 확인 및 새 비밀번호 업데이트
+      const response = await fetch('http://13.125.38.246/EveryGrade/mypage/pw', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.isSuccess) {
+        setShowPopup(true);
+      } else {
+        setPasswordError('현재 비밀번호가 올바르지 않습니다.');
+      }
+    } catch (error) {
+      console.error('비밀번호 변경 중 오류 발생:', error);
+    }
   };
 
   const closePopup = () => {
@@ -108,7 +138,6 @@ const Password: React.FC = () => {
           <S.PopupContent>
             <S.PopupTitle>비밀번호 변경 완료</S.PopupTitle>
             <S.PopupDescription>비밀번호 변경이 정상적으로 완료되었습니다.</S.PopupDescription>
-            {/* <S.CloseButton onClick={closePopup}>확인</S.CloseButton> */}
           </S.PopupContent>
         </S.PopupOverlay>
       )}
