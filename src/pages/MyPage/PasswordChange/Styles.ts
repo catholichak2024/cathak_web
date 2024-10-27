@@ -73,9 +73,9 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 244px;
+  width: 274px;
   height: 40px;
-  border: 0.1px solid white;
+  background-color: #FFFFFF;
   border-radius: 18px;
   padding: 0 10px;
   font-size: 14px;
