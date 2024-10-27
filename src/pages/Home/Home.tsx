@@ -1,62 +1,87 @@
-import React, { useEffect } from 'react';
+// Home.tsx
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import { Mascothayangi, Ellipse, GradeManage } from '../../assets/icon';
 import HomeTypeCompo from './HomeTypeCompo/HomeTypeCompo';
-import { userInfoState } from '../../recoil/states/Userstate';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import Credit from './TotalCreditInfo/Credit';
 import Grade from './TotalGrade/Grade';
 import { useNavigate } from 'react-router-dom';
-import { fetchTotalGradeCredit } from '../../apis/HomeTotalGrade'; // 성적 조회 API
 import { courseState } from '../../recoil/states/HomeStatae';
-import { TotalGradeCredit } from '../../recoil/types/Home'; // CourseData 인터페이스의 경로에 맞게 수정하세요.
-import { userState } from '../../recoil/states/UserFindstate';
+import { accessTokenState } from '../../recoil/states/Loginstate';
+import { CreditData } from '../../recoil/types/CreditData';
+import { error } from 'console';
 
 const Home: React.FC = () => {
   const HomeTypeCompos = ['교양', '전공기초', '전공'];
+  const [Mycredit, setMyCredit] = useState<CreditData | null>(null);
+  const accessToken = useRecoilValue(accessTokenState); 
   const navigate = useNavigate();
-  const user = useRecoilValue(userInfoState);
-  const setCourseData = useSetRecoilState(courseState); 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const gradeResponse: TotalGradeCredit = await fetchTotalGradeCredit(); // 성적 데이터 가져오기
-        setCourseData(gradeResponse); // Recoil 상태에 저장
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [setCourseData]);
-
-  // Recoil 상태에서 학점/성적 가져오기
-  const courseData = useRecoilValue(courseState); // Recoil 상태 가져오기
-  const totalCredits = courseData?.data.totalCredits || 0; // 총 학점
-  const culturalCourses = courseData?.data.culturalCourses || 0; // 교양 과목 수
-  const majorFoundationCourses = courseData?.data.majorFoundationCourses || 0; // 전공 기초 과목 수
-  const majorCourses = courseData?.data.majorCourses || 0; // 전공 과목 수
-  const totalGPA = courseData?.data.totalGPA || 0; // 총 GPA
-  const majorGPA = courseData?.data.majorGPA || 0; // 전공 GPA
+  const setCourseData = useSetRecoilState(courseState);
 
   const handleCategoryClick = (category: string) => {
-    // 카테고리 클릭 시 해당 경로로 이동
     if (category === '교양') {
       navigate('/detailclass/general');
     } else if (category === '전공기초') {
       navigate('/detailclass/majorbasic');
     } else if (category === '전공') {
-      if (user.doubleMajor) {
-        navigate('/detailclass/major12'); // 복수전공이 있는 경우
-      } else if (user.minor) {
-        navigate('/detailclass/majorsecond'); // 부전공이 있는 경우
-      } else if (user.major) {
-        navigate('/detailclass/major1'); // 전공심화
-      }
+      navigate('/detailclass/major12');
     }
-  }
+  };
+
+  useEffect(() => {
+  // 사용자 데이터 가져오기
+      const UserCreditData = async () => {
+        try {
+          const token =  localStorage.getItem('token'); // 토큰 가져오기
+          if (!token) {
+            throw new Error("토큰이 없습니다.");
+          }
+
+          console.log("사용할 토큰:", token);
+          const response = await fetch('http://13.125.38.246:3000/EveryGrade/home', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`, 
+            },
+          });
+
+          // 상태 코드에 따라 분기 처리
+          if (response.ok) {
+            const data = await response.json();
+            setMyCredit({
+              totalCredits: data.result.data.totalCredits,
+              culturalCourses: data.result.data.culturalCourses,
+              majorFoundationCourses: data.result.data.majorFoundationCourses,
+              majorCourses: data.result.data.majorCourses,
+              totalGPA: data.result.data.totalGPA,
+              majorGPA: data.result.data.majorGPA,
+            });
+            console.log("유저 데이터 가져오기 성공:", data);
+          } else {
+            console.error('유저 데이터 가져오기 실패:', response.status);
+          }
+        } catch (error) {
+          console.error('유저 데이터 가져오기 실패:', error);
+        }
+      };
+  
+      UserCreditData();
+    }, []);
+
+
+  
+
+  const totalCredits = Mycredit?.totalCredits || 0;
+  const culturalCourses = Mycredit?.culturalCourses || "0";
+  const majorFoundationCourses = Mycredit?.majorFoundationCourses || 0;
+  const majorCourses = Mycredit?.majorCourses || "0";
+  const totalGPA = Mycredit?.totalGPA || "0.0";
+  const majorGPA = Mycredit?.majorGPA || "0.0";
+
+  
 
   return (
     <S.Layout>
@@ -67,7 +92,7 @@ const Home: React.FC = () => {
           <Mascothayangi />
         </S.Mascot>
         <S.Detail>
-          <S.UserName>{user.name}</S.UserName>
+        <S.UserName>김가대</S.UserName>
           <HomeTypeCompo 
             types={HomeTypeCompos} 
             credit={[
@@ -88,6 +113,24 @@ const Home: React.FC = () => {
       </S.Bottom>
     </S.Layout>
   );
-}; 
+};
 
 export default Home;
+
+//<S.UserName>{UserData?.name}</S.UserName>
+
+// const handleCategoryClick = (category: string) => {
+//   if (category === '교양') {
+//     navigate('/detailclass/general');
+//   } else if (category === '전공기초') {
+//     navigate('/detailclass/majorbasic');
+//   } else if (category === '전공') {
+//     if (UserData?.major2) {
+//       navigate('/detailclass/major12');
+//     } else if (UserData?.minor) {
+//       navigate('/detailclass/majorsecond');
+//     } else {
+//       navigate('/detailclass/major1');
+//     }
+//   }
+// };

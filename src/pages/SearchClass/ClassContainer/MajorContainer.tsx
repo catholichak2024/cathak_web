@@ -15,6 +15,7 @@ const MajorContainer: React.FC = () => {
     useEffect(() => {
         const fetchClassData = async () => {
             const token = localStorage.getItem('token');
+            console.log(token);
             try {
                 const response = await fetch('http://13.125.38.246:3000/EveryGrade/search?type=전공', {
                     method: 'GET',

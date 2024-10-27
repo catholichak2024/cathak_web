@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import eggLogo from '../../../assets/login_image/egg_logo.svg';
 import { useRecoilState } from 'recoil';
 import { userState, accessTokenState } from '../../../recoil/states/Loginstate';
-import { getCookie } from '../../../utiles/UseCookies';
+import { getCookie, setCookie } from '../../../utiles/UseCookies';
 
 const NextLogin: React.FC = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState); // 토큰 상태 관리
@@ -26,7 +26,7 @@ const NextLogin: React.FC = () => {
       try {
         setErrorMessage('로그인 중입니다...');
         localStorage.removeItem('token');
-
+  
         const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/login', {
           method: 'POST',
           headers: {
@@ -37,16 +37,20 @@ const NextLogin: React.FC = () => {
             pw: userInfo.pw,
           }),
         });
-
+  
         if (response.ok) {
           const data = await response.json();
+
+  
           const token = response.headers.get('Authorization');
-
           if (token) {
-            localStorage.setItem('token', token); // 토큰을 로컬 저장소에 저장하여 유지
+            console.log('토큰이 응답 헤더에 존재합니다:', token);
+            setCookie('access-token', token, { secure: false }); // 개발 환경에서 secure: false
             setAccessToken(token); // Recoil의 accessToken 상태 업데이트
+          } else {
+            console.error('Token not found in response headers');
           }
-
+  
           console.log('로그인 성공:', data);
           navigate('/home');
         } else {
@@ -60,6 +64,7 @@ const NextLogin: React.FC = () => {
       setErrorMessage('아이디와 비밀번호를 입력해주세요.');
     }
   };
+  
 
   return (
     <S.Layout>
