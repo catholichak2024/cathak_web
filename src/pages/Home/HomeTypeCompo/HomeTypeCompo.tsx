@@ -4,7 +4,7 @@ import * as S from './Styles';
 type ClassTypeProps = {
     types: string[]; // 각 타입 (교양, 전공기초, 전공)
     credit: { type: string; credit: number | string }[]; // 타입별 학점 정보 (number 또는 string)
-    onTypeClick: (type: string) => void;
+    onTypeClick: (type: string) => void; // 타입 클릭 핸들러
 };
 
 const HomeTypeCompo: React.FC<ClassTypeProps> = ({ types, credit, onTypeClick }) => {
