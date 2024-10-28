@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import ScoreClassBox from './ScoreClassBox/ScoreClassBox';
 import { accessTokenState } from '../../../recoil/states/Loginstate';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 interface GradeData {
     id: number;
@@ -16,6 +16,7 @@ const ScoreComponent: React.FC = () => {
     const [selectedGrades, setSelectedGrades] = useState<{ [key: number]: string | null }>({});
     const accessToken = useRecoilValue(accessTokenState);
 
+    
     useEffect(() => {
         const fetchGrades = async () => {
             try {
@@ -37,15 +38,15 @@ const ScoreComponent: React.FC = () => {
                 const fetchedGrades = Array.isArray(data.result.gradeData) ? data.result.gradeData : [];
                 setGrades(fetchedGrades);
 
-                const initialSelectedGrades = fetchedGrades.reduce((acc: { [x: string]: any; }, grade: { id: string | number; str_score: any; }) => {
+                const initialSelectedGrades = fetchedGrades.reduce((acc: { [key: number]: string | null }, grade: GradeData) => {
                     acc[grade.id] = grade.str_score;
                     return acc;
-                }, {} as { [key: number]: string | null });
+                }, {});
                 
                 setSelectedGrades(initialSelectedGrades);
             } catch (error) {
                 console.error('Error fetching grades:', error);
-                setGrades([]);
+                setGrades([]); // 오류 발생 시 빈 배열로 설정
             }
         };
     
@@ -83,11 +84,17 @@ const ScoreComponent: React.FC = () => {
         <S.Layout>
             <S.ScoreContainer>
                 <S.ScoreText>성적관리</S.ScoreText>
-                <ScoreClassBox
-                    grades={grades}
-                    selectedGrades={selectedGrades}
-                    setSelectedGrades={setSelectedGrades}
-                />
+                
+                {grades.length === 0 ? (
+                    <S.NoDataMessage>수업 내역이 없습니다.</S.NoDataMessage>
+                ) : (
+                    <ScoreClassBox
+                        grades={grades}
+                        selectedGrades={selectedGrades}
+                        setSelectedGrades={setSelectedGrades}
+                    />
+                )}
+                
                 <S.SaveButton onClick={handleSave}>저장</S.SaveButton>
             </S.ScoreContainer>
         </S.Layout>
