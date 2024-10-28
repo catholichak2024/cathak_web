@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './Styles';
-import { useRecoilValue } from 'recoil';
+// import { useRecoilValue } from 'recoil';
 import ClassType from './ClassType/ClassType';
 import Header from '../../components/Header/Header';
 import SearchBar from './SearchBar/SearchBar';
 import CulturalContainer from './ClassContainer/CulturalContainer';
-import MajorFoundationContainer from './ClassContainer/MajorFoundationContainer';
-import MajorContainer from './ClassContainer/MajorContainer';
+// import MajorFoundationContainer from './ClassContainer/MajorFoundationContainer';
+// import MajorContainer from './ClassContainer/MajorContainer';
 import { useNavigate } from 'react-router';
 
 const SearchClass: React.FC = () => {
