@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "catholicagg"
-  }
+    "default": "catholicuveg"
+  },
+  "targets": {},
+  "etags": {}
 }
