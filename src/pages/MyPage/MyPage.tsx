@@ -33,7 +33,7 @@ const MyPage: React.FC = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `${token}`,
+            Authorization: ` ${token}`,
           },
         });
         
