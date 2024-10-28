@@ -8,22 +8,33 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./catholicwhite.png" />
     
-    <!-- Firebase scripts -->
-    <script defer src="/__/firebase/11.0.1/firebase-app-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-performance-compat.js"></script>
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <!-- Firebase scripts from CDN -->
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-database-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-functions-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-storage-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-remote-config-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.1/firebase-performance-compat.js"></script>
     
+    <!-- Firebase 초기화 코드 삽입 -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID",
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      
     </style>
   </head>
   <body>
