@@ -3,12 +3,12 @@ import * as S from './Styles';
 import Header from '../../../components/Header/Header';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { userInfoState } from '../../../recoil/states/Userstate';
+import { userState } from '../../../recoil/states/Loginstate';
 import loginPageGo from '../../../assets/login_image/login_page.svg';
 
 const LoginComplete: React.FC = () => {
   const navigate = useNavigate();
-  const userInfo = useRecoilValue(userInfoState);
+  const userInfo = useRecoilValue(userState);
 
   return (
     <S.Layout>
@@ -29,7 +29,7 @@ const LoginComplete: React.FC = () => {
         <S.Label>에그 ID</S.Label>
 
         <S.UserInfoBox>
-          <S.UserNameBox>{userInfo.name}</S.UserNameBox>
+          <S.UserNameBox>{userInfo?.id}</S.UserNameBox>
         </S.UserInfoBox>
 
         <S.SubmitButton onClick={() => navigate('/login')}>
