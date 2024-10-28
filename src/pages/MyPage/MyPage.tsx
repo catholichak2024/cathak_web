@@ -11,15 +11,15 @@ import { accessTokenState } from '../../recoil/states/Loginstate';
 
 const MyPage: React.FC = () => {
   const user = useRecoilValue(userDataState);
-  const setUserData = useSetRecoilState(userDataState); // Recoil 상태 업데이트 함수
+  const setUserData = useSetRecoilState(userDataState); 
   const navigate = useNavigate();
   const [MyUserData, setMyUserData] = useState<UserData | null>(null);
   const accessToken = useRecoilValue(accessTokenState);
-
-
+  const handlePasswordClick = () => {
+    navigate('/mypage/password'); // /mypage/password로 이동
+  };
   
   useEffect(() => {
-    // 사용자 데이터 가져오기
     const fetchUserData = async () => {
       try {
         const token = accessToken;
@@ -33,16 +33,15 @@ const MyPage: React.FC = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `${token}`, // 인증 토큰 추가
+            Authorization: `${token}`,
           },
         });
         
-  
-        // 상태 코드에 따라 분기 처리
+      // 상태 코드에 따라 분기 처리
       if (response.ok) {
         // 성공 (200-299)
         const data = await response.json();
-        setMyUserData(data.result.userData);
+        setMyUserData(data);
         console.log("유저 데이터 가져오기 성공:", data);
       } else if (response.status === 401) {
         console.error("401 Unauthorized: 인증 토큰이 만료되었거나 올바르지 않습니다.");
@@ -59,7 +58,7 @@ const MyPage: React.FC = () => {
   };
   
     fetchUserData(); // 함수 호출
-  }, );
+  }, [accessToken]);
 
 
   const whataMajor: string[] = [];
@@ -106,7 +105,7 @@ const MyPage: React.FC = () => {
           <S.IdInfo>{MyUserData?.id}</S.IdInfo>
         </S.MyIdBox>
         <S.passwordBox>
-          <Password />
+          <Password onClick={handlePasswordClick} style={{ cursor: 'pointer' }} />
         </S.passwordBox>
         <S.exitMember>
           <MemberExit />
