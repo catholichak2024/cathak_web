@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import * as S from './Styles';
-import { Hayang } from '../../assets/icon';
+import { EggLogo } from '../../assets/icon';
 import { useNavigate } from 'react-router-dom';
+import { Ellipse } from '../../assets/icon';
 
 const Splash: React.FC = () => {
   const navigate = useNavigate();
@@ -9,14 +10,22 @@ const Splash: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/home'); 
-    }, 3000);
+    }, 100000);
 
     return () => clearTimeout(timer);
   }, [navigate('/home')]);
 
   return (
     <S.Layout>
-      <Hayang />
+      <S.Logo>
+        <EggLogo />
+      </S.Logo>
+      <S.Content>
+        <Ellipse />
+        <S.MainText>EVERY GRADE</S.MainText>
+        <S.SubText>꼼꼼한 대학생활을 위해,</S.SubText>
+      </S.Content>
+      
     </S.Layout>
   );
 };
