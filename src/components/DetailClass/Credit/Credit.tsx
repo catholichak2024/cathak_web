@@ -5,7 +5,7 @@ import { Star, LimitCreditIcon } from '../../../assets/icon';
 
 interface CreditSectionProps {
     minimumCredit: number;
-    getCredit: number;
+    getCredit: string;
 }
 
 const Credit: React.FC<CreditSectionProps> = ({ minimumCredit, getCredit }) => {

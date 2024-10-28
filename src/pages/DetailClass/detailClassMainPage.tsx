@@ -4,9 +4,7 @@ import Header from '../../components/Header/Header';
 import { useLocation } from 'react-router-dom';
 import GeneralDetailPage from './GeneralDetailPage/GeneralDetailPage';
 import MajorbasicPage from './majorbasic/MajorbasicPage';
-import Major1Page from './Major1/Major1Page';
-import Major12Page from './Major12/Major12Page';
-import MajorSecondPage from './MajorSecond/MajorSecondPage';
+import MajorPage from './Major/MajorPage';
 
 const DetailClassMainPage: React.FC = () => {
   const { pathname } = useLocation();
@@ -18,15 +16,9 @@ const DetailClassMainPage: React.FC = () => {
     case '/detailclass/majorbasic':
       component = <MajorbasicPage />;
       break;
-    case '/detailclass/major1':
-      component = <Major1Page />;
-      break;
-    case '/detailclass/major12':
-      component = <Major12Page />;
-      break;
-    case '/detailclass/majorsecond':
-      component = <MajorSecondPage />; 
-      break; 
+      case '/detailclass/major':
+        component = <MajorPage />;
+        break;
   }
   return (
     <S.Layout>

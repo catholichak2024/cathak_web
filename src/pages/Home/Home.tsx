@@ -22,7 +22,7 @@ const Home: React.FC = () => {
     } else if (category === '전공기초') {
       navigate('/detailclass/majorbasic');
     } else if (category === '전공') {
-      navigate('/detailclass/major12');
+      navigate('/detailclass/major');
     }
   };
 

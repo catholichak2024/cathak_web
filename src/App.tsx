@@ -49,9 +49,7 @@ function App() {
                 <Route path="/searchclass/chatbot" element={<Chatbot />} />
                 <Route path="detailclass/general" element={<DetailClassMainPage />} />
                 <Route path="detailclass/majorbasic" element={<DetailClassMainPage />} />
-                <Route path="detailclass/major1" element={<DetailClassMainPage />} />
-                <Route path="detailclass/major12" element={<DetailClassMainPage />} />
-                <Route path="detailclass/majorsecond" element={<DetailClassMainPage />} />
+                <Route path="detailclass/major" element={<DetailClassMainPage />} />
                 <Route path="scoreInfo" element={<ScorePage />} />
                 
               </Routes>
