@@ -9,7 +9,6 @@ import submitIcon1 from '../../../assets/psw/psw_complete.svg';
 const SignupNext: React.FC = () => {
   const navigate = useNavigate();
   const [passwordState, setPasswordState] = useRecoilState(passwordChangeState);
-
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');

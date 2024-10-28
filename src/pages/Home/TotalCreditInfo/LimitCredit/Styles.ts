@@ -6,7 +6,7 @@ export const Layout = styled.div`
   border-radius: 1rem; 
   padding: 1rem;
   margin: 0.5rem -0.5rem;
-  max-width: 110px; /* 최대 너비 설정 */
+  max-width: 110px;
   width: 100%;
 `;
 
@@ -15,12 +15,12 @@ export const CreditContainer = styled.div`
   display: flex;
    margin-top: -0.7rem;
   margin-bottom: -0.1rem;
-  margin-left: -2.7rem;
+  margin-left: -1.9rem;
   justify-content: center; 
 `;
 
 export const IconBox = styled.div`
-  margin-right: 0.5rem;
+  margin-right: 0.4rem;
 `;
 
 export const WhatCreditText = styled.span`
@@ -32,14 +32,12 @@ export const NumberCreditContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
 `;
 
 export const Credit = styled.span`
-  font-weight: bold;
   font-size: 4rem;
   color: ${({ theme }) => theme.colors.navy};
-  font-weight: 330;
+  font-weight: 200;
 `;
 
 export const CreditText = styled.span`

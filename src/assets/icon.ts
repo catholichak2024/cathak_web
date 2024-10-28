@@ -5,6 +5,7 @@ export { ReactComponent as CatholicNameLogo } from './logo/catholicNameLogo.svg'
 
 //스플래쉬 페이지
 export { ReactComponent as Hayang } from './icon/hayang.svg';
+export { ReactComponent as EggLogo } from './login_image/egg_logo.svg'
 
 //수업목록
 export { ReactComponent as NotsaveClass } from './icon/notsaveClass.svg';

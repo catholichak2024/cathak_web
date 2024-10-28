@@ -65,7 +65,7 @@ export const MajorBold = styled.div`
   font-size: 17px;        
   margin: 50px;              
   color: #333; 
-  transform: translate(-170%, -800%);   
+  transform: translate(-170%, -1100%);   
   font-weight: bold;    
 `;
 

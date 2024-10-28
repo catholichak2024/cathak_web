@@ -18,7 +18,6 @@ const SearchClass: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch classes on mount or when category/searchTerm changes
         fetchClasses(selectedCategory, searchTerm);
     }, [selectedCategory, searchTerm]);
 

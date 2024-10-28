@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 import eggLogo from '../../../assets/login_image/egg_logo.svg';
-import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { loginState } from '../../../recoil/states/Loginstate';
-// import { loginInfoSelector } from '../../../recoil/selectors/LoginInfo';
-import { LoginRequest } from '../../../recoil/types/loginTypes';
+import { useRecoilState } from 'recoil';
+import { userState, accessTokenState } from '../../../recoil/states/Loginstate';
+import { getCookie, setCookie } from '../../../utiles/UseCookies';
 
 const NextLogin: React.FC = () => {
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState); // 토큰 상태 관리
   const navigate = useNavigate();
-  const [loginInfo, setLoginInfo] = useRecoilState(loginState);
-  // const loginInfoLoadable = useRecoilValueLoadable(loginInfoSelector);
-
+  const [userInfo, setUserInfo] = useRecoilState(userState); // 사용자 정보 관리
+  const cookie = getCookie('access-Token');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleFindIdClick = () => {
@@ -22,55 +21,36 @@ const NextLogin: React.FC = () => {
     navigate('/SignupFind');  
   };
 
-  // const handleSignupSuccess = async (signupData: LoginRequest) => {
-  //   try {
-  //     const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/login', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(signupData),
-  //     });
-  
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setLoginInfo({ id: data.id, pw: data.pw });
-  //       console.log('회원가입 후 로그인 상태 업데이트 완료:', data);
-  //       navigate('/home');
-  //     } else {
-  //       console.error('회원가입 실패:', response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error('회원가입 중 오류 발생:', error);
-  //   }
-  // };
-  
-
   const handleLogin = async () => {
-    if (loginInfo.id && loginInfo.pw) {
+    if (userInfo?.id && userInfo?.pw) {
       try {
         setErrorMessage('로그인 중입니다...');
         localStorage.removeItem('token');
-        const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/login', { // 절대 경로 사용
+  
+        const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            id: loginInfo.id,
-            pw: loginInfo.pw,
+            id: userInfo.id,
+            pw: userInfo.pw,
           }),
         });
-        const data = await response.json();
-        const token = response.headers.get('Authorization');
-        console.log(token);
-        if (token) {
-          localStorage.setItem('token', token); // 토큰을 로컬 저장소에 저장하여 새로고침 시 유지
-          
-        }
+  
         if (response.ok) {
-          
-          
+          const data = await response.json();
+
+  
+          const token = response.headers.get('Authorization');
+          if (token) {
+            console.log('토큰이 응답 헤더에 존재합니다:', token);
+            setCookie('access-token', token, { secure: false }); // 개발 환경에서 secure: false
+            setAccessToken(token); // Recoil의 accessToken 상태 업데이트
+          } else {
+            console.error('Token not found in response headers');
+          }
+  
           console.log('로그인 성공:', data);
           navigate('/home');
         } else {
@@ -84,6 +64,7 @@ const NextLogin: React.FC = () => {
       setErrorMessage('아이디와 비밀번호를 입력해주세요.');
     }
   };
+  
 
   return (
     <S.Layout>
@@ -100,15 +81,15 @@ const NextLogin: React.FC = () => {
         <S.Input
           type="text"
           placeholder="아이디 입력"
-          value={loginInfo.id}
-          onChange={(e) => setLoginInfo({ ...loginInfo, id: e.target.value })}
+          value={userInfo?.id || ''}
+          onChange={(e) => setUserInfo({ ...userInfo, id: e.target.value, pw: userInfo?.pw || '' })}
           autoComplete="off"
         />
         <S.Input
           type="password"
           placeholder="비밀번호 입력"
-          value={loginInfo.pw}
-          onChange={(e) => setLoginInfo({ ...loginInfo, pw: e.target.value })}
+          value={userInfo?.pw || ''}
+          onChange={(e) => setUserInfo({ ...userInfo, id: userInfo?.id || '', pw: e.target.value })}
           autoComplete="off"
         />
         <S.SaveButton onClick={handleLogin}>로그인</S.SaveButton>
@@ -121,7 +102,6 @@ const NextLogin: React.FC = () => {
       </S.Bottom>
     </S.Layout>
   );
-  
-}
+};
 
 export default NextLogin;

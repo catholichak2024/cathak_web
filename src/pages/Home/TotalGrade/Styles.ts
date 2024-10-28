@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   display: flex;
   flex-direction: column; 
-  padding: 13px;
-  margin-top: -10px;
+  padding: 3px;
+  margin-top: -5px;
 `;
 
 export const CreditContainer = styled.div`
