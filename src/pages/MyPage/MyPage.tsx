@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from '../../components/Header/Header';
 import { Hayangi, Major_change, Password, MemberExit } from '../../assets/icon';
-import { userDataState } from '../../recoil/states/MyPageData';
+import { userInfoState } from '../../recoil/states/MyPageData';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import MymajorCompo from './MymajorCompo/MymajorCompo';
 import { useNavigate } from 'react-router-dom';
@@ -10,8 +10,7 @@ import { UserData } from '../../recoil/types/Mypage';
 import { accessTokenState } from '../../recoil/states/Loginstate';
 
 const MyPage: React.FC = () => {
-  const user = useRecoilValue(userDataState);
-  const setUserData = useSetRecoilState(userDataState); 
+  const setUserInfo = useSetRecoilState(userInfoState);
   const navigate = useNavigate();
   const [MyUserData, setMyUserData] = useState<UserData | null>(null);
   const accessToken = useRecoilValue(accessTokenState);
@@ -44,6 +43,7 @@ const MyPage: React.FC = () => {
           // 응답 데이터에서 result.userData 추출
           if (data?.result?.userData) {
             setMyUserData(data.result.userData);
+            setUserInfo({ name: data.result.userData.name });
           } else {
             console.error("유효하지 않은 데이터 구조:", data);
           }
