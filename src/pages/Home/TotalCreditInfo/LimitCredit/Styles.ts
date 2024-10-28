@@ -32,17 +32,21 @@ export const NumberCreditContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 3px;
 `;
 
 export const Credit = styled.span`
-  font-size: 4rem;
+  font-size: 3.4em;
   color: ${({ theme }) => theme.colors.navy};
-  font-weight: 200;
+  font-weight: 300; /* 가장 가까운 굵기 사용 */
+  opacity: 0.9; /* 투명도를 살짝 낮춰서 조금 더 가벼워 보이도록 */
+  letter-spacing: -0.8px;
+  margin-left: 15px;
 `;
 
 export const CreditText = styled.span`
   font-size: 0.8rem;
   margin-left: 0.4rem;
   color: ${({ theme }) => theme.colors.navy};
-  margin-top: 2.5rem;
+  margin-top: 1.7rem;
 `;
