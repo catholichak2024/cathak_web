@@ -17,7 +17,9 @@ export const attendedClassListState = selector({
 });
 
 //수강한 수업의 학점저장
-export const selectedGradesState = atom<{ [key: number]: number | null }>({
+export const selectedGradesState = atom<{
+    map(arg0: (grade: any) => { subject_name: any; score: any; }): unknown; [key: number]: number | null 
+}>({
     key: 'selectedGradesState',
     default: {},
 });
