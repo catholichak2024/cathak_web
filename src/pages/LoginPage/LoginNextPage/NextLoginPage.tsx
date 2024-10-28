@@ -47,6 +47,7 @@ const NextLogin: React.FC = () => {
             console.log('토큰이 응답 헤더에 존재합니다:', token);
             setCookie('access-token', token, { secure: false }); // 개발 환경에서 secure: false
             setAccessToken(token); // Recoil의 accessToken 상태 업데이트
+            localStorage.setItem('token', token);
           } else {
             console.error('Token not found in response headers');
           }
