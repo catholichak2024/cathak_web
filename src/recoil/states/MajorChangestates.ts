@@ -4,10 +4,10 @@ import { MajorChangeRequest } from '../types/majorChangeTypes';
 export const MajorChangeState = atom<MajorChangeRequest>({
     key: 'majorchangeState',
     default: {
-      major_type: "복수전공",
-      major1: "컴퓨터정보공학부",
-      major2: "정보통신전자공학부",
-      minor: "" 
+      major_type: '',
+      major1: '',
+      major2: undefined,
+      minor: undefined, 
     },
 });
 
