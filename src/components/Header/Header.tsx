@@ -59,8 +59,9 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo, Log
                         <CatholicNameLogo width={'100%'}  />
                     </S.ButtonLayout>
                 )}
-                {Logout && ( 
-                    <S.LogoutText>로그아웃</S.LogoutText>
+                <Header backarrow mypageText />
+                {Logout && (
+                <S.LogoutText>로그아웃</S.LogoutText>
                 )}
             </S.IconLayout>
         </S.Layout>

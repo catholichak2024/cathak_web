@@ -14,20 +14,20 @@ const MyPage: React.FC = () => {
   const navigate = useNavigate();
   const [MyUserData, setMyUserData] = useState<UserData | null>(null);
   const accessToken = useRecoilValue(accessTokenState);
-  
+  const [showPopup, setShowPopup] = useState(false);
+
   const handlePasswordClick = () => {
-    navigate('/mypage/password'); // /mypage/password로 이동
+    navigate('/mypage/password');
   };
-  
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const token = accessToken;
         if (!token) {
-          throw new Error("토큰이 없습니다.");
+          throw new Error('토큰이 없습니다.');
         }
-  
-        console.log("사용할 토큰:", token);
+
         const response = await fetch('http://13.125.38.246:3000/EveryGrade/mypage', {
           method: 'GET',
           headers: {
@@ -35,24 +35,15 @@ const MyPage: React.FC = () => {
             Authorization: `${token}`,
           },
         });
-        
+
         if (response.ok) {
           const data = await response.json();
-          console.log("유저 데이터 가져오기 성공:", data);
-
-          // 응답 데이터에서 result.userData 추출
           if (data?.result?.userData) {
             setMyUserData(data.result.userData);
             setUserInfo({ name: data.result.userData.name });
           } else {
-            console.error("유효하지 않은 데이터 구조:", data);
+            console.error('유효하지 않은 데이터 구조:', data);
           }
-        } else if (response.status === 401) {
-          console.error("401 Unauthorized: 인증 토큰이 만료되었거나 올바르지 않습니다.");
-        } else if (response.status === 403) {
-          console.error("403 Forbidden: 권한이 부족합니다.");
-        } else if (response.status === 500) {
-          console.error("500 Internal Server Error: 서버 내부 오류가 발생했습니다.");
         } else {
           console.error(`요청 실패: 상태 코드 ${response.status}`);
         }
@@ -60,9 +51,9 @@ const MyPage: React.FC = () => {
         console.error('유저 데이터 가져오기 실패:', error);
       }
     };
-  
+
     fetchUserData(); // 함수 호출
-  }, [accessToken]);
+  }, [accessToken, setUserInfo]);
 
   const whataMajor: string[] = [];
   const myMajor: string[] = [];
@@ -83,6 +74,27 @@ const MyPage: React.FC = () => {
   }
 
 
+  useEffect(() => {
+    // Logout 버튼에 이벤트 리스너 추가
+    const logoutButton = document.querySelector('.logout-button');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', () => setShowPopup(true));
+    }
+
+    // Cleanup 함수로 이벤트 리스너 제거
+    return () => {
+      if (logoutButton) {
+        logoutButton.removeEventListener('click', () => setShowPopup(true));
+      }
+    };
+  }, []);
+
+  const handleConfirmLogout = () => {
+    // 로그아웃 로직 처리
+    setUserInfo(null);
+    setShowPopup(false);
+  };
+
   return (
     <S.Layout>
       <Header backarrow mypageText Logout />
@@ -90,7 +102,7 @@ const MyPage: React.FC = () => {
         <S.HayangiBox>
           <Hayangi />
         </S.HayangiBox>
-        <S.UserName>{MyUserData?.name || "이름 없음"}</S.UserName>
+        <S.UserName>{MyUserData?.name || '이름 없음'}</S.UserName>
       </S.Top>
       <S.Bottom>
         <S.Middle>
@@ -99,14 +111,13 @@ const MyPage: React.FC = () => {
             <Major_change />
           </S.GrandGoto>
         </S.Middle>
-        <MymajorCompo
-          whataMajor={whataMajor}
-          myMajor={myMajor}
-        />
+        <MymajorCompo 
+          whataMajor={['전공심화']} 
+          myMajor={['컴퓨터정보공학부']} />
         <S.AccountBold>계정</S.AccountBold>
         <S.MyIdBox>
           <S.IdInfoText>아이디</S.IdInfoText>
-          <S.IdInfo>{MyUserData?.id || "아이디 없음"}</S.IdInfo>
+          <S.IdInfo>{MyUserData?.id || '아이디 없음'}</S.IdInfo>
         </S.MyIdBox>
         <S.passwordBox>
           <Password onClick={handlePasswordClick} style={{ cursor: 'pointer' }} />
@@ -115,6 +126,18 @@ const MyPage: React.FC = () => {
           <MemberExit />
         </S.exitMember>
       </S.Bottom>
+      {showPopup && (
+        <S.PopupOverlay onClick={() => setShowPopup(false)}>
+          <S.PopupContent type="default" onClick={(e) => e.stopPropagation()}>
+          <S.PopupTitle type="default">로그아웃</S.PopupTitle>
+            <S.PopupDescription>로그아웃 하시겠습니까?</S.PopupDescription>
+            <S.ButtonContainer>
+              <S.CloseButton type="default" onClick={() => setShowPopup(false)}>닫기</S.CloseButton>
+              <S.ConfirmButton type="default" onClick={handleConfirmLogout}>확인</S.ConfirmButton>
+            </S.ButtonContainer>
+          </S.PopupContent>
+        </S.PopupOverlay>
+      )}
     </S.Layout>
   );
 };

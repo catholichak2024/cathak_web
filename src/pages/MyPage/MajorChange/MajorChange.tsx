@@ -6,11 +6,12 @@ import WhatMajorSelectCompo from './WhatMajorSelectCompo/WhatMajorSelectCompo';
 import SearchDropdown from './SearchDropdown';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { MajorChangeState } from '../../../recoil/states/MajorChangestates';
-import { userInfoState} from '../../../recoil/states/MyPageData';
+import { MajorChangeRequest } from '../../../recoil/types/majorChangeTypes';
+import { userState } from '../../../recoil/states/UserFindstate'
 
 const MajorChange: React.FC = () => {
-  const [majorChange, setMajorChange] = useRecoilState(MajorChangeState);
-  const user = useRecoilValue(userInfoState);
+  const [majorChange, setMajorChange] = useRecoilState<MajorChangeRequest>(MajorChangeState);
+  const user = useRecoilValue(userState);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const MajorTypeCompos = ['전공심화', '복수전공', '부전공'];
