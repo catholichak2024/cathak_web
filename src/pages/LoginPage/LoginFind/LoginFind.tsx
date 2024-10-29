@@ -20,7 +20,7 @@ const LoginFind: React.FC = () => {
     if (!name || !studentId) return;
 
     try {
-      const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/findId', {
+      const response = await fetch('https://www.everygrade.store/EveryGrade/user/findId', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
