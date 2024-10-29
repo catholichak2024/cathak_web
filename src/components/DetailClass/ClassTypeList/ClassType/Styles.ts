@@ -6,7 +6,7 @@ export const layout = styled.div`
   gap: 15px; 
 `;
 
-export const textWithLine = styled.div`
+export const textWithLine = styled.div<{ isSelected: boolean }>`
   display: flex;
   flex-direction: column; 
   align-items: center;
@@ -20,7 +20,7 @@ export const underlinedText = styled.span`
   font-size: 12px;
 `;
 
-export const line = styled.div`
+export const line = styled.div<{ isSelected: boolean }>`
   width: 60px;
   height: 1.4px; 
   background-color: ${({ theme }) => theme.colors.bottomBar}; // 선 색상
