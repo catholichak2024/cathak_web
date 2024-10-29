@@ -59,7 +59,7 @@ const Password: React.FC = () => {
       const token = localStorage.getItem('token');
 
       // Step 1: 현재 비밀번호 확인 및 새 비밀번호 업데이트
-      const response = await fetch('http://13.125.38.246:3000/EveryGrade/mypage/pw', {
+      const response = await fetch('https://www.everygrade.store/EveryGrade/mypage/pw', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
