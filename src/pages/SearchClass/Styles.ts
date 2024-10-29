@@ -31,12 +31,8 @@ export const Content = styled.div`
 
 
 export const ErrorText = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: absolute;
-  top:6rem;
-  left:10%;
+  position: relative;
+  left:-30%;
   color:rgba(239, 102, 102, 1);
   font-size: 12px;
 

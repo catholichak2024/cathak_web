@@ -3,14 +3,18 @@ import * as S from './Styles';
 import { Search } from '../../../assets/icon';
 
 interface SearchBarProps {
+    searchTerm: string;
     onSearch: (searchTerm: string) => void; 
 }
 
-const SearchBar:React.FC<SearchBarProps> = ({ onSearch }) => {
-    const [inputValue, setInputValue] = useState('');
+const SearchBar:React.FC<SearchBarProps> = ({searchTerm, onSearch }) => {
 
-    const handleSearch = () => {
-        onSearch(inputValue);
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onSearch(e.target.value); 
+    };
+
+    const handleSearchClick = () => {
+        onSearch(searchTerm);  
     };
 
     return (
@@ -19,10 +23,10 @@ const SearchBar:React.FC<SearchBarProps> = ({ onSearch }) => {
                 <input 
                     type="text" 
                     placeholder="수업명 검색" 
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)} // Update input value
+                    value={searchTerm}
+                    onChange={handleInputChange} 
                 />
-                <div style={{ cursor: 'pointer' }} onClick={handleSearch}>
+                <div style={{ cursor: 'pointer' }} onClick={handleSearchClick}>
                     <Search />
                 </div>
             </S.Container>

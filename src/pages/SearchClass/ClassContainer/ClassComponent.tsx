@@ -17,7 +17,7 @@ const ClassComponent: React.FC<CulturalContainerProps> = ({ data }) => {
         <S.Layout>
             <S.ClassBox>
                 {data.map((item) => (
-                    <S.Container >
+                    <S.Container key={item.id} >
                         <S.ClassName>{item.name}</S.ClassName>
                         <S.Credit>{item.credit} 학점</S.Credit>
                         <S.IconWrapper>
