@@ -17,7 +17,7 @@ const ClassListGeneral: React.FC = () => {
     
     //교양별 엔드포인트
     const apiEndpoints: { [key: string]: string } = {
-        '기초교양': 'http://13.125.38.246:3000/EveryGrade/spec/basic-cultural',
+        '기초교양': '13.1http://25.38.246:3000/EveryGrade/spec/basic-cultural',
         '중핵교양': 'http://13.125.38.246:3000/EveryGrade/spec/core-cultural',
         '자유교양': 'http://13.125.38.246:3000/EveryGrade/spec/free-cultural'
       };
