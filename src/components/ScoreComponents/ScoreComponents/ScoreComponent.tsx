@@ -55,7 +55,7 @@ const ScoreComponent: React.FC = () => {
 
     const handleSave = async () => {
         try {
-            const response = await fetch('http://13.125.38.246:3000/EveryGrade/grade', {
+            const response = await fetch('https://www.everygrade.store/EveryGrade/grade', {
                 method: 'PATCH',
                 headers: {
                     Authorization: `${accessToken}`,

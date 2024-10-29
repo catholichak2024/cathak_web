@@ -15,7 +15,7 @@ const MajorPage: React.FC = () => {
           throw new Error('토큰이 없습니다.');
         }
 
-        const response = await fetch('http://13.125.38.246:3000/EveryGrade/spec/major-type' , {
+        const response = await fetch('https://www.everygrade.store/EveryGrade/spec/major-type' , {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
