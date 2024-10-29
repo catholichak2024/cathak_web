@@ -74,7 +74,7 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ onChange }) => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
