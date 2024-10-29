@@ -41,7 +41,7 @@ const Home: React.FC = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
