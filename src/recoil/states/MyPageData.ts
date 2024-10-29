@@ -1,7 +1,11 @@
+// Userstate.ts
 import { atom } from "recoil";
-import { UserData } from "../types/Mypage";
 
-export const userDataState = atom<UserData  | null>({
-    key: 'userDataState', // 고유 키
-    default: null,
+export interface UserInfo {
+  name: string;
+}
+
+export const userInfoState = atom<UserInfo | null>({
+  key: 'userInfoState', // 고유 키
+  default: null,
 });

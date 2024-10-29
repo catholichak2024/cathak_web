@@ -1,59 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import ClassContainer from '../ClassContainer/ClassContainer';
-import { useRecoilValue } from 'recoil';
-import { attendedClassListState } from '../../../recoil/selectors/attendedClass';
 import DividingLine from '../../DividingLine/DividingLine';
 import EssentailBox from '../EssentailBox/EssentailBox';
 import Credit from '../Credit/Credit';
 import ClassType from '../ClassTypeList/ClassType/ClassType';
-import { userInfoState } from '../../../recoil/states/Userstate';
-import { MajorAreaListState } from '../../../recoil/states/majorstate';
-import { CreditByIdData } from '../../../recoil/states/CreditByIdData';
+import { CourseData } from '../../../recoil/types/GeneralDetailpage';
+import { useRecoilValue } from 'recoil';
+import { accessTokenState } from '../../../recoil/states/Loginstate';
 
 const ClassListGeneral: React.FC = () => {
-    const attendedClasses = useRecoilValue(attendedClassListState);
-    const user = useRecoilValue(userInfoState);
-    const majorAreas = useRecoilValue(MajorAreaListState);
-    const CreditgeneralData = useRecoilValue(CreditByIdData);
     const classTypes = ['기초교양', '중핵교양', '자유교양'];
+    const [courseData, setCourseData] = useState<CourseData | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
+    const accessToken = useRecoilValue(accessTokenState);
     
-    // 사용자전공을 기반으로 해당 전공의 정보를 찾기
-    const majorInfo = majorAreas.flatMap(area => area.relatedMajors)
-                                 .find(major => major.name === user.major);
-
+    //교양별 엔드포인트
+    const apiEndpoints: { [key: string]: string } = {
+        '기초교양': 'http://13.125.38.246:3000/EveryGrade/spec/basic-cultural',
+        '중핵교양': 'http://13.125.38.246:3000/EveryGrade/spec/core-cultural',
+        '자유교양': 'http://13.125.38.246:3000/EveryGrade/spec/free-cultural'
+      };
+     
     
-    let description = ''; 
-    let basicGeneralMinCredit = 0;       
-    let coreGeneralMinCredit = 0;                      
-     // 선택된 카테고리에 따라 description 설정
-    if (majorInfo) {
-        switch (selectedCategory) {
-            case '기초교양':
-                description = majorInfo.relatedbasicgeneral;
-                basicGeneralMinCredit = CreditgeneralData.basicGeneralCredit;
-                break;
-            case '중핵교양':
-                description = majorInfo.coregeneralText;
-                coreGeneralMinCredit = CreditgeneralData.coreGeneralCredit;
-                break;
-            case '자유교양':
-                description = '-';
-                break;
-            default:
-                break;
+    useEffect(() => {
+        // 교양코스 데이터 가져오기
+        const fetchCourseData = async () => {
+          try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+              throw new Error("토큰이 없습니다.");
+            }
+            const url = apiEndpoints[selectedCategory];// 선택된 카테고리에 맞는 URL 설정
+            console.log("사용할 토큰:", token);
+            const response = await fetch(url, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `${token}`, 
+              },
+            });
+    
+            // 상태 코드에 따른 처리
+            if (response.ok) {
+              const data = await response.json();
+              setCourseData(data.result); 
+              
+            console.log("유저 데이터 가져오기 성공:", data);
+        } else {
+          console.error('유저 데이터 가져오기 실패:', response.status);
         }
-    }
-
-    const filteredClasses = selectedCategory
-        ? attendedClasses.filter(classItem => classItem.subCategory === selectedCategory)
-        : attendedClasses; 
-
-    const TotalminCredit = basicGeneralMinCredit + coreGeneralMinCredit;
-    const getTotalCredit = filteredClasses.reduce((acc, classItem) => acc + classItem.credit, 0);
-        
-
+      } catch (error) {
+        console.error('유저 데이터 가져오기 실패:', error);
+      }
+    };
+    
+        fetchCourseData(); // 함수 호출
+      }, [selectedCategory]);
+ 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
     };
@@ -67,15 +71,15 @@ const ClassListGeneral: React.FC = () => {
                     onTypeClick={handleCategoryClick} 
                 />
                 <Credit 
-                    minimumCredit={TotalminCredit}
-                    getCredit={getTotalCredit}
+                    minimumCredit={courseData?.minimum ?? 0}
+                    getCredit={courseData?.received ?? "0"}
                 />
                 <EssentailBox 
-                    description={description} // 선택된 카테고리에 맞는 description
+                    description={courseData?.content ?? "-"} // 선택된 카테고리에 맞는 description
                 />
                 <DividingLine />
                 <S.ClassBox>
-                    <ClassContainer data={filteredClasses} user={user} />
+                    <ClassContainer data={courseData?.subject ?? []} />
                 </S.ClassBox>
             </S.ClassContainer>
         </S.Layout>

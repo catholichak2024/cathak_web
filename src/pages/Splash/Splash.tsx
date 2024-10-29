@@ -9,11 +9,11 @@ const Splash: React.FC = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/home'); 
+      navigate('/login'); 
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [navigate('/home')]);
+  }, [navigate('/login')]);
 
   return (
     <S.Layout>

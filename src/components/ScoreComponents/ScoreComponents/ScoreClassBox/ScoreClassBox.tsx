@@ -1,28 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './Styles';
 import ClassInfoTitleBox from './classInfoTitleBox/ClassInfoTitleBox';
 import DividingLine from './DividingLine';
 import ClassContainer from './ClassContainer/ClassContainer';
-import { userInfoState } from '../../../../recoil/states/Userstate';
-import { useRecoilValue } from 'recoil';
-import { attendedClassListState } from '../../../../recoil/selectors/attendedClass';
 
+interface ScoreClassBoxProps {
+    grades: {
+        id: number;
+        subject_name: string;
+        str_score: string | null;
+        credit: number;
+    }[];
+    selectedGrades: { [key: number]: string | null };
+    setSelectedGrades: React.Dispatch<React.SetStateAction<{ [key: number]: string | null }>>;
+}
 
-const ScoreClassBox: React.FC = () => {
-    const user = useRecoilValue(userInfoState);
-    const attendedClasses = useRecoilValue(attendedClassListState);
-
-    return(
+const ScoreClassBox: React.FC<ScoreClassBoxProps> = ({ grades, selectedGrades, setSelectedGrades }) => {
+    return (
         <S.Layout>
             <S.ScoreContainer>
                 <ClassInfoTitleBox />
                 <DividingLine />
                 <S.ClassBox>
-                  <ClassContainer data={attendedClasses} user={user} />
+                    <ClassContainer
+                        grades={grades}
+                        selectedGrades={selectedGrades}
+                        setSelectedGrades={setSelectedGrades}
+                    />
                 </S.ClassBox>
             </S.ScoreContainer>
         </S.Layout>
-    )
+    );
 }
 
 export default ScoreClassBox;

@@ -183,7 +183,7 @@ export const SaveText = styled.span`
 
 export const SaveButton = styled.button`
   position: absolute;
-  bottom: 100px;
+  bottom: 80px;
   right: 10%;
   color: ${({ theme }) => theme.colors.gray};
   padding: 10px 15px;

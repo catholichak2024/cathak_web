@@ -41,3 +41,13 @@ export const SaveButton = styled.button`
         background-color: #002244; /* 조금 더 어두운 남색 */
     }
 `;
+
+
+
+// NoDataMessage 스타일 컴포넌트 추가
+export const NoDataMessage = styled.div`
+    color: #999;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+`;

@@ -11,7 +11,7 @@ export const Layout = styled.div`
   z-index: 100;
 `;
 
-export const IconLayout = styled.button`
+export const IconLayout = styled.div`
   width: 20%;
   background: none;
   border: none;

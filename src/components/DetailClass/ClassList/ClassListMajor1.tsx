@@ -1,65 +1,69 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import ClassContainer from '../ClassContainer/ClassContainer';
-import { useRecoilValue } from 'recoil';
-import { attendedClassListState } from '../../../recoil/selectors/attendedClass';
 import DividingLine from '../../DividingLine/DividingLine';
 import EssentailBox from '../EssentailBox/EssentailBox';
 import Credit from '../Credit/Credit';
 import ClassType from '../ClassTypeList/ClassType/ClassType';
-import { userInfoState } from '../../../recoil/states/Userstate';
-import { MajorAreaListState } from '../../../recoil/states/majorstate';
+import { MajorCourseData } from '../../../recoil/types/MajorDataPage';
+import { useRecoilValue } from 'recoil';
+import { accessTokenState } from '../../../recoil/states/Loginstate';
 
 const ClassListMajor1: React.FC = () => {
-    const attendedClasses = useRecoilValue(attendedClassListState);
-    const user = useRecoilValue(userInfoState);
-    const majorAreas = useRecoilValue(MajorAreaListState);
-    
-    const classTypes = ['제 1전공','타전공'];
+    const classTypes = ['제 1전공', '타전공'];
+    const [courseData, setCourseData] = useState<MajorCourseData | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>(classTypes[0]);
     
-
-    // 사용자전공을 기반으로 해당 전공의 정보를 찾기
-    const majorInfo = majorAreas.flatMap(area => area.relatedMajors)
-                                 .find(major => major.name === user.major);
-   
-    //전공수업정렬
-    const filteredClasses = attendedClasses.filter((classItem) => {
-        if (classItem.category !== '전공') return false; // 전공 수업이 아닌 경우 제외
-
-        if (selectedCategory === '제 1전공') {
-            return classItem.major === user.major;  // 사용자의 전공과 수업의 전공이 같은 경우 '제 1전공'
-        } else if (selectedCategory === '타전공') {
-            return classItem.major !== user.major;  // 전공이 다른 경우 타전공
-        }
-        return false;
-    });
-
-    let description = '';   
-    let major1MinCredit = 0;                         
-     // 전공 설명,최소이수학점
-    if (majorInfo) {
-        switch (selectedCategory) {
-            case '제 1전공':
-                description = majorInfo.major1;
-                major1MinCredit = majorInfo.MajorCredit[0]
-                break;
-            case '타전공':
-                description = majorInfo.othermajor;
-                break;
-            default:
-                break;
-        }
-    }
-
-    //취득학점계산
-    const getTotalCredit = filteredClasses.reduce((acc, classItem) => acc + classItem.credit, 0);
+    const accessToken = useRecoilValue(accessTokenState);
     
+    // API 엔드포인트 설정
+    const apiEndpoints: { [key: string]: string } = {
+        '제 1전공': 'http://13.125.38.246:3000/EveryGrade/spec/major1',
+        '타전공': 'http://13.125.38.246:3000/EveryGrade/spec/other'
+    };
+
+    useEffect(() => {
+        // 전공 데이터 가져오기
+        const fetchCourseData = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    throw new Error("토큰이 없습니다.");
+                }
+
+                const url = apiEndpoints[selectedCategory]; // 선택된 카테고리에 맞는 URL 설정
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `${token}`,
+                    },
+                });
+
+                // 상태 코드에 따른 처리
+                if (response.ok) {
+                    const data = await response.json();
+                    setCourseData(data.result);
+                    console.log("전공 데이터 가져오기 성공:", data);
+                } else {
+                    console.error('전공 데이터 가져오기 실패:', response.status);
+                }
+            } catch (error) {
+                console.error('전공 데이터 가져오기 실패:', error);
+            }
+        };
+
+        fetchCourseData(); 
+    }, [selectedCategory]);
+
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
     };
 
-    return(
+    // content 배열을 문자열로 변환하여 표시
+    const description = courseData?.content.map(item => item.content).join('\n') ?? "-";
+
+    return (
         <S.Layout>
             <S.ClassContainer>
                 <ClassType 
@@ -68,19 +72,19 @@ const ClassListMajor1: React.FC = () => {
                     onTypeClick={handleCategoryClick} 
                 />
                 <Credit 
-                    minimumCredit={major1MinCredit}
-                    getCredit={getTotalCredit}
+                    minimumCredit={courseData?.minimum ?? 0}
+                    getCredit= {courseData?.received ?? "0"}
                 />
                 <EssentailBox 
-                    description={description} // 선택된 카테고리에 맞는 description
+                    description={description} 
                 />
                 <DividingLine />
                 <S.ClassBox>
-                    <ClassContainer data={filteredClasses} user={user} />
+                    <ClassContainer data={courseData?.subject ?? []} />
                 </S.ClassBox>
             </S.ClassContainer>
         </S.Layout>
-    )
+    );
 }
 
 export default ClassListMajor1;
