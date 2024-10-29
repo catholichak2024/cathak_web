@@ -11,6 +11,7 @@ interface ClassData {
   name: string;
   credit: number;
   bookmark: boolean;
+  id:number;
 }
 
 const SearchClass: React.FC = () => {

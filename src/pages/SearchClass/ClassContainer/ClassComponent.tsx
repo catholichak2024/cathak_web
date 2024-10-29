@@ -6,6 +6,7 @@ interface ClassData {
     name: string;
     credit: number;
     bookmark: boolean;
+    id:number;
 }
 
 interface CulturalContainerProps {
