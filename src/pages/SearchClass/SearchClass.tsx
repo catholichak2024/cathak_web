@@ -42,7 +42,7 @@ const SearchClass: React.FC = () => {
     try {
       const token = localStorage.getItem('token');
    
-      const url = new URL('http://13.125.38.246:3000/EveryGrade/search');
+      const url = new URL('https://www.everygrade.store/EveryGrade/search');
       url.searchParams.append('type', type);
       
       if (term) url.searchParams.append('name', term);

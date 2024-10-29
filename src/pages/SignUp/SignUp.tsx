@@ -81,7 +81,7 @@ const SignUp: React.FC = () => {
             console.log(requestBody);
 
             try {
-                const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/signup', {
+                const response = await fetch('https://www.everygrade.store/EveryGrade/user/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

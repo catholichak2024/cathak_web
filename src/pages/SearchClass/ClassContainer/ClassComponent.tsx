@@ -45,7 +45,7 @@ const ClassComponent: React.FC<ContainerProps> = ({ data }) => {
 
     const addBookmarkAPI = async (id: number) => {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://13.125.38.246:3000/EveryGrade/search/${id}`, {
+        const response = await fetch(`https://www.everygrade.store/EveryGrade/search/${id}`, {
             method: 'POST',
             headers: {
                 Authorization: `${token}`,
@@ -61,7 +61,7 @@ const ClassComponent: React.FC<ContainerProps> = ({ data }) => {
 
     const deleteBookmarkAPI = async (id: number) => {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://13.125.38.246:3000/EveryGrade/search/${id}`, {
+        const response = await fetch(`https://www.everygrade.store/EveryGrade/search/${id}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `${token}`,

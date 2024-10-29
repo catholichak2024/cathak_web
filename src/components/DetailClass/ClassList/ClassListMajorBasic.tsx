@@ -17,8 +17,8 @@ const ClassListMajorBasic: React.FC = () => {
     
     // API 엔드포인트 설정
     const apiEndpoints: { [key: string]: string } = {
-        '본영역': 'http://13.125.38.246:3000/EveryGrade/spec/my-major',
-        '타계열': 'http://13.125.38.246:3000/EveryGrade/spec/other-major'
+        '본영역': 'https://www.everygrade.store/EveryGrade/spec/my-major',
+        '타계열': 'https://www.everygrade.store/EveryGrade/spec/other-major'
     };
 
     useEffect(() => {
