@@ -27,6 +27,8 @@ const MyPage: React.FC = () => {
         if (!token) {
           throw new Error('토큰이 없습니다.');
         }
+  
+        console.log("사용할 토큰:", token);
 
         const response = await fetch('https://www.everygrade.store/EveryGrade/mypage', {
           method: 'GET',
