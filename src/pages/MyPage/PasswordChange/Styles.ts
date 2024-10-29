@@ -16,6 +16,16 @@ export const Top = styled.div`
   margin-top: 20%;
 `;
 
+export const UsernameInput = styled.input`
+  display: none;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between; 
@@ -58,7 +68,7 @@ export const Middle = styled.div`
   width: 100%;
   margin-top: 20px; 
   display: flex;
-  margin-left: 100px;
+  margin-left: 30px;
   flex-direction: column;
   align-items: flex-start;
 `;
