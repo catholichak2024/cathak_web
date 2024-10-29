@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './Styles';
 import { NotsaveClass, SaveClass } from '../../../assets/icon';
 
-// subject 배열의 타입 정의
 interface Subject {
     credit: number;
     name: string;
@@ -14,9 +13,12 @@ interface Props {
 }
 
 const ClassContainer: React.FC<Props> = ({ data }) => {
-    const [savedClasses, setSavedClasses] = useState<Subject[]>(
-        data.map(d => ({ ...d }))
-    );
+    const [savedClasses, setSavedClasses] = useState<Subject[]>([]);
+
+    // data prop이 변경될 때마다 savedClasses 상태 업데이트
+    useEffect(() => {
+        setSavedClasses(data.map(d => ({ ...d })));
+    }, [data]);
 
     const handleToggleSave = (index: number) => {
         setSavedClasses(prev =>
@@ -26,7 +28,7 @@ const ClassContainer: React.FC<Props> = ({ data }) => {
         );
     };
 
-    return(
+    return (
         <S.Layout>
             {savedClasses.map((d, index) => (
                 <S.Container key={index}>
@@ -43,6 +45,6 @@ const ClassContainer: React.FC<Props> = ({ data }) => {
             ))}
         </S.Layout>
     );
-}
+};
 
 export default ClassContainer;
