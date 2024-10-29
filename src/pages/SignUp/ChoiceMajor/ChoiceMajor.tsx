@@ -39,7 +39,7 @@ const ChoiceMajor: React.FC<ChoiceMajorProps> = ({ onSelect }) => {
   useEffect(() => {
     const fetchMajors = async () => {
       try {
-        const response = await fetch('http://13.125.38.246:3000/EveryGrade/user/signup/major');
+        const response = await fetch('https://www.everygrade.store/EveryGrade/user/signup/major');
         if (!response.ok) {
           throw new Error('학과 목록을 불러오는 데 실패했습니다.');
         }

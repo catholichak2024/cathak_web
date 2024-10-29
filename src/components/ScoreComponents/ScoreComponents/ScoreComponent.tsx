@@ -20,7 +20,7 @@ const ScoreComponent: React.FC = () => {
     useEffect(() => {
         const fetchGrades = async () => {
             try {
-                const response = await fetch('http://13.125.38.246:3000/EveryGrade/grade', {
+                const response = await fetch('https://www.everygrade.store/EveryGrade/grade', {
                     method: 'GET',
                     headers: {
                         Authorization: `${accessToken}`,

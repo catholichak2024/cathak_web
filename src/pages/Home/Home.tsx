@@ -37,7 +37,7 @@ const Home: React.FC = () => {
         }
 
         console.log("사용할 토큰:", token);
-        const response = await fetch('http://13.125.38.246:3000/EveryGrade/home', {
+        const response = await fetch('https://www.everygrade.store/EveryGrade/home', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

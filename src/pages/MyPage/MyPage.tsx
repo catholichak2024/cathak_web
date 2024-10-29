@@ -28,7 +28,7 @@ const MyPage: React.FC = () => {
           throw new Error('토큰이 없습니다.');
         }
 
-        const response = await fetch('http://13.125.38.246:3000/EveryGrade/mypage', {
+        const response = await fetch('https://www.everygrade.store/EveryGrade/mypage', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

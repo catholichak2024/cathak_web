@@ -70,7 +70,7 @@ const Password: React.FC = () => {
       const token = localStorage.getItem('token');
       console.log('Token:', token);
   
-      const response = await fetch('http://13.125.38.246:3000/EveryGrade/mypage/pw', {
+      const response = await fetch('https://www.everygrade.store/EveryGrade/mypage/pw', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
