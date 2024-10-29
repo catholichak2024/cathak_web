@@ -8,7 +8,7 @@ export const Layout = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 89%;
+  width: 97%;
   display: flex;
   justify-content: space-between;
   align-items: center; 

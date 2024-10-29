@@ -11,12 +11,14 @@ interface ClassData {
   name: string;
   credit: number;
   bookmark: boolean;
+  id:number;
 }
 
 const SearchClass: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('교양');
   const [classData, setClassData] = useState<ClassData[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [errorText, setErrorText]=useState<string>('');
   const classTypes = ['교양', '전공기초', '전공', '챗봇'];
   const navigate = useNavigate();
 
@@ -39,23 +41,29 @@ const SearchClass: React.FC = () => {
   const fetchClasses = async (type: string, term: string) => {
     try {
       const token = localStorage.getItem('token');
-      console.log('Token:', token);
+   
       const url = new URL('http://13.125.38.246:3000/EveryGrade/search');
       url.searchParams.append('type', type);
+      
       if (term) url.searchParams.append('name', term);
-      console.log("Fetching classes data...");
+     
       const response = await fetch(url.toString(), {
         headers: {
           Authorization: `${token}`,
           'Content-Type': 'application/json',
         },
       });
-      console.log(token);
-      console.log("이거왜안돼");
-      if (!response.ok) throw new Error('데이터 요청에 실패했습니다.');
-
-      const result = await response.json();
-      setClassData(result.majorData || []);
+    if (!response.ok) throw new Error('데이터 요청에 실패했습니다.');
+    const data = await response.json();
+    console.log(data);
+    if(data.result.isExist=== "검색 결과가 없습니다."){
+        setErrorText(data.result.isExist);
+        setClassData([]);
+    }else {
+        setErrorText('');
+        setClassData(data.result.majorData || []);
+    }
+    setClassData(data.result.majorData || []);
     } catch (error) {
       console.error('API 요청 중 오류 발생:', error);
     }
@@ -74,13 +82,16 @@ const SearchClass: React.FC = () => {
           selectedType={selectedCategory}
           onTypeClick={handleCategoryClick} 
         />
-        {selectedCategory !== '챗봇' && <SearchBar onSearch={handleSearch} />}
+        
         {selectedCategory !== '챗봇' && (
-          classData.length > 0 ? (
-            <ClassComponent data={classData} /> // ClassComponent에 데이터 전달
-          ) : (
-            <S.ErrorText>검색 결과가 없습니다.</S.ErrorText>
-          )
+           <>
+           <SearchBar searchTerm={searchTerm} onSearch={handleSearch} />
+           {errorText ? (
+               <S.ErrorText>{errorText}</S.ErrorText>
+           ) : (
+               <ClassComponent data={classData} />
+           )}
+       </>
         )}
       </S.Content>
     </S.Layout>
