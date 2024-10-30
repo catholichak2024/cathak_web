@@ -38,6 +38,12 @@ export const Body=styled.div`
     width:80%;
     
 `
+export const BackArrowContainer=styled.div`
+    position: absolute;
+    top: 30px;
+    left:10%;
+    cursor:pointer;
+`
 export const InputField=styled.div`
     position:relative;
     margin-bottom: 5%;
@@ -85,16 +91,16 @@ export const InputField=styled.div`
         justify-content: center;
         align-items: center;
         position:absolute;
-        top:50%;
-        right:4%;
-        width:20%;
+        top:45%;
+        right:8%;
+        width:18%;
         height:20px;
         background-color:rgba(94, 147, 182, 1);
         color:white;
         border-radius: 16px;
         border:none;
-        font-size:8px;
-        font-weight:600;
+        font-size:10px;
+        
         cursor:pointer;
         font-weight: 300;
     }
