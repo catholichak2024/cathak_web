@@ -1,54 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Header/Header';
-import { userInfoState } from '../../../recoil/states/Userstate';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { MajorChoice, Major, DoubleMajor, Minor, Hayangi } from '../../../assets/icon';
 import WhatMajorSelectCompo from './WhatMajorSelectCompo/WhatMajorSelectCompo';
-import SearchDropdown from './SearchDropdown';
+import SearchDropdown from './SearchDropdown'; 
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { MajorChangeState } from '../../../recoil/states/MajorChangestates';
+import { MajorChangeRequest } from '../../../recoil/types/majorChangeTypes';
+import { userRegistrationState } from '../../../recoil/states/UserRegistrationState';
+import { useNavigate } from 'react-router-dom';
 
 const MajorChange: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null); 
-  const [department1, setDepartment1] = useState('');  // 전공
-  const [department2, setDepartment2] = useState('');  // 복수전공
-  const [department3, setDepartment3] = useState('');  // 부전공
-  const user = useRecoilValue(userInfoState);
+  const [majorChange, setMajorChange] = useRecoilState<MajorChangeRequest>(MajorChangeState);
+  const user = useRecoilValue(userRegistrationState);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const navigate = useNavigate(); // 홈으로 이동하기 위해 useNavigate 사용
 
   const MajorTypeCompos = ['전공심화', '복수전공', '부전공'];
 
-  const handleSave = () => {
-    const data = {
-      department1,
-      department2,
-      department3,
-    };
-    console.log('저장된 데이터:', data); // 콘솔에 저장된 데이터 출력
+  const handleSave = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error("토큰이 없습니다.");
+      
+      const response = await fetch('http://13.125.38.246:3000/EveryGrade/mypage/major', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify(majorChange),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('저장된 데이터:', data);
+        setMajorChange(data.majorData);
+      } else {
+        console.error(`요청 실패: 상태 코드 ${response.status}`);
+      }
+    } catch (error) {
+      console.error('데이터 저장 실패:', error);
+    }
   };
 
-  // 전공 선택 시 컴포넌트 변경
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
-    // 카테고리 변경 시 상태 초기화
-    if (category === '전공심화') {
-      setDepartment2(''); // 복수전공 초기화
-      setDepartment3(''); // 부전공 초기화
-    } else if (category === '복수전공') {
-      setDepartment3(''); // 부전공 초기화
-    } else if (category === '부전공') {
-      setDepartment1(''); // 전공심화 초기화
-      setDepartment2(''); // 복수전공 초기화
-    }
+    setMajorChange((prev) => ({
+      ...prev,
+      major_type: category,
+      major1: '',
+      major2: '',
+      minor: '',
+    }));
   };
 
   const handleMajorChange = (type: 'major' | 'doubleMajor' | 'minor', value: string) => {
-    if (type === 'major') {
-      setDepartment1(value);
-    } else if (type === 'doubleMajor') {
-      setDepartment2(value);
-    } else if (type === 'minor') {
-      setDepartment3(value);
-    }
+    setMajorChange((prev) => ({
+      ...prev,
+      [type === 'major' ? 'major1' : type === 'doubleMajor' ? 'major2' : 'minor']: value,
+    }));
   };
 
   return (
@@ -58,7 +69,7 @@ const MajorChange: React.FC = () => {
         <S.HayangiBox>
           <Hayangi />
         </S.HayangiBox>
-        <S.UserName>{user.name}</S.UserName>
+        <S.UserName>{user?.name ?? '이름 없음'}</S.UserName>
       </S.Top>
 
       <S.MajorSelect>
@@ -66,18 +77,19 @@ const MajorChange: React.FC = () => {
       </S.MajorSelect>
 
       <WhatMajorSelectCompo
-        types={MajorTypeCompos} 
-        onTypeClick={handleCategoryClick} 
+        types={MajorTypeCompos}
+        onTypeClick={handleCategoryClick}
         selectedCategory={selectedCategory}
       />
 
-      {/* 선택된 카테고리에 따른 조건부 렌더링 */}
       {selectedCategory === '전공심화' && (
         <>
           <S.WhatMajor>
             <Major />
           </S.WhatMajor>
-          <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
+          {selectedCategory && (
+            <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
+          )}
         </>
       )}
 
@@ -86,11 +98,15 @@ const MajorChange: React.FC = () => {
           <S.WhatMajor>
             <Major />
           </S.WhatMajor>
-          <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
+          {selectedCategory && (
+            <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
+          )}
           <S.WhatMajor2>
             <DoubleMajor />
           </S.WhatMajor2>
-          <SearchDropdown onChange={(value) => handleMajorChange('doubleMajor', value)} />
+          {selectedCategory && (
+            <SearchDropdown onChange={(value) => handleMajorChange('doubleMajor', value)} />
+          )}
         </>
       )}
 
@@ -99,12 +115,15 @@ const MajorChange: React.FC = () => {
           <S.WhatMajor>
             <Major />
           </S.WhatMajor>
-          <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
-
+          {selectedCategory && (
+            <SearchDropdown onChange={(value) => handleMajorChange('major', value)} />
+          )}
           <S.Whatminor>
             <Minor />
           </S.Whatminor>
-          <SearchDropdown onChange={(value) => handleMajorChange('minor', value)} />
+          {selectedCategory && (
+            <SearchDropdown onChange={(value) => handleMajorChange('minor', value)} />
+          )}
         </>
       )}
 
