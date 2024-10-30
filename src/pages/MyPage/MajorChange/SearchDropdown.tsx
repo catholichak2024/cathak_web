@@ -1,3 +1,4 @@
+// SearchDropdown.tsx
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -32,17 +33,6 @@ const OptionContainer = styled.div`
   overflow-y: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
 `;
 
 const Option = styled.div`
@@ -63,6 +53,7 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ onChange }) => {
   const [majorNames, setMajorNames] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   useEffect(() => {
     const fetchMajors = async () => {
@@ -74,15 +65,15 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ onChange }) => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `${token}`,
           },
         });
 
         if (response.ok) {
           const data = await response.json();
-          const names = data.majorData.map((major: { name: string }) => major.name);
+          const names = data.majorData.map((major: { major1: string }) => major.major1);
           setMajorNames(names);
-          setFilteredOptions(names); // 초기 옵션을 전공 목록으로 설정
+          setFilteredOptions(names); // 초기 옵션 설정
         } else {
           console.error('전공 목록 요청 실패:', response.status);
         }
@@ -97,29 +88,27 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ onChange }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchTerm(value);
-    if (value === '') {
-      setFilteredOptions(majorNames); // 검색어가 없으면 전체 목록 표시
-    } else {
-      setFilteredOptions(
-        majorNames.filter((name) =>
-          name.toLowerCase().includes(value.toLowerCase())
-        )
-      );
-    }
+    setFilteredOptions(
+      majorNames.filter((name) =>
+        name.toLowerCase().includes(value.toLowerCase())
+      )
+    );
     onChange(value);
   };
 
   const handleOptionClick = (name: string) => {
     setSearchTerm(name);
     onChange(name);
-    setFilteredOptions([]); // 드롭다운 숨김
+    setDropdownVisible(false);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      onChange(searchTerm);
-      setFilteredOptions([]); // 드롭다운 숨김
-    }
+  const handleFocus = () => {
+    setDropdownVisible(true);
+    setFilteredOptions(majorNames);
+  };
+
+  const handleBlur = () => {
+    setTimeout(() => setDropdownVisible(false), 100);
   };
 
   return (
@@ -128,10 +117,11 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ onChange }) => {
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         placeholder="학과명으로 검색"
       />
-      {filteredOptions.length > 0 && (
+      {isDropdownVisible && filteredOptions.length > 0 && (
         <OptionContainer>
           {filteredOptions.map((name, index) => (
             <Option key={index} onClick={() => handleOptionClick(name)}>
@@ -144,4 +134,4 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ onChange }) => {
   );
 };
 
-export default SearchDropdown; 
+export default SearchDropdown;

@@ -124,4 +124,55 @@ export const passwordBox = styled.div`
   cursor:pointer;
 `;
 
+export const PopupOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 효과 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
 
+export const PopupContent = styled.div`
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  width: 320px;
+  height: 150px;
+  text-align: center;
+`;
+
+export const PopupMessage = styled.div`
+  font-size: 16px;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+export const PopupButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+`;
+
+export const PopupButton = styled.button`
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  background-color: #F1F1F1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  &:hover {
+    background-color: #D6E8F1;
+  }
+`;

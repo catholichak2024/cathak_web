@@ -37,9 +37,11 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo, Log
         navigate('/Mypage'); 
       };
 
-    const handleLogoutClick = () => {
-        console.log("Logout Clicked");
-    };
+      const handleLogoutClick = () => {
+        // 로그아웃 버튼 클릭 시 커스텀 이벤트 생성 및 디스패치
+        const logoutEvent = new CustomEvent('logoutClick'); 
+        window.dispatchEvent(logoutEvent); 
+      };
 
     return(
         <S.Layout>
@@ -67,7 +69,7 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo, Log
                     </S.ButtonLayout>
                 )}
                 {Logout && ( 
-                    <S.LogoutText>로그아웃</S.LogoutText>
+                    <S.LogoutText onClick={handleLogoutClick}>로그아웃</S.LogoutText>
                 )}
             </S.IconLayout>
         </S.Layout>
