@@ -20,11 +20,18 @@ const Header = ({ backarrow, catholiclogo1, catholiclogo2, catholicnamelogo, Log
 
     const handleBackClick = () => {
         if (location.pathname === '/mypage/majorchange') {
-          navigate('/mypage'); 
+            navigate('/mypage'); 
+        } else if (
+            location.pathname === '/LoginFind' || 
+            location.pathname === '/SignupFind' || 
+            location.pathname === '/Signup' // 세 경로에서 실행될 때
+        ) {
+            navigate('/Login'); // '/Login'으로 이동
         } else {
-          navigate('/home'); 
+            navigate('/home'); 
         }
     };
+    
 
     const handleLogoClick = () => {
         navigate('/Mypage'); 
