@@ -7,6 +7,3 @@ export const passwordChangeState = atom<PasswordChangeRequest>({
       pw: ''
     },
 });
-
-
-
