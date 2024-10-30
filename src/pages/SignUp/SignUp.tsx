@@ -3,9 +3,10 @@ import { useRecoilState } from 'recoil';
 import { UserRegistrationType } from '../../recoil/types/userRegistration';
 import { userRegistrationState } from '../../recoil/states/UserRegistrationState';
 import MajorSelection from './ChoiceMajor/MajorSelection';
-import { Body, InputField, Layout, Line, MajorErrorText, MajorTitle, SaveButton, TitleText } from './Styles';
+import { BackArrowContainer, Body, InputField, Layout, Line, MajorErrorText, MajorTitle, SaveButton, TitleText } from './Styles';
 import Header from '../../components/Header/Header';
 import { useNavigate } from 'react-router-dom';
+import { BackArrow } from '../../assets/icon';
 
 const SignUp: React.FC = () => {
     const [registrationInfo, setRegistrationInfo] = useRecoilState<UserRegistrationType>(userRegistrationState);
@@ -15,7 +16,7 @@ const SignUp: React.FC = () => {
     const navigate = useNavigate();
 
     const handleSignBackClick = () => {
-        navigate(-1); 
+        navigate('/login'); 
     };
 
 
@@ -149,7 +150,10 @@ const SignUp: React.FC = () => {
 
     return (
         <Layout>
-            <Header backarrow/>
+            {/* <Header backarrow/> */}
+            <BackArrowContainer onClick={handleSignBackClick} >
+                <BackArrow/>
+            </BackArrowContainer>
             <TitleText>회원가입</TitleText>
             <Line></Line>
             <Body>

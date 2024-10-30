@@ -3,6 +3,7 @@ import * as S from './Styles';
 import ScoreClassBox from './ScoreClassBox/ScoreClassBox';
 import { accessTokenState } from '../../../recoil/states/Loginstate';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 interface GradeData {
     id: number;
@@ -15,10 +16,11 @@ const ScoreComponent: React.FC = () => {
     const [grades, setGrades] = useState<GradeData[]>([]);
     const [selectedGrades, setSelectedGrades] = useState<{ [key: number]: string | null }>({});
     const accessToken = useRecoilValue(accessTokenState);
-
+    const navigate=useNavigate();
     
-    useEffect(() => {
+    
         const fetchGrades = async () => {
+        
             try {
                 const response = await fetch('https://www.everygrade.store/EveryGrade/grade', {
                     method: 'GET',
@@ -50,10 +52,33 @@ const ScoreComponent: React.FC = () => {
             }
         };
     
+        
+
+    useEffect(() => {
         fetchGrades();
-    }, [accessToken]);
+    }, []);
 
     const handleSave = async () => {
+
+        // 키 값 중복 제거
+        const uniqueGrades = grades.filter((grade, index, self) =>
+        index === self.findIndex((g) => (
+            g.id === grade.id
+        ))
+        );
+
+        // 요청 body에 보낼 데이터 준비
+        const requestBody = JSON.stringify({
+            subjects: uniqueGrades.map((grade) => ({
+                subject_name: grade.subject_name,
+                score: selectedGrades[grade.id] ?? null,
+                // score: selectedGrades[grade.id] || "N/A", // selectedGrades에서 grade id로 score 가져오기
+            })),
+        });
+
+        
+        console.log("Request Body:", requestBody); 
+
         try {
             const response = await fetch('https://www.everygrade.store/EveryGrade/grade', {
                 method: 'PATCH',
@@ -61,20 +86,21 @@ const ScoreComponent: React.FC = () => {
                     Authorization: `${accessToken}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    subjects: Object.entries(selectedGrades).map(([classId, str_score]) => ({
-                        subject_name: grades.find(grade => grade.id === Number(classId))?.subject_name || '',
-                        score: str_score || "N/A",
-                    })),
-                }),
+                body: requestBody,
             });
-
+            
             if (!response.ok) {
-                throw new Error(`Failed to save grades: ${response.status}`);
+                const errorText = await response.text();
+                console.error(`Failed to save grades: Status ${response.status} - ${response.statusText}`);
+                console.error("Server Response:", errorText);
+                throw new Error(`Failed to save grades: Status ${response.status}`);
             }
 
             const result = await response.json();
             console.log('Grades saved successfully:', result);
+            // 저장 후 최신 데이터를 다시 가져오기
+            // await fetchGrades();
+            navigate('/home');
         } catch (error) {
             console.error('Error saving grades:', error);
         }
