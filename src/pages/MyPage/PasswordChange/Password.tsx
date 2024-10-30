@@ -41,7 +41,7 @@ const Password: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `${token}`,
         },
-        body: JSON.stringify({ pw: passwordChange.pw }),
+        body: JSON.stringify({ pw: '' }),
       });
       const data = await response.json();
   
@@ -65,6 +65,7 @@ const Password: React.FC = () => {
             <S.PswImage src={pswImage} alt="이미지" />
           </S.TitleContainer>
           <S.Description>비밀번호 변경을 위해 현재 비밀번호를 입력해주세요.</S.Description>
+          <S.HorizontalLine />
         </S.Top>
 
         <S.Middle>
